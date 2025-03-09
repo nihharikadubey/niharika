@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { About, Contact, Experience, Hero, Navbar, Tech, Projects, Talks, Footer } from './components';
-import Blog from './pages/Blog';
-import BlogDetails from './pages/BlogDetails';
 
 const HomePage = () => {
   return (
@@ -28,8 +26,6 @@ const App = () => {
     }}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogDetails />} />
       </Routes>
     </Router>
   );
