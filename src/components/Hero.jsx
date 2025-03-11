@@ -3,7 +3,7 @@ import { styles } from '../styles';
 
 const Hero = () => {
   const handleDownloadResume = () => {
-    window.open('https://drive.google.com/file/d/1rQHPXDwV-_CNWzxe_Gk5xd-Vi4b2ErB_/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/12dFRkzE5aOKvs6kjv_3RAAQi_nA_WQ-m/view?usp=sharing', '_blank');
   };
 
   return (
@@ -16,11 +16,11 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915eff]">Nihharika</span>
+            Hi, I'm <span className="text-[#915eff]">Niharika</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             Infrastructure Engineer with expertise in<br className="sm:block hidden" />
-            AWS, Kubernetes, and MFT
+            AWS, DevOps, and MFT
           </p>
           <button
             onClick={handleDownloadResume}

@@ -123,11 +123,13 @@ export const experiences = [
       // "Developed CI/CD pipelines with Jenkins to efficiently automate the entire application build, test, and deployment.",
       // "Implemented DevSecOps security testing in Azure DevOps pipelines by integrating CBOM (Crypto Bill of Materials) and SBOM (Software Bill of Materials). Used Podman for CBOM and Syft for SBOM for analysis.",
       // "Provisioned infrastructure using Terraform to automate Docker orchestration & EC2 creation in AWS.",      
-      "Implemented MFT solutions using IBM Sterling Suite & Tectia, managing B2B file transfers across 3000+ servers and 10,000+ daily transactions.",  
-      "Automated deployments using Shell scripts, Control-M, and Terraform, reducing downtime by 30% and optimizing onboarding time by 20%.",  
-      "Designed and managed SOAP & RESTful APIs on TIBCO, integrating with MQ & Kafka while implementing DevSecOps security testing in Azure DevOps.",  
-      "Monitored and troubleshot production issues using Kibana and Grafana, optimizing system security and minimizing financial penalties.",  
-      "Developed CI/CD pipelines using Jenkins, collaborated with cross-functional teams, and participated in 50+ code reviews for efficient delivery."  
+
+
+      "Streamlined CI/CD pipelines with Jenkins on AWS, automating deployments via Argo CD, Kubernetes, Docker, reducing deployment time by 40% & optimizing cloud costs.",
+      "Implemented Secure, Automated B2B Managed File Transfer(MFT) middleware solutions across 3000+ distributed systems using IBM Sterling Suite, Control-M, protocols like SFTP, FTPS, AS2, & Connect Direct.",
+      "Developed & deployed scalable AWS cloud infrastructure using EC2, S3, EKS, Lambda, RDS, VPC, Route 53, DynamoDB, enhancing performance & reducing operational costs.",
+      "Automated Infrastructure as Code (IaC) using Terraform, Ansible, CloudFormation, migrated on-premises applications to AWS, improved system monitoring with Kibana, CloudWatch, Grafana, & Prometheus.",
+      "Designed SOAP & RESTful APIs on TIBCO, integrating with MQ & Kafka integration handling 10,000+ file transfers across Linux, AIX, and Windows environments."       
     ],
   },
   {
@@ -138,8 +140,9 @@ export const experiences = [
     date: "October 2022 - December 2022",
     points: [
       "Developed data flows on integration platform GoAnywhereMFT",
-      "Coordinated across teams to ensure seamless integration, development and testing",
-      "Implemented TCP/IP protocols"
+      "Developed CI/CD pipelines with Jenkins to efficiently automate the entire application build, test, and deployment.",
+      "Coordinated across teams to ensure seamless integration, development and testing.",
+      "Implemented TCP/IP protocols."
   ],
   },
   {
@@ -149,9 +152,10 @@ export const experiences = [
     iconBg: "#383E56",
     date: "September 2019 - October 2022",
     points: [
-      "Designed & built integration flows, creating over 200 routing channels, configured various templates, adapters, schedulers, and mailboxes, while also developing robust business processes for data exchanges.",
-      "Onboarded 100+ partners with protocols like SFTP, FTPS, AS2, and Connect Direct, for efficient file transfers.",
-      "Documented on Confluence, conducted KT sessions, & led transitions to production with minimal downtime",
+      "Designed & built integration flows, creating over 200 routing channels, configured various templates, adapters, schedulers, mailboxes, while also developing robust business processes for data exchanges.",
+      "Created Shell Scripts to automate tasks & jobs via Control-M therefore reducing downtime by 30% effectively.",
+      "Onboarded 100+ partners with protocols like SFTP, FTPS, AS2, Connect Direct, for efficient file transfers.",
+      "Documented on Confluence, conducted KT sessions, & led transitions to production with minimal downtime.",
     ],
   },
   // Add more experiences here over the time
