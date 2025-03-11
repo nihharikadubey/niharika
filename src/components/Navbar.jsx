@@ -20,7 +20,7 @@ const Navbar = () => {
           }}
         >
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
-            Nihharika &nbsp;
+            Niharika &nbsp;
             <span className='sm:block hidden'> | Portfolio</span>
           </p>
         </Link>

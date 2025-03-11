@@ -11,7 +11,7 @@ const Footer = () => {
     >
       <div className={`${styles.padding} bg-tertiary rounded-2xl min-h-[100px] flex justify-between items-center flex-wrap gap-5`}>
         <div>
-          <p className='text-white font-bold text-[24px]'>Nihharika Dubey</p>
+          <p className='text-white font-bold text-[24px]'>Niharika Dubey</p>
           <p className='mt-1 text-secondary'>Infrastructure Engineer</p>
         </div>
         
