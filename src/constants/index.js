@@ -180,7 +180,7 @@ export const projects = [
         color: "blue-text-gradient ",
       },
     ],
-    image: "images/aicontentgenerator.png",
+    image: "images/TODO.png",
     source_code_link: "https://github.com/nihharikadubey/NoteVault-DevOps-Powered-Todo-Application",
   },
   {
@@ -201,7 +201,7 @@ export const projects = [
         color: "blue-text-gradient ",
       },
     ],
-    image: "images/socialmediaresizer.png",
+    image: "images/wanderlust.png",
     source_code_link: "https://github.com/nihharikadubey/Wanderlust---Modern-Travel-Blog-Platform",
   },
   {
@@ -222,7 +222,7 @@ export const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: "images/scrumpoker.png",
+    image: "images/kube.png",
     source_code_link: "https://github.com/nihharikadubey/KubeSecOps--Enterprise-Three-Tier-Application-Platform",
   },
 ];
