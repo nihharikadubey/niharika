@@ -168,15 +168,15 @@ export const projects = [
       "A production-grade Todo application demonstrating modern DevOps practices, complete with CI/CD pipelines, security scanning, and multiple deployment options.",
     tags: [
       {
-        name: "angular",
+        name: "Jenkins",
         color: "pink-text-gradient",
       },
       {
-        name: "nodejs",
+        name: "DevSecOps",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "CICD",
         color: "blue-text-gradient ",
       },
     ],
@@ -189,15 +189,15 @@ export const projects = [
       "Wanderlust is a full-stack travel blogging platform built with the MERN stack (MongoDB, Express.js, React, Node.js) and deployed using modern DevOps practices. This project demonstrates end-to-end implementation of a production-grade application with robust CI/CD, security scanning, and monitoring.",
     tags: [
       {
-        name: "angular",
+        name: "Kubernetes",
         color: "pink-text-gradient",
       },
       {
-        name: "python",
+        name: "Graphana",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "ArgoCD",
         color: "blue-text-gradient ",
       },
     ],
@@ -210,15 +210,15 @@ export const projects = [
       "KubeSecOps is a comprehensive, enterprise-grade DevSecOps platform that demonstrates the implementation of a secure, scalable, and highly available three-tier application architecture. Built on AWS EKS.",
     tags: [
       {
-        name: "react",
+        name: "Kubernetes",
         color: "blue-text-gradient",
       },
       {
-        name: "nodejs",
+        name: "MongoDB",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "CICD",
         color: "pink-text-gradient",
       },
     ],
