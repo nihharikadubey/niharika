@@ -19,10 +19,7 @@ export const navLinks = [
 ];
 
 export const technologies = [
-  {
-    name: "MongoDB",
-    icon: "https://letsprogram.in/assets/images/icons/mongodb.svg",
-  },
+
   {
     name: "git",
     icon: "https://skillicons.dev/icons/?i=git",
@@ -46,6 +43,10 @@ export const technologies = [
   { 
     name:"SQL",
     icon:"https://skillicons.dev/icons/?i=mysql",
+  },
+  {
+    name: "MongoDB",
+    icon: "https://letsprogram.in/assets/images/icons/mongodb.svg",
   },
   { 
     name:"Java",
