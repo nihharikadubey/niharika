@@ -3,7 +3,7 @@ import { styles } from '../styles';
 
 const Hero = () => {
   const handleDownloadResume = () => {
-    window.open('https://drive.google.com/file/d/12dFRkzE5aOKvs6kjv_3RAAQi_nA_WQ-m/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1TpGw0eT2iOzLykAh7Mq23LDM1RxtbE1N/view?usp=sharing', '_blank');
   };
 
   return (
