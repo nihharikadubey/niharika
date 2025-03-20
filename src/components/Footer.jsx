@@ -43,7 +43,7 @@ const Footer = () => {
       
       <div className='flex justify-center items-center py-5 w-full'>
         <p className='text-secondary text-[14px]'>
-          © {new Date().getFullYear()} Niharika Dubey. All rights reserved.
+          © {new Date().getFullYear()} Niharika Dubey.  All rights reserved.
         </p>
       </div>
     </motion.footer>
