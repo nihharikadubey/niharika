@@ -133,7 +133,7 @@ export const experiences = [
       "Designed SOAP & RESTful APIs on TIBCO, integrating with MQ & Kafka integration handling 10,000+ file transfers across Linux, AIX, and Windows environments."       
     ],
   },
-  {
+  /*{
     title: "Cloud Infrastructure Specialist",
     company_name: "Siemens Healthineers (Bangalore)",
     icon: "https://companieslogo.com/img/orig/SHL.DE-ff92833b.png?t=1720244493",
@@ -145,7 +145,8 @@ export const experiences = [
       "Coordinated across teams to ensure seamless integration, development and testing.",
       "Implemented TCP/IP protocols."
   ],
-  },
+  },*/
+  
   {
     title: "Senior System Engineer",
     company_name: "Infosys (Pune)",
