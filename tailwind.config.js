@@ -7,15 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#050816",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
+        // Elegant dark neutral palette
+        primary: "#0b0b0e", // warm near-black
+        secondary: "#b5b0b8", // warm gray text
+        tertiary: "#1a171b", // card background
+        "black-100": "#141217",
+        "black-200": "#0f0d11",
         "white-100": "#f3f3f3",
+        accent: {
+          gold: "#d4af37",
+          rose: "#efb8c8",
+          amber: "#f59e0b",
+        },
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        card: "0 30px 100px -20px rgba(20, 18, 23, 0.6)",
       },
       screens: {
         xs: "450px",

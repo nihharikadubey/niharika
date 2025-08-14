@@ -6,7 +6,6 @@ import Tech from './Tech';
 import Projects from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
-import Talks from './Talks';
 
 export {
   Navbar,
@@ -15,7 +14,6 @@ export {
   Experience,
   Tech,
   Projects,
-  Talks,
   Contact,
   Footer,
 };
