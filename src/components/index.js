@@ -4,7 +4,6 @@ import About from './About';
 import Experience from './Experience';
 import Tech from './Tech';
 import Projects from './Projects';
-import Contact from './Contact';
 import Footer from './Footer';
 
 export {
@@ -14,6 +13,6 @@ export {
   Experience,
   Tech,
   Projects,
-  Contact,
+
   Footer,
 };
