@@ -9,12 +9,12 @@ const HomePage = () => {
         <Navbar />
         <Hero />
       </div>
+      <About />
       <div style={{ 
         position: 'relative',
         zIndex: 10
       }}>
         <Experience />
-        <About />
         <Projects />
       </div>
       <Tech />
