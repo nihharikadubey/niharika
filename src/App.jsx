@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { About, Contact, Hero, Navbar, Tech, Projects, Footer } from './components';
+import { About, Hero, Navbar, Tech, Projects, Footer } from './components';
 import Experience from './components/Experience'; // Direct import for testing
 
 const HomePage = () => {
@@ -9,18 +9,15 @@ const HomePage = () => {
         <Navbar />
         <Hero />
       </div>
-      <About />
       <div style={{ 
         position: 'relative',
         zIndex: 10
       }}>
         <Experience />
+        <About />
+        <Projects />
       </div>
       <Tech />
-      <Projects />
-      <section id="contact">
-        <Contact />
-      </section>
       <Footer/>
     </div>
   );
