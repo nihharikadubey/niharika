@@ -13,8 +13,9 @@ const Footer = () => {
 
   return (
     <motion.footer
+      id="contact"
       variants={fadeIn("up", "spring", 0.5, 0.75)}
-      className='relative bg-transparent'
+      className='relative bg-transparent pt-20 -mt-20'  // Added padding and negative margin to compensate for fixed header
     >
       
       {/* Contact Icon and Heading - Moved Outside Content Block */}
