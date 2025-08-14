@@ -1,0 +1,744 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { SectionWrapper } from '../hoc';
+import { technologies } from '../constants';
+import { styles } from '../styles';
+import { textVariant, fadeIn } from '../utils/motion';
+
+const Tech = () => {
+  const [hoveredTech, setHoveredTech] = useState(null);
+  const [activeCategory, setHoveredCategory] = useState('all');
+  const [activeCategoryInternal, setActiveCategory] = useState('all');
+
+  // Smooth category transition
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActiveCategory(activeCategoryInternal);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [activeCategoryInternal]);
+
+  // Handle smooth category change
+  const handleCategoryChange = (category) => {
+    setActiveCategoryInternal(category);
+    setHoveredCategory(category);
+  };
+
+  // Organize technologies by categories for better presentation
+  const techCategories = {
+    all: { name: 'All', icon: '🚀', technologies: technologies },
+    cloud: { 
+      name: 'Cloud & Infrastructure', 
+      icon: '☁️', 
+      technologies: technologies.filter(tech => 
+        ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Terraform'].includes(tech.name)
+      )
+    },
+    devops: { 
+      name: 'DevOps & Automation', 
+      icon: '⚙️', 
+      technologies: technologies.filter(tech => 
+        ['Jenkins', 'Ansible', 'git', 'Prometheus', 'Grafana'].includes(tech.name)
+      )
+    },
+    programming: { 
+      name: 'Programming & Scripting', 
+      icon: '💻', 
+      technologies: technologies.filter(tech => 
+        ['Java', 'Shell', 'Bash', 'SQL'].includes(tech.name)
+      )
+    },
+    tools: { 
+      name: 'Tools & Platforms', 
+      icon: '🛠️', 
+      technologies: technologies.filter(tech => 
+        ['MongoDB', 'Linux', 'SFTP', 'Connect', 'MQ', 'Kafka'].includes(tech.name)
+      )
+    }
+  };
+
+  const displayedTechnologies = techCategories[activeCategory]?.technologies || technologies;
+
+  // Animation variants for the section
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      y: 40, 
+      opacity: 0,
+      scale: 0.95
+    },
+    show: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12
+      }
+    }
+  };
+
+  // Category button variants
+  const buttonVariants = {
+    initial: { 
+      scale: 1,
+      y: 0,
+      opacity: 0.8,
+      backgroundColor: 'rgba(15, 23, 42, 0.5)',
+      color: '#94a3b8'
+    },
+    hover: {
+      scale: 1.05,
+      y: -2,
+      opacity: 1,
+      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+      color: '#ffffff',
+      transition: { 
+        type: 'spring', 
+        stiffness: 300, 
+        damping: 15 
+      }
+    },
+    active: {
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      backgroundColor: 'rgba(8, 145, 178, 0.2)',
+      color: '#38bdf8',
+      borderColor: 'rgba(56, 189, 248, 0.5)'
+    }
+  };
+
+  // Get gradient colors for different tech types
+  const getGradientColors = (index, techName) => {
+    const gradients = [
+      'from-blue-500 via-purple-500 to-pink-500',
+      'from-green-400 via-cyan-500 to-blue-500',
+      'from-yellow-400 via-red-500 to-pink-500',
+      'from-purple-400 via-pink-500 to-red-500',
+      'from-indigo-500 via-purple-500 to-pink-500',
+      'from-cyan-400 via-blue-500 to-purple-500',
+      'from-green-400 via-emerald-500 to-teal-500',
+      'from-orange-400 via-red-500 to-pink-500'
+    ];
+    
+    // Special colors for specific technologies
+    if (techName.toLowerCase().includes('aws')) return 'from-orange-400 to-orange-600';
+    if (techName.toLowerCase().includes('azure')) return 'from-blue-400 to-blue-600';
+    if (techName.toLowerCase().includes('docker')) return 'from-blue-400 to-cyan-500';
+    if (techName.toLowerCase().includes('kubernetes')) return 'from-blue-500 to-indigo-600';
+    if (techName.toLowerCase().includes('jenkins')) return 'from-blue-600 to-blue-800';
+    
+    return gradients[index % gradients.length];
+  };
+
+  return (
+    <section id="tech" className="relative w-full py-20 bg-transparent overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div 
+          className="absolute inset-0" 
+          style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, #0ea5e9 0%, transparent 50%),
+                           radial-gradient(circle at 75% 75%, #22d3ee 0%, transparent 50%)`,
+            backgroundSize: '100px 100px',
+            backgroundPosition: '0 0, 50px 50px'
+          }} 
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 mt-12">
+        {/* Header with Icon */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center mb-16"
+        >
+          {/* Icon above Tech Stack */}
+          <motion.div
+            variants={itemVariants}
+            className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
+          >
+            <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-3xl text-slate-200">💻</span>
+            </div>
+          </motion.div>
+          
+          <motion.h2 
+            variants={itemVariants}
+            className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
+          >
+            Tech Stack
+          </motion.h2>
+
+          {/* Animated Line */}
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center mb-6"
+          >
+            <div className="relative w-40 h-1">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
+            </div>
+          </motion.div>
+
+          <motion.p 
+            variants={itemVariants}
+            className="text-white/70 max-w-2xl mx-auto leading-relaxed"
+          >
+            Technologies and tools I've worked with, organized by category. Hover over each for more details.
+          </motion.p>
+        </motion.div>
+
+        {/* Category Buttons */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-3 mb-12 px-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {Object.entries(techCategories).map(([key, category]) => (
+            <motion.button
+              key={key}
+              variants={itemVariants}
+              initial="initial"
+              whileHover="hover"
+              animate={activeCategory === key ? "active" : "initial"}
+              variants={buttonVariants}
+              onClick={() => handleCategoryChange(key)}
+              className={`px-4 py-2 rounded-full border border-slate-700 text-sm font-medium transition-all duration-300 flex items-center gap-2`}
+            >
+              <span>{category.icon}</span>
+              {category.name}
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Tech Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4"
+        >
+
+          {/* Tech Grid Items */}
+          {displayedTechnologies.map((tech, index) => (
+            <motion.div
+              key={tech.name}
+              variants={itemVariants}
+              className="relative group"
+              onHoverStart={() => setHoveredTech(tech.name)}
+              onHoverEnd={() => setHoveredTech(null)}
+              whileHover={{
+                scale: 1.1,
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className={`aspect-square bg-gradient-to-br ${getGradientColors(index, tech.name)} rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10`}>
+                <div className="w-3/4 h-3/4 flex items-center justify-center">
+                  <img 
+                    src={tech.icon} 
+                    alt={tech.name} 
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-2 text-center">
+                  <span className="text-xs font-medium text-white/90">{tech.name}</span>
+                </div>
+              </div>
+              
+              {/* Hover Tooltip */}
+              {hoveredTech === tech.name && (
+                <motion.div 
+                  className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-3 bg-black/90 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-md whitespace-nowrap pointer-events-none z-20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {tech.name}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black/90 rotate-45 -mt-1"></div>
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Single Blue Cloud */}
+        <motion.div
+          className="absolute rounded-full opacity-20 blur-3xl"
+          style={{
+            width: '60vw',
+            height: '60vh',
+            background: 'radial-gradient(circle, #0ea5e9, transparent 70%)',
+            left: '20%',
+            top: '20%',
+          }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            rotate: [0, 5, 0],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut',
+          }}
+        />
+
+        {/* Starfield */}
+        <div className="absolute inset-0">
+          {[...Array(200)].map((_, i) => (
+            <div
+              key={`star-${i}`}
+              className="absolute rounded-full bg-white"
+              style={{
+                width: `${0.2 + Math.random() * 1}px`,
+                height: `${0.2 + Math.random() * 1}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0.5 + Math.random() * 0.5,
+              }}
+            />
+          ))}
+          
+          {/* Beautiful Green Particles */}
+          {[...Array(100)].map((_, i) => {
+            const size = 1 + Math.random() * 3;
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 100;
+            const duration = 10 + Math.random() * 20;
+            const delay = Math.random() * 5;
+            const distance = 100 + Math.random() * 200;
+            const angle = Math.random() * Math.PI * 2;
+            const colorHue = 120 + Math.random() * 60; // Green to teal
+            const colorSaturation = 60 + Math.random() * 40; // 60-100%
+            const colorLightness = 30 + Math.random() * 40; // 30-70%
+            const opacity = 0.2 + Math.random() * 0.8;
+            
+            return (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  left: `${startX}%`,
+                  top: `${startY}%`,
+                  backgroundColor: `hsla(${colorHue}, ${colorSaturation}%, ${colorLightness}%, ${opacity})`,
+                  boxShadow: `0 0 ${size * 3}px ${size}px hsla(${colorHue}, ${colorSaturation}%, ${colorLightness}%, ${opacity * 0.5})`,
+                  opacity: 0,
+                }}
+                animate={{
+                  x: [0, Math.cos(angle) * distance, Math.cos(angle) * distance * 0.5],
+                  y: [0, Math.sin(angle) * distance, Math.sin(angle) * distance * 0.5],
+                  opacity: [0, opacity, 0],
+                  scale: [0.3, 1.2, 0.5],
+                }}
+                transition={{
+                  duration: duration,
+                  delay: delay,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                  ease: 'easeInOut',
+                  times: [0, 0.5, 1],
+                }}
+              />
+            );
+          })}
+          
+          {/* Subtle Green Glow */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <motion.div 
+              className="absolute rounded-full opacity-10 blur-3xl"
+              style={{
+                width: '40vw',
+                height: '40vh',
+                background: 'radial-gradient(circle, #10b981, transparent 70%)',
+                left: '30%',
+                top: '30%',
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.05, 0.15, 0.05],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut',
+              }}
+            />
+          </div>
+        </div>
+        
+        {/* Starfield Layer 1 - Bright Small Stars */}
+        <div className="absolute inset-0">
+          {[...Array(300)].map((_, i) => {
+            const size = 0.5 + Math.random() * 1.5;
+            const starColor = [
+              'rgba(255, 255, 255, 1)',
+              'rgba(219, 234, 254, 1)',
+              'rgba(147, 197, 253, 0.9)',
+              'rgba(196, 181, 253, 0.8)'
+            ][Math.floor(Math.random() * 4)];
+            
+            return (
+              <motion.div
+                key={`star-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  background: starColor,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  boxShadow: `0 0 ${1 + Math.random() * 2}px currentColor`,
+                  opacity: 0.8,
+                }}
+                animate={{
+                  opacity: [0.4, 1, 0.4],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 3,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                  delay: Math.random() * 5,
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Enhanced Header */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <p className={`${styles.sectionSubText} tracking-widest mb-4`}>
+            Tech stack
+          </p>
+          
+          {/* Icon above Technical Skills */}
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100, delay: 0.2 }}
+            className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
+          >
+            <div className="w-16 h-16 bg-gradient-to-r rounded-full flex items-center justify-center text-3xl shadow-lg">
+              ⚡
+            </div>
+          </motion.div>
+          
+          <motion.h2 
+            className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Technical Skills
+          </motion.h2>
+
+          {/* Animated Line */}
+          <motion.div 
+            className="flex justify-center mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <motion.div 
+              className="relative w-40 h-1"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
+            </motion.div>
+          </motion.div>
+
+          <motion.p 
+            className="text-white/70 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            A comprehensive toolkit of technologies I've mastered through hands-on experience 
+            in enterprise environments, covering cloud infrastructure, DevOps automation, 
+            and modern development practices.
+          </motion.p>
+        </motion.div>
+
+        {/* Category Filter Tabs - Enhanced for Smoother Transitions */}
+        <motion.div 
+          className="flex flex-wrap gap-2 justify-center mb-12"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              ease: [0.16, 1, 0.3, 1]
+            }
+          }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+        >
+          {Object.entries(techCategories).map(([key, category], index) => (
+            <motion.button
+              key={key}
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: {
+                  duration: 0.4,
+                  delay: 0.3 + index * 0.05,
+                  ease: [0.22, 1, 0.36, 1],
+                  opacity: { duration: 0.3 },
+                  y: { duration: 0.4 },
+                  scale: { duration: 0.4 }
+                }
+              }}
+              viewport={{ once: true, margin: '0px 0px -30px 0px' }}
+              whileHover={{ 
+                scale: 1.03,
+                transition: { 
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 15,
+                  duration: 0.15
+                }
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                transition: { 
+                  type: 'spring',
+                  stiffness: 500,
+                  damping: 20,
+                  duration: 0.1
+                }
+              }}
+              onClick={() => setActiveCategory(key)}
+              className={`px-4 py-2 rounded-full text-sm font-medium relative overflow-hidden group transition-colors duration-200 ${
+                activeCategory === key 
+                  ? 'text-white' 
+                  : 'text-white/70 hover:text-white bg-white/5 hover:bg-white/[0.08]'
+              }`}
+              style={{
+                transformOrigin: 'center',
+                willChange: 'transform, opacity, background-color',
+                WebkitFontSmoothing: 'antialiased',
+                WebkitTapHighlightColor: 'transparent',
+                ...(activeCategory === key ? {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  boxShadow: '0 4px 15px -5px rgba(102, 126, 234, 0.4)'
+                } : {})
+              }}
+            >
+              {activeCategory === key && (
+                <div 
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    background: 'linear-gradient(45deg, #ff6b6b,rgb(112, 132, 131), #45b7d1, #96ceb4)',
+                    backgroundSize: '400% 400%',
+                    animation: 'gradient-shift 3s ease infinite',
+                  }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <span className="text-lg">{category.icon}</span>
+                {category.name}
+                <span className="text-xs opacity-60">({category.technologies.length})</span>
+              </span>
+            </motion.button>
+          ))}
+        </motion.div>
+
+                {/* Icon takes most of the space */}
+                <div 
+                  className="w-16 h-16 flex items-center justify-center mb-2"
+                >
+                  <img
+                    src={technology.icon}
+                    alt={technology.name}
+                    className='w-14 h-14 object-contain transition-transform duration-100 group-hover:scale-105'
+                    style={{
+                      filter: hoveredTech === technology.name 
+                        ? 'brightness(1.2) saturate(1.4) contrast(1.2) drop-shadow(0 4px 8px rgba(0,0,0,0.15))' 
+                        : 'brightness(1.1) saturate(1.2) contrast(1.1) drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                    }}
+                  />
+                </div>
+                
+                {/* Tech name */}
+                <h3 className={`text-sm font-medium text-center transition-all duration-300 ${
+                  hoveredTech === technology.name 
+                    ? 'text-white font-semibold'
+                    : 'text-white/85'
+                }`}>
+                  {technology.name}
+                </h3>
+                
+                {/* Subtle experience indicator dots */}
+                <div className="flex gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {[...Array(5)].map((_, i) => (
+                    <div 
+                      key={i}
+                      className={`w-1 h-1 rounded-full transition-all duration-300 ${
+                        i < (technology.level || 4) 
+                          ? 'bg-white/80'
+                          : 'bg-white/30'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Minimal floating particles effect on hover */}
+              {hoveredTech === technology.name && (
+                <>
+                  {[...Array(3)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 rounded-full opacity-40"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.6)',
+                        left: `${20 + i * 30}%`,
+                        top: `${15 + i * 25}%`,
+                        animation: `float-${(i % 3) + 1} ${1.5 + i * 0.2}s ease-in-out infinite`,
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    />
+                  ))}
+                </>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      <style jsx>{`
+        /* Enhanced animations */
+        @keyframes twinkle-1 {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.3); }
+        }
+        
+        @keyframes twinkle-2 {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          33% { opacity: 0.3; transform: scale(0.8); }
+          66% { opacity: 1; transform: scale(1.6); }
+        }
+        
+        @keyframes twinkle-3 {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          25% { opacity: 1; transform: scale(1.4); }
+          75% { opacity: 0.2; transform: scale(0.7); }
+        }
+        
+        @keyframes twinkle-4 {
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          40% { opacity: 0.4; transform: scale(0.9); }
+          80% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Tech Card Animations */
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float-1 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(180deg); }
+        }
+        
+        @keyframes float-2 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(-180deg); }
+        }
+        
+        @keyframes float-3 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-12px) rotate(90deg); }
+        }
+      `}</style>
+        </motion.div>
+      </div>
+    </section>
+    <style jsx global>{`
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(2deg); }
+      }
+      .tech-icon {
+        animation: float 6s ease-in-out infinite;
+      }
+      .tech-icon:hover {
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      /* Smooth scroll behavior for the page */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Animation for elements when they come into view */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .animate-fadeInUp {
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+    `}</style>
+  );
+};
+
+export default SectionWrapper(Tech, "tech");
+  );
+};
+
+export default SectionWrapper(Tech, "tech");

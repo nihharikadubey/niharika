@@ -1,19 +1,26 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { About, Contact, Experience, Hero, Navbar, Tech, Projects, Talks, Footer } from './components';
+import { About, Contact, Hero, Navbar, Tech, Projects, Footer } from './components';
+import Experience from './components/Experience'; // Direct import for testing
 
 const HomePage = () => {
   return (
-    <div className='relative z-0 bg-primary'>
+    <div className='relative z-10'> 
       <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
         <Navbar />
         <Hero />
       </div>
       <About />
-      <Experience />
+      <div style={{ 
+        position: 'relative',
+        zIndex: 10
+      }}>
+        <Experience />
+      </div>
       <Tech />
       <Projects />
-      {/* <Talks />
-      <Contact /> */}
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer/>
     </div>
   );
@@ -21,14 +28,17 @@ const HomePage = () => {
 
 const App = () => {
   return (
-    <Router future={{
-      v7_relativeSplatPath: true,
-    }}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <div className="relative min-h-screen bg-primary">
+      <Router future={{
+        v7_relativeSplatPath: true,
+      }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
+
 
 export default App;

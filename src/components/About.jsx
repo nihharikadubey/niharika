@@ -1,26 +1,255 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
 import { styles } from '../styles';
-import { fadeIn, textVariant } from '../utils/motion';
-import { SectionWrapper } from '../hoc';
+
+// --- Animation helpers ---
+const textVariant = (delay = 0) => ({
+  hidden: { y: -50, opacity: 0 },
+  show: {
+    y: 0, opacity: 1,
+    transition: { type: "spring", duration: 1.25, delay }
+  }
+});
+const fadeIn = (dir, type, delay, duration) => ({
+  hidden: {
+    x: dir === "left" ? 100 : dir === "right" ? -100 : 0,
+    y: dir === "up" ? 100 : dir === "down" ? -100 : 0,
+    opacity: 0,
+  },
+  show: {
+    x: 0, y: 0, opacity: 1,
+    transition: { type, delay, duration, ease: "easeOut" }
+  },
+});
+
+// --- Animated counter for stats ---
+const AnimatedNumber = ({ value }) => {
+  const [display, setDisplay] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const end = parseInt(value);
+    if (isNaN(end)) return;
+    const step = end / (1000 / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) {
+        clearInterval(timer);
+        setDisplay(value);
+      } else setDisplay(Math.floor(start) + "+");
+    }, 16);
+    return () => clearInterval(timer);
+  }, [value]);
+  return <>{display}</>;
+};
+
+// --- Icon wrapper ---
+const IconComponent = ({ children }) => (
+  <div className="w-8 h-8">{children}</div>
+);
+const CloudIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+    </svg>
+  </IconComponent>
+);
+const ServerIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <rect x="2" y="3" width="20" height="4" rx="1"/>
+      <rect x="2" y="9" width="20" height="4" rx="1"/>
+      <rect x="2" y="15" width="20" height="4" rx="1"/>
+      <circle cx="6" cy="5" r="0.5"/>
+      <circle cx="6" cy="11" r="0.5"/>
+      <circle cx="6" cy="17" r="0.5"/>
+    </svg>
+  </IconComponent>
+);
+const CodeIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/>
+    </svg>
+  </IconComponent>
+);
+const NetworkIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <circle cx="12" cy="12" r="2"/>
+      <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+    </svg>
+  </IconComponent>
+);
+const SecurityIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+  </IconComponent>
+);
+const MonitorIcon = () => (
+  <IconComponent>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+      <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+    </svg>
+  </IconComponent>
+);
+
+// --- Services data ---
+const services = [
+  { title: "Cloud Architecture", description: "Designing scalable cloud-native solutions with AWS, optimizing for security and performance", icon: CloudIcon, technologies: ["AWS","Cloud Native","Scalability","Security"] },
+  { title: "DevOps Automation", description: "CI/CD pipelines, Kubernetes, Docker, Terraform deployment automation", icon: CodeIcon, technologies: ["CI/CD","Kubernetes","Docker","Terraform"] },
+  { title: "Infrastructure Management", description: "Optimizing UNIX/Linux systems for reliability and speed", icon: ServerIcon, technologies: ["Linux","Performance","Automation","Monitoring"] },
+  { title: "Managed File Transfer", description: "Secure file transfer solutions and middleware integration", icon: NetworkIcon, technologies: ["MFT","Middleware","SOA","Integration"] },
+  { title: "Security & Compliance", description: "Enterprise-grade security and compliance standards", icon: SecurityIcon, technologies: ["Security","Compliance","Enterprise","Risk"] },
+  { title: "Monitoring & Observability", description: "Grafana, Prometheus for proactive system monitoring", icon: MonitorIcon, technologies: ["Grafana","Prometheus","Observability","Analytics"] },
+];
+
 
 const About = () => {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+  
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+  
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
+  const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const backgroundY = useTransform(smoothY, [0, 1], ["0%", "32%"]);
+  const contentY = useTransform(smoothY, [0, 1], ["0%", "-7%"]);
+
   return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       </motion.div>
 
-      <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
-      >
-Infrastructure, MFT, DevOps, & Cloud Engineer with 6 years of experience in AWS Cloud Integration, Middleware, Managed File Transfer and SOA across banking, healthcare & retail sectors. Proficient in automation and DevOps practices, AWS Services, leveraging CI/CD pipelines, Kubernetes, Docker, Ansible, and Terraform to streamline deployments, enhance scalability, and improve operational efficiency. Skilled in monitoring and observability tools like Grafana & Prometheus for real-time system performance tracking and proactive issue resolution. Strong hands-on experience in Scripting, and UNIX/Linux environments, with a focus on optimizing infrastructure performance, troubleshooting middleware issues, and ensuring seamless integrations across distributed systems. Well-versed in AWS cloud services, implementing cloud-native solutions to enhance reliability and scalability. Passionate about driving automation, improving system resilience, and delivering robust integration solutions for modern enterprise environments. Proficient in team leadership & individual contributions.      </motion.p>
-      <div className='mt-20 flex flex-wrap gap-10'>
-        {/* Add service cards here if needed */}
-      </div>
-    </>
+      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20" style={{ y: contentY }}>
+        {/* Header */}
+        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-14 text-center">
+          <p className="text-cyan-400 tracking-[0.3em] uppercase mb-3">Introduction</p>
+          <h2 className="text-5xl md:text-7xl font-black text-white">About Me</h2>
+        </motion.div>
+
+        {/* Profile & Intro */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
+          <motion.div variants={fadeIn("left", "spring", 0, 0.7)} className="lg:col-span-4 flex justify-center">
+            <img src="/profileND.png" alt="Profile" className="rounded-3xl w-80 h-80 object-cover border border-slate-700 shadow-lg" />
+          </motion.div>
+          <motion.div variants={fadeIn("right", "spring", 0.1, 0.7)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed">
+            <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
+            <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
+            <p>Passionate about building resilient systems that drive digital transformation.</p>
+            <div className="flex flex-wrap gap-4 mt-2">
+              {['AWS Cloud', 'Kubernetes', 'DevOps', 'Infrastructure'].map((skill, i) => (
+                <span key={i} className="px-6 py-2 rounded-2xl bg-slate-800 text-slate-300 border border-slate-700">{skill}</span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+
+        {/* Enhanced Core Expertise Section — as provided */}
+        <motion.div
+          variants={fadeIn("up", "spring", 0.4, 0.8)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mt-20"
+        >
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-4xl font-black text-white mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              Core Expertise
+            </motion.h3>
+            <motion.div 
+              className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-emerald-400 mx-auto rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: '96px' }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="group bg-transparent backdrop-blur-sm rounded-xl p-6 border border-slate-700/40 hover:border-slate-500/60 transition-all duration-300 relative overflow-hidden"
+                whileHover={{
+                  y: -6,
+                  scale: 1.02,
+                  boxShadow: "0 15px 35px rgba(0, 0, 0, 0.2)"
+                }}
+                onMouseEnter={() => setHoveredCard(`service-${index}`)}
+                onMouseLeave={() => setHoveredCard(null)}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={isVisible ? { 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1
+                } : {}}
+                transition={{
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 15,
+                  delay: 0.6 + index * 0.1,
+                  duration: 0.6
+                }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-slate-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isVisible ? 1 : 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                />
+                
+                <div className="flex items-start gap-4 mb-4 relative z-10">
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    <motion.div
+                      className="w-full h-full flex items-center justify-center"
+                      animate={hoveredCard === `service-${index}` ? { scale: [1, 1.08, 1] } : {}}
+                      transition={{ duration: 0.6, repeat: hoveredCard === `service-${index}` ? Infinity : 0 }}
+                    >
+                      <service.icon />
+                    </motion.div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-slate-100 transition-colors">
+                      {service.title}
+                    </h4>
+                    <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 relative z-10">
+                  {service.technologies.map((tech, techIndex) => (
+                    <motion.span
+                      key={tech}
+                      className="px-2 py-1 text-xs rounded-lg bg-slate-800/40 text-slate-500 border border-slate-700/40 font-medium hover:bg-slate-700/40 hover:text-slate-400 hover:border-slate-600/40 transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.8 + index * 0.1 + techIndex * 0.03 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
   );
 };
 
-export default SectionWrapper(About, "about");
+export default About;
