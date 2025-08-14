@@ -586,7 +586,7 @@ const OceanicCTAButtons = () => {
       external: true
     },
     {
-      href: "https://drive.google.com/file/d/1yloZvLrbMOo1eYWPEntZq9eDJCyN7mXT/view?usp=sharing",
+      href: "https://drive.google.com/file/d/112yrR6dOKE0YuVO2Fs4PLxSshV76pC0n/view?usp=sharing",
       text: "Download CV",
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
