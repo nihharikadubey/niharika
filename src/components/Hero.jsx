@@ -380,7 +380,7 @@ const OceanicHeroText = () => (
       >
         <div className="relative">
           <motion.p 
-            className="text-slate-300 text-base md:text-lg font-semibold tracking-wider uppercase bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+            className="text-slate-300 text-base md:text-lg font-semibold tracking-wider uppercase bg-gradient-to-r from-cyan-100 to-blue-100 bg-clip-text text-transparent"
             animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
@@ -395,12 +395,20 @@ const OceanicHeroText = () => (
           >
             Infrastructure & DevOps Engineer
           </motion.p>
-          <motion.div
-            className="absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-indigo-500 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: '100%' }}
-            transition={{ delay: 0.8, duration: 1 }}
-          />
+          <motion.div 
+            className="flex items-center justify-center mt-4"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          >
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>

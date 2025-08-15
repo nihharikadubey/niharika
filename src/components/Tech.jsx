@@ -298,14 +298,14 @@ const Tech = () => {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 mt-12">
+      <div className="relative max-w-7xl mx-auto px-4 mt-4">
         {/* Enhanced Header */}
         <motion.div 
           variants={textVariant()} 
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-4"
         >
           
           
@@ -330,22 +330,20 @@ const Tech = () => {
             Technical Skills
           </motion.h2>
 
-          {/* Animated Line */}
+          {/* Oceanic Gradient Divider */}
           <motion.div 
-            className="flex justify-center mb-6"
+            className="flex items-center justify-center mb-6 sm:mb-8"
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
-            <motion.div 
-              className="relative w-40 h-1"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
-            </motion.div>
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+            </div>
           </motion.div>
 
           <motion.p 
