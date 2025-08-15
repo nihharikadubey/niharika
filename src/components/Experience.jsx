@@ -61,7 +61,7 @@ const experiences = [
   {
     title: "Senior System Engineer",
     company_name: "Infosys Limited",
-    date: "2020 — 2022",
+    date: "2019 — 2022",
     icon: "/infy.png",
     points: [
       "Worked on MFT and API data transfer flows using IBM Sterling and Tibco",
