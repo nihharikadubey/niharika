@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <motion.footer
       id="contact"
-      variants={fadeIn("up", "spring", 0.5, 0.75)}
+      initial={{ opacity: 1, y: 0 }}
       className='relative bg-transparent pt-20 -mt-20'  // Added padding and negative margin to compensate for fixed header
     >
       
@@ -42,22 +42,20 @@ const Footer = () => {
           Get In Touch
         </motion.h2>
 
-        {/* Animated Line */}
+        {/* Oceanic Gradient Divider */}
         <motion.div 
-          className='flex justify-center mb-6'
+          className="flex items-center justify-center mb-6 sm:mb-8"
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
-          <motion.div 
-            className='relative w-40 h-1'
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <div className='absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full' />
-          </motion.div>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+            <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+            <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+          </div>
         </motion.div>
       </div>
 
@@ -85,7 +83,7 @@ const Footer = () => {
                   Get In Touch
                 </a>
                 <a 
-                  href='/resume.pdf'
+                  href='https://drive.google.com/file/d/112yrR6dOKE0YuVO2Fs4PLxSshV76pC0n/view?usp=sharing'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='px-6 py-3 rounded-xl border border-slate-600/50 bg-slate-800/50 text-slate-200 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-white transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 hover:-translate-y-0.5'

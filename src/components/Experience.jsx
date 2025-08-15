@@ -28,6 +28,7 @@ const experiences = [
     company_name: "HSBC Bank",
     date: "Apr 2025 — Present",
     icon: "/hsbc.png",
+    current: true,
     points: [
       "Implemented CI/CD pipelines for BigID using Jenkins and GitHub on GCP",
       "Implemented helm charts, used Docker and Kubernetes for containerization",
@@ -71,90 +72,85 @@ const experiences = [
   }
 ];
 
-// Subtle floating elements
-const FloatingElement = ({ delay = 0, size = 'small' }) => {
-  const sizeClasses = {
-    small: 'w-1 h-1',
-    medium: 'w-2 h-2',
-    large: 'w-3 h-3'
+// Elegant floating elements for grid cards
+const ElegantFloatingElement = ({ delay = 0, position = 'top-left' }) => {
+  const positions = {
+    'top-left': 'top-2 left-2',
+    'top-right': 'top-2 right-2',
+    'bottom-left': 'bottom-2 left-2',
+    'bottom-right': 'bottom-2 right-2',
   };
 
   return (
     <motion.div
-      className={`absolute ${sizeClasses[size]} bg-gradient-to-br from-slate-400/20 to-slate-300/30 rounded-full backdrop-blur-sm`}
-      initial={false}
+      className={`absolute ${positions[position]} w-1 h-1 bg-gradient-to-br from-slate-400/30 to-slate-300/40 rounded-full`}
+      initial={{ opacity: 0, scale: 0 }}
       animate={{
-        opacity: [0, 0.4, 0.2, 0],
-        y: [-20, -60],
-        x: [0, Math.random() * 30 - 15],
+        opacity: [0, 0.6, 0.3, 0],
+        scale: [0, 1, 1.2, 0],
       }}
       transition={{
-        duration: 10,
+        duration: 4,
         delay,
         repeat: Infinity,
-        repeatDelay: Math.random() * 5 + 4,
-        ease: "easeOut"
+        repeatDelay: Math.random() * 3 + 2,
+        ease: "easeInOut"
       }}
     />
   );
 };
 
-// Subtle flowing effect
-const SubtleFlow = ({ direction = 'left' }) => (
-  <motion.div
-    className="absolute inset-0 overflow-hidden pointer-events-none"
-    initial={false}
-    animate={{ opacity: 1 }}
-  >
-    <motion.div
-      className="h-px bg-gradient-to-r from-transparent via-slate-300/20 to-transparent"
-      animate={{
-        x: direction === 'left' ? ['-100%', '200%'] : ['200%', '-100%'],
-      }}
-      transition={{
-        duration: 15,
-        repeat: Infinity,
-        ease: "linear",
-      }}
-    />
-  </motion.div>
-);
-
-// Memoize the component to prevent unnecessary re-renders
-const ExperienceCard = React.memo(({ exp, index }) => {
+// Grid Experience Card Component
+const GridExperienceCard = React.memo(({ exp, index }) => {
   const [imageError, setImageError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
-  // Memoize these functions to prevent recreation on each render
+  // Company-specific styling
   const companyStyles = React.useMemo(() => {
-    const accentMap = {
-      'HSBC': 'border-red-400/30 hover:border-red-400/50',
-      'OCBC': 'border-orange-400/30 hover:border-orange-400/50',
-      'Siemens': 'border-blue-400/30 hover:border-blue-400/50',
-      'Infosys': 'border-purple-400/30 hover:border-purple-400/50',
-      'default': 'border-slate-400/30 hover:border-slate-400/50'
+    const styleMap = {
+      'HSBC': {
+        gradient: 'from-red-500/20 via-red-400/10 to-red-300/5',
+        border: 'border-red-400/30 hover:border-red-400/50',
+        accent: 'text-red-400',
+        shadow: 'shadow-red-500/10',
+        glow: 'group-hover:shadow-red-500/20'
+      },
+      'OCBC': {
+        gradient: 'from-orange-500/20 via-orange-400/10 to-orange-300/5',
+        border: 'border-orange-400/30 hover:border-orange-400/50',
+        accent: 'text-orange-400',
+        shadow: 'shadow-orange-500/10',
+        glow: 'group-hover:shadow-orange-500/20'
+      },
+      'Siemens': {
+        gradient: 'from-blue-500/20 via-blue-400/10 to-blue-300/5',
+        border: 'border-blue-400/30 hover:border-blue-400/50',
+        accent: 'text-blue-400',
+        shadow: 'shadow-blue-500/10',
+        glow: 'group-hover:shadow-blue-500/20'
+      },
+      'Infosys': {
+        gradient: 'from-purple-500/20 via-purple-400/10 to-purple-300/5',
+        border: 'border-purple-400/30 hover:border-purple-400/50',
+        accent: 'text-purple-400',
+        shadow: 'shadow-purple-500/10',
+        glow: 'group-hover:shadow-purple-500/20'
+      },
+      'default': {
+        gradient: 'from-slate-500/20 via-slate-400/10 to-slate-300/5',
+        border: 'border-slate-400/30 hover:border-slate-400/50',
+        accent: 'text-slate-400',
+        shadow: 'shadow-slate-500/10',
+        glow: 'group-hover:shadow-slate-500/20'
+      }
     };
 
-    const filterMap = {
-      'HSBC': 'brightness-110 contrast-110 saturate-120',
-      'OCBC': 'brightness-110 contrast-110 saturate-150',
-      'Siemens': 'brightness-105 contrast-115 saturate-130',
-      'Infosys': 'brightness-120 contrast-120 saturate-150',
-      'default': 'contrast-120 brightness-110 saturate-120'
-    };
-
-    return {
-      accent: Object.entries(accentMap).find(([key]) => 
-        exp.company_name.includes(key)
-      )?.[1] || accentMap.default,
-      filter: Object.entries(filterMap).find(([key]) => 
-        exp.company_name.includes(key)
-      )?.[1] || filterMap.default
-    };
+    return Object.entries(styleMap).find(([key]) => 
+      exp.company_name.includes(key)
+    )?.[1] || styleMap.default;
   }, [exp.company_name]);
 
-  // Use intersection observer to detect when card is in view
   const cardRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -165,7 +161,7 @@ const ExperienceCard = React.memo(({ exp, index }) => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: '100px 0px' }
+      { threshold: 0.2, rootMargin: '50px 0px' }
     );
 
     if (cardRef.current) {
@@ -179,111 +175,148 @@ const ExperienceCard = React.memo(({ exp, index }) => {
     };
   }, []);
 
-  // Determine if the card should be on the left or right of the timeline
-  const isEven = index % 2 === 0;
-  
   return (
-    <div 
+    <motion.div 
       ref={cardRef}
+      className="group relative h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full flex ${isEven ? 'justify-start' : 'justify-end'} ${index === 0 ? 'mt-0' : 'mt-12'}`}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        delay: index * 0.1
+      }}
+      whileHover={{
+        y: -8,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
     >
-      {/* Timeline line connector */}
-      {index !== experiences.length - 1 && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-slate-500/30 to-transparent">
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-slate-500/30" />
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-transparent to-slate-500/30" />
-        </div>
+      {/* Current role indicator */}
+      {exp.current && (
+        <motion.div
+          className="absolute -top-2 -right-2 z-20"
+          initial={{ scale: 0, rotate: -45 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+        >
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+            Current
+          </div>
+        </motion.div>
       )}
-      
-      {/* Timeline dot */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 border-2 border-white/80 shadow-lg z-10" />
-      
-      <div className={`w-full max-w-[calc(50%-2rem)] ${isEven ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
-        <div className={`group relative transition-all duration-300 ${isHovered ? '-translate-y-1' : ''}`}>
-          {/* Only render floating elements when in view */}
-          {isInView && (
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <FloatingElement 
-                delay={0} 
-                size="small"
-              />
-            </div>
-          )}
 
-          {/* Optimized card with reduced animations */}
-          <div className={`relative bg-white/5 backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/10 shadow-lg transition-all duration-300 overflow-hidden ${
-            isHovered ? 'bg-white/8 shadow-xl' : ''
-          }`}>
-            {/* Only render subtle flow when in view */}
-            {isInView && <SubtleFlow direction={index % 2 === 0 ? 'left' : 'right'} />}
-            
-            <div className="relative z-10">
-              {/* Header with Company Logo and Info */}
-              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-6">
-                <div 
-                  className={`relative w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-xl flex-shrink-0 flex items-center justify-center border ${
-                    companyStyles.accent
-                  } shadow-md p-2 transition-all duration-300 ${
-                    isHovered ? 'shadow-lg' : ''
-                  }`}
-                >
-                  <div className="w-full h-full bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                    {!imageError ? (
-                      <img 
-                        src={exp.icon} 
-                        alt={exp.company_name}
-                        className={`w-4/5 h-4/5 object-contain transition-transform duration-300 ${
-                          isHovered ? 'scale-105' : ''
-                        } ${companyStyles.filter}`}
-                        onError={() => setImageError(true)}
-                        loading="lazy"
-                        width={40}
-                        height={40}
-                      />
-                    ) : (
-                      <div className="w-4/5 h-4/5 bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg flex items-center justify-center text-white font-bold text-xs sm:text-sm">
-                        {exp.company_name.charAt(0)}
-                      </div>
-                    )}
+      {/* Floating elements */}
+      {isInView && (
+        <>
+          <ElegantFloatingElement delay={0} position="top-left" />
+          <ElegantFloatingElement delay={1} position="top-right" />
+          <ElegantFloatingElement delay={2} position="bottom-left" />
+          <ElegantFloatingElement delay={0.5} position="bottom-right" />
+        </>
+      )}
+
+      {/* Main card */}
+      <div className="relative h-full bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/20 shadow-lg transition-all duration-500 overflow-hidden">
+        {/* Content */}
+        <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col">
+          {/* Header */}
+          <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+            {/* Company logo */}
+            <motion.div 
+              className="relative w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-1.5 sm:p-2 transition-all duration-300"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="w-full h-full bg-white rounded-md sm:rounded-lg flex items-center justify-center overflow-hidden">
+                {!imageError ? (
+                  <img 
+                    src={exp.icon} 
+                    alt={exp.company_name}
+                    className="w-4/5 h-4/5 object-contain transition-transform duration-300 group-hover:scale-110"
+                    onError={() => setImageError(true)}
+                    loading="lazy"
+                    width={48}
+                    height={48}
+                  />
+                ) : (
+                  <div className="w-4/5 h-4/5 bg-gradient-to-br from-slate-600 to-slate-700 rounded-md sm:rounded-lg flex items-center justify-center text-white font-bold text-sm sm:text-lg">
+                    {exp.company_name.charAt(0)}
                   </div>
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2">
-                    {exp.title}
-                  </h3>
-                  
-                  <h4 className="text-base sm:text-lg font-semibold text-slate-300 mb-2 sm:mb-3">
-                    {exp.company_name}
-                  </h4>
-                  
-                  <p className="text-slate-400 text-xs sm:text-sm bg-slate-800/50 px-3 py-1 rounded-full inline-block border border-slate-600/50">
-                    {exp.date}
-                  </p>
-                </div>
+                )}
               </div>
+            </motion.div>
+            
+            {/* Company info */}
+            <div className="flex-1 min-w-0">
+              <motion.h3 
+                className="text-base sm:text-lg font-bold text-white mb-1 sm:mb-2 leading-tight"
+                layoutId={`title-${index}`}
+              >
+                {exp.title}
+              </motion.h3>
               
-              {/* Optimized experience points */}
-              <ul className="space-y-3">
-                {exp.points.map((point, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-slate-300 leading-relaxed transition-all duration-200 cursor-pointer hover:text-slate-200"
-                  >
-                    <span className="text-slate-500 text-lg mt-1 flex-shrink-0">
-                      •
-                    </span>
-                    <span className="text-sm sm:text-base">{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <motion.h4 
+                className="text-sm sm:text-base font-semibold text-slate-300 mb-2 leading-tight"
+                layoutId={`company-${index}`}
+              >
+                {exp.company_name}
+              </motion.h4>
+              
+              <motion.p 
+                className="text-slate-400 text-xs sm:text-sm bg-slate-800/50 px-2 sm:px-3 py-1 rounded-full inline-block border border-slate-600/50"
+                layoutId={`date-${index}`}
+              >
+                {exp.date}
+              </motion.p>
             </div>
           </div>
+          
+          {/* Experience points */}
+          <div className="flex-1">
+            <motion.ul className="space-y-2 sm:space-y-3">
+              {exp.points.map((point, i) => (
+                <motion.li
+                  key={i}
+                  className="flex items-start gap-2 sm:gap-3 text-slate-300 leading-relaxed text-xs sm:text-sm group/item cursor-default"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.3 + (index * 0.1) + (i * 0.05) }}
+                  whileHover={{ x: 2, transition: { duration: 0.2 } }}
+                >
+                  <motion.span 
+                    className="text-slate-400 text-sm sm:text-base mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200"
+                  >
+                    •
+                  </motion.span>
+                  <span className="group-hover/item:text-white transition-colors duration-200">
+                    {point}
+                  </span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+
+          {/* Bottom accent line */}
+          <motion.div
+            className="mt-4 sm:mt-6 h-0.5 sm:h-1 bg-gradient-to-r from-slate-400/20 to-slate-300/10 rounded-full"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
+          />
         </div>
+
+        {/* Hover glow effect */}
+        <motion.div
+          className={`absolute inset-0 rounded-2xl ${companyStyles.shadow} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          style={{
+            background: `linear-gradient(135deg, ${companyStyles.gradient.replace(/from-|via-|to-/g, '').split(' ').map(color => color + '/10').join(', ')})`,
+          }}
+        />
       </div>
-    </div>
+    </motion.div>
   );
 });
 
@@ -291,185 +324,156 @@ const Experience = () => {
   const containerRef = useRef(null);
 
   return (
-    <section id="work" ref={containerRef} className="relative min-h-screen py-24 px-4 overflow-hidden">
-      {/* Enhanced background with smooth animations */}
+    <section id="work" ref={containerRef} className="relative py-8 sm:py-12 px-4 overflow-hidden">
+      {/* Enhanced background */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         initial="hidden"
         animate="visible"
       >
+        {/* Ambient orbs */}
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-600/8 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-slate-600/8 to-slate-500/4 rounded-full blur-3xl"
           variants={{
-            hidden: { opacity: 0, x: -100, y: -100 },
+            hidden: { opacity: 0, scale: 0.8 },
             visible: { 
-              opacity: 0.2, 
-              x: 0, 
-              y: 0,
+              opacity: 1, 
+              scale: 1,
               transition: {
                 type: "spring",
                 stiffness: 30,
-                damping: 10,
+                damping: 15,
                 delay: 0.2
               }
             }
           }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
+        
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-slate-500/6 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-slate-500/6 to-slate-400/3 rounded-full blur-3xl"
           variants={{
-            hidden: { opacity: 0, x: 100, y: 100 },
+            hidden: { opacity: 0, scale: 0.8 },
             visible: { 
-              opacity: 0.2, 
-              x: 0, 
-              y: 0,
+              opacity: 1, 
+              scale: 1,
               transition: {
                 type: "spring",
                 stiffness: 30,
-                damping: 10,
+                damping: 15,
                 delay: 0.4
               }
             }
           }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        {/* Grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.01]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(148, 163, 184, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(148, 163, 184, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-6 mt-12">
-        {/* Professional Header */}
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Elegant Header */}
         <motion.div 
+          className="text-center mb-8 sm:mb-12"
           variants={textVariant()} 
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-16"
         >
-          {/* Icon above Featured Projects */}
+          {/* Decorative icon */}
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
-            className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
+            className="inline-flex items-center justify-center mb-4 sm:mb-6"
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-3xl text-slate-200">💼</span>
+            <div className="relative">
+              {/* Outer ring */}
+              <motion.div
+                className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gradient-to-r from-slate-400/30 to-slate-300/30"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+              
+              {/* Inner circle */}
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-slate-600/80 to-slate-700/80 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-2xl">
+                <span className="text-2xl sm:text-4xl">💼</span>
+              </div>
             </div>
           </motion.div>
 
           <motion.div 
-            className="mb-8"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ 
-              opacity: 1, 
-              y: 0,
-              transition: { 
-                type: "spring", 
-                stiffness: 100, 
-                damping: 10,
-                delay: 0.1
-              }
-            }}
-          >
-          <motion.h2 
-            className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Professional Journey
-          </motion.h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4 sm:mb-6">
+              Professional Journey
+            </h2>
 
-            {/* Animated Line */}
+            {/* Oceanic Gradient Divider */}
             <motion.div 
-              className="flex justify-center mb-6"
+              className="flex items-center justify-center mb-6 sm:mb-8"
               initial={{ scaleX: 0, opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.3 }}
             >
-              <motion.div 
-                        className="relative w-40 h-1"
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.5 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
-              </motion.div>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+                <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+              </div>
             </motion.div>
             
-            <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mt-4">
-              My career path and professional growth over the years
+            <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+              A timeline of growth, innovation, and impact across leading technology organizations
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Timeline Container */}
-        <div className="relative mt-16">
-          {/* Vertical timeline line */}
-          <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-gradient-to-b from-transparent via-slate-500/30 to-transparent">
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-slate-500/30" />
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-transparent to-slate-500/30" />
-          </div>
-          
-          {/* Experience Cards */}
-          <div className="space-y-8">
-            <AnimatePresence mode="wait">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={`${exp.company_name}-${index}`}
-                  initial={{ 
-                    opacity: 0, 
-                    x: index % 2 === 0 ? -30 : 30,
-                    scale: 0.98
-                  }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    x: 0,
-                    scale: 1,
-                    transition: { 
-                      type: "spring",
-                      stiffness: 120,
-                      damping: 15,
-                      mass: 0.7,
-                      delay: 0.2 + (index * 0.05),
-                      opacity: {
-                        duration: 0.6,
-                        ease: [0.16, 0.77, 0.47, 0.97]
-                      },
-                      x: {
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 15,
-                        mass: 0.7
-                      }
-                    }
-                  }}
-                  whileHover={{
-                    y: -4,
-                    transition: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 15
-                    }
-                  }}
-                  viewport={{ once: true, margin: "-10% 0px -10% 0px", amount: 0.2 }}
-                >
-                  <ExperienceCard 
-                    exp={exp} 
-                    index={index} 
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Simple bottom decoration */}
-        <motion.div
+        {/* Elegant Grid */}
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
+          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="flex justify-center mt-16"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-slate-500 to-transparent rounded-full" />
+          {experiences.map((exp, index) => (
+            <GridExperienceCard 
+              key={`${exp.company_name}-${index}`}
+              exp={exp} 
+              index={index} 
+            />
+          ))}
         </motion.div>
       </div>
     </section>

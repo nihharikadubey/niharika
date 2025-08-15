@@ -139,7 +139,7 @@ const About = () => {
           <motion.div variants={fadeIn("left", "spring", 0, 0.7)} className="lg:col-span-4 flex justify-center">
             <img src="/profileND.png" alt="Profile" className="rounded-3xl w-80 h-80 object-cover border border-slate-700 shadow-lg" />
           </motion.div>
-          <motion.div variants={fadeIn("right", "spring", 0.1, 0.7)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed">
+          <motion.div variants={fadeIn("right", "spring", 0.1, 0.7)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
             <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
             <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
@@ -154,13 +154,12 @@ const About = () => {
 
         {/* Enhanced Core Expertise Section — as provided */}
         <motion.div
-          variants={fadeIn("up", "spring", 0.4, 0.8)}
-          initial="hidden"
+          initial={{ opacity: 1, y: 0 }}
           whileInView="show"
           viewport={{ once: true }}
-          className="mt-20"
+          className="mt-8"
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <motion.h3 
               className="text-4xl font-black text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -168,12 +167,21 @@ const About = () => {
             >
               Core Expertise
             </motion.h3>
+            {/* Oceanic Gradient Divider */}
             <motion.div 
-              className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-emerald-400 mx-auto rounded-full"
-              initial={{ width: 0 }}
-              whileInView={{ width: '96px' }}
-              transition={{ duration: 1, delay: 0.2 }}
-            />
+              className="flex items-center justify-center mb-6 sm:mb-8"
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              <div className="flex items-center gap-1 sm:gap-2">
+                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+                <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+              </div>
+            </motion.div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
