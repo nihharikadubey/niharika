@@ -357,7 +357,7 @@ const OceanicHeroText = () => (
           Niharika
         </motion.span>{' '}
         <motion.span 
-          className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500"
           whileHover={{ scale: 1.02 }}
           transition={{ type: 'spring', stiffness: 300 }}
           animate={{

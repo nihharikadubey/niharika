@@ -189,7 +189,7 @@ const Tech = () => {
           ))}
           
           {/* Beautiful Green Particles */}
-          {[...Array(10)].map((_, i) => {
+          {[...Array(100)].map((_, i) => {
             const size = 1 + Math.random() * 3;
             const startX = Math.random() * 100;
             const startY = Math.random() * 100;
