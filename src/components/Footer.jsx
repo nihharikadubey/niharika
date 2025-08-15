@@ -90,6 +90,17 @@ const Footer = () => {
                 >
                   Download Resume
                 </a>
+                <a 
+                  href='https://cal.com/nihharikadubey/30min'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='px-6 py-3 rounded-xl border border-slate-600/50 bg-slate-800/50 text-cyan-300 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-cyan-200 transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 hover:-translate-y-0.5 flex items-center gap-2 group'
+                >
+                  <span>Schedule a Call</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
