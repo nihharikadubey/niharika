@@ -340,12 +340,7 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           {/* Icon above title */}
-          <motion.div 
-            className="flex justify-center mb-4"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          <div className="flex justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
               <svg 
                 viewBox="0 0 24 24" 
@@ -359,7 +354,7 @@ const Experience = () => {
                 <line x1="12" y1="22.08" x2="12" y2="12"/>
               </svg>
             </div>
-          </motion.div>
+          </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4">
             Professional Journey

@@ -8,10 +8,8 @@ const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
+const CurrentlyLearning = lazy(() => import('./components/CurrentlyLearning'));
 const Footer = lazy(() => import('./components/Footer'));
-
-// Only import CurrentlyLearning if you have this component
-// const CurrentlyLearning = lazy(() => import('./components/CurrentlyLearning'));
 
 // COMPLETE HOMEPAGE WITH ALL SECTIONS
 const HomePage = () => {
@@ -78,7 +76,9 @@ const HomePage = () => {
           <Projects />
         </Suspense>
         
-        {/* Remove CurrentlyLearning for now since it's not in your index.js */}
+        <Suspense fallback={null}>
+          <CurrentlyLearning />
+        </Suspense>
         
         <Suspense fallback={null}>
           <Footer />

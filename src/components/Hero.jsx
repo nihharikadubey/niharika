@@ -528,17 +528,9 @@ const OceanicStatsOverlay = () => {
       }}
     >
       {stats.map((stat, index) => (
-        <motion.div
+        <div
           key={stat.label}
-          className="group relative py-3 px-4 rounded-xl bg-slate-800/20 backdrop-blur-md border border-slate-600/30 text-slate-200 hover:bg-slate-700/30 hover:border-slate-500/40 transition-all duration-300"
-          whileHover={{ 
-            y: -4,
-            scale: 1.02,
-            transition: { duration: 0.2 }
-          }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.7 + index * 0.1 }}
+          className="group relative py-3 px-4 rounded-xl bg-slate-800/20 backdrop-blur-md border border-slate-600/30 text-slate-200 hover:bg-slate-700/30 hover:border-slate-500/40"
         >
           <div className="flex items-center gap-3">
             <span className="text-lg">{stat.icon}</span>
@@ -549,8 +541,8 @@ const OceanicStatsOverlay = () => {
           </div>
           
           {/* Oceanic hover glow effect */}
-          <motion.div
-            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          <div
+            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
             style={{
               background: `linear-gradient(135deg, rgba(${
                 stat.color === 'sky' ? '56, 189, 248' : 
@@ -558,7 +550,7 @@ const OceanicStatsOverlay = () => {
               }, 0.1) 0%, transparent 100%)`,
             }}
           />
-        </motion.div>
+        </div>
       ))}
     </motion.div>
   );
@@ -633,38 +625,20 @@ const OceanicCTAButtons = () => {
       }}
     >
       {buttons.map((button, index) => (
-        <motion.a
+        <a
           key={button.text}
           href={button.href}
           {...(button.external && { target: "_blank", rel: "noopener noreferrer" })}
-          className={`group relative py-3 px-6 rounded-full outline-none font-medium text-sm shadow-lg overflow-hidden bg-gradient-to-r ${button.gradient} backdrop-blur-md border ${button.borderColor} ${button.textColor} hover:text-slate-100 ${button.hoverGradient} transition-all duration-300 flex items-center gap-2`}
-          whileHover={{ 
-            y: -4,
-            scale: 1.02,
-            transition: { duration: 0.2 }
-          }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.7 + index * 0.1 }}
+          className={`group relative py-3 px-6 rounded-full outline-none font-medium text-sm shadow-lg overflow-hidden bg-gradient-to-r ${button.gradient} backdrop-blur-md border ${button.borderColor} ${button.textColor} hover:text-slate-100 ${button.hoverGradient} flex items-center gap-2`}
         >
           {button.icon}
           <span>{button.text}</span>
           
-          {/* Oceanic shimmer effect */}
-          <motion.div
+          {/* Oceanic shimmer effect - static */}
+          <div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-200/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-            animate={{
-              x: ['-100%', '200%'],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: index * 0.3,
-              ease: "easeInOut",
-            }}
           />
-        </motion.a>
+        </a>
       ))}
     </motion.div>
   );
