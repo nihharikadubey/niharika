@@ -7,7 +7,6 @@ import FloatingNav from './components/FloatingNav';
 import KeyboardGuide from './components/KeyboardGuide';
 import PageTransition from './components/PageTransition';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
-import AnimatedCursor from './components/AnimatedCursor';
 import useKeyboardNav from './hooks/useKeyboardNav';
 import useAnalytics from './hooks/useAnalytics';
 
@@ -43,7 +42,6 @@ const HomePage = () => {
   return (
     <PageTransition>
       <div className='relative z-10'> 
-        <AnimatedCursor />
         <ScrollProgress />
         <FloatingNav />
         <KeyboardGuide />
