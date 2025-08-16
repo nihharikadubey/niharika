@@ -2,7 +2,10 @@ import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../utils/motion';
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
+
+// Lazy load the Globe component
+const Globe = lazy(() => import('./Globe'));
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -82,6 +85,18 @@ const Footer = () => {
       
       {/* Contact Icon and Heading - Moved Outside Content Block */}
       <div className='text-center max-w-7xl mx-auto relative z-10 mb-2 sm:mb-4 bg-transparent'>
+        {/* Mobile Globe - Shows on small screens */}
+        <div className='lg:hidden mb-6'>
+          <div className='h-48 w-48 mx-auto relative'>
+            <Suspense fallback={
+              <div className='w-full h-full flex items-center justify-center'>
+                <div className='w-8 h-8 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin'></div>
+              </div>
+            }>
+              <Globe />
+            </Suspense>
+          </div>
+        </div>
         {/* Contact Icon */}
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
@@ -140,16 +155,31 @@ const Footer = () => {
         <div className='max-w-7xl mx-auto relative z-10'>
 
           {/* Main Contact Form Section */}
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 mt-12'>
-            {/* Left side - Info */}
-            <div>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 mt-12'>
+            {/* Left side - Globe */}
+            <div className='hidden lg:block'>
+              <div className='h-64 w-full relative'>
+                <Suspense fallback={
+                  <div className='w-full h-full flex items-center justify-center'>
+                    <div className='w-12 h-12 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin'></div>
+                  </div>
+                }>
+                  <Globe />
+                </Suspense>
+              </div>
+              <p className='text-center text-cyan-400/60 text-sm mt-4'>
+                Connecting globally through technology
+              </p>
+            </div>
+            
+            {/* Middle - Info */}
+            <div className='mt-8 lg:mt-12'>
               <p className='text-cyan-300/90 tracking-widest text-xs uppercase font-medium'>Let's collaborate</p>
               <h3 className='mt-2 text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-teal-200'>
                 Niharika Dubey
               </h3>
               <p className='text-cyan-400 text-lg mb-4'>Infrastructure & DevOps Engineer</p>
               <p className='text-slate-300/90 text-base leading-relaxed mb-6'>
-                I'm passionate about building reliable, scalable infrastructure and developer platforms that drive innovation. Let's discuss how we can work together to create exceptional solutions.
               </p>
               
               {/* Quick action buttons */}
