@@ -118,16 +118,13 @@ const CurrentlyLearning = () => {
           ))}
         </div>
 
-        {/* Learning Goals */}
+        {/* GitHub Link */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-white/60 mb-4">
-            🎯 2025 Goals: AWS Solutions Architect Professional & Google Cloud Professional DevOps Engineer Certifications
-          </p>
           <motion.a
             href="https://github.com/nihharikadubey"
             target="_blank"
