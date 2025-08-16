@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Hero, Navbar } from './components';
 import { PerformanceProvider } from './context/PerformanceContext';
 import ScrollProgress from './components/ScrollProgress';
@@ -8,7 +8,6 @@ import KeyboardGuide from './components/KeyboardGuide';
 import PageTransition from './components/PageTransition';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import BackToTop from './components/BackToTop';
-import LoadingScreen from './components/LoadingScreen';
 import CurrentlyLearning from './components/CurrentlyLearning';
 import useKeyboardNav from './hooks/useKeyboardNav';
 import useAnalytics from './hooks/useAnalytics';
@@ -28,8 +27,6 @@ const LoadingSection = () => (
 );
 
 const HomePage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  
   // Enable keyboard navigation
   useKeyboardNav();
   // Enable analytics
@@ -43,10 +40,6 @@ const HomePage = () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
-
-  if (isLoading) {
-    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
-  }
 
   return (
     <PageTransition>
