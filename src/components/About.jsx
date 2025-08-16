@@ -120,12 +120,12 @@ const About = () => {
   const contentY = useTransform(smoothY, [0, 1], ["0%", "-7%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-16">
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-8 sm:pt-16">
       <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       </motion.div>
 
-      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-2 sm:pt-3 pb-0" style={{ y: contentY }}>
+      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: contentY }}>
         {/* Header */}
         <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center">
           {/* Icon above title */}

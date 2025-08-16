@@ -20,7 +20,7 @@ const GlobeGeometry = () => {
   // Create dots for continents
   const points = useMemo(() => {
     const points = [];
-    const radius = 1.5; // Smaller radius for shorter globe
+    const radius = 1.4; // Larger radius for prominent globe
     
     // Create points on sphere surface
     for (let lat = -90; lat <= 90; lat += 8) {
@@ -53,7 +53,7 @@ const GlobeGeometry = () => {
     <group>
       {/* Globe wireframe */}
       <mesh ref={meshRef}>
-        <sphereGeometry args={[1.5, 32, 32]} />
+        <sphereGeometry args={[1.4, 32, 32]} />
         <meshBasicMaterial 
           color="#1e3a5f"
           wireframe
@@ -63,7 +63,7 @@ const GlobeGeometry = () => {
       </mesh>
 
       {/* Globe surface */}
-      <Sphere args={[1.48, 32, 32]}>
+      <Sphere args={[1.38, 32, 32]}>
         <meshPhongMaterial
           color="#0a1929"
           transparent
@@ -92,7 +92,7 @@ const GlobeGeometry = () => {
       </points>
 
       {/* Atmosphere glow */}
-      <Sphere args={[1.6, 32, 32]}>
+      <Sphere args={[1.5, 32, 32]}>
         <meshPhongMaterial
           color="#38bdf8"
           transparent
@@ -108,7 +108,7 @@ const Globe = () => {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 3.5], fov: 45 }}
+        camera={{ position: [0, 0, 3.8], fov: 45 }}
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.5} />
