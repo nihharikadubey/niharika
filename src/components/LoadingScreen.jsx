@@ -6,15 +6,14 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
   
   const greetings = [
-    'Namaste',
-    'Hello',
-    'Hola',
-    'Bonjour',
-    '你好',
-    'こんにちは',
+    '. Namaste .',
+    '* Hello *',
+    '* Hola *',
+    '* Bonjour *',
+    '* 你好 *',
+    '* こんにちは *',
     'Ciao',
     'Привет',
-    'مرحبا',
     'Olá',
     'Hallo',
     'Welcome'
@@ -26,12 +25,12 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         if (prev >= greetings.length - 1) {
           clearInterval(interval);
           setIsComplete(true);
-          setTimeout(() => onLoadingComplete(), 500);
+          setTimeout(() => onLoadingComplete(), 300);
           return prev;
         }
         return prev + 1;
       });
-    }, 150); // Fast cycling through greetings
+    }, 80); // Very fast cycling through greetings
 
     return () => clearInterval(interval);
   }, [onLoadingComplete, greetings.length]);
@@ -55,7 +54,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ 
-              duration: 0.15,
+              duration: 0.08,
               ease: "easeInOut"
             }}
             className="text-5xl md:text-7xl lg:text-8xl font-light text-white text-center"
@@ -74,27 +73,6 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         />
       </div>
 
-      {/* Corner text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="absolute bottom-8 left-8 text-white/20 text-xs font-mono"
-      >
-        LOADING
-      </motion.div>
-      
-      {/* Progress indicator */}
-      <div className="absolute bottom-8 right-8">
-        <motion.div
-          className="text-white/20 text-xs font-mono"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          {String(currentIndex + 1).padStart(2, '0')} / {String(greetings.length).padStart(2, '0')}
-        </motion.div>
-      </div>
     </motion.div>
   );
 };
