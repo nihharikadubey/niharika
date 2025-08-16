@@ -212,13 +212,15 @@ const About = () => {
                 
                 <div className="flex items-start gap-4 mb-4 relative z-10">
                   <div className="w-16 h-16 flex items-center justify-center">
-                    <motion.div
-                      className="w-full h-full flex items-center justify-center"
-                      animate={hoveredCard === `service-${index}` ? { scale: [1, 1.08, 1] } : {}}
-                      transition={{ duration: 0.6, repeat: hoveredCard === `service-${index}` ? Infinity : 0 }}
+                    <div
+                      className="w-full h-full flex items-center justify-center transition-all duration-200"
+                      style={{
+                        filter: hoveredCard === `service-${index}` ? 'brightness(1.3)' : 'brightness(1)',
+                        transform: hoveredCard === `service-${index}` ? 'translateY(-2px)' : 'translateY(0)'
+                      }}
                     >
                       <service.icon />
-                    </motion.div>
+                    </div>
                   </div>
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-slate-100 transition-colors">
