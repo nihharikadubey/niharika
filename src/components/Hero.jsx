@@ -167,14 +167,12 @@ const OceanicBackground = () => {
         className="absolute inset-0"
         animate={!isMobileDevice && !reduceMotion ? {
           background: [
-            'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)',
-            'linear-gradient(135deg, #0c1429 0%, #1a2332 25%, #2d3748 50%, #4a5568 75%, #718096 100%)',
-            'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)',
+           'transparent'
           ]
         } : {}}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         style={isMobileDevice || reduceMotion ? {
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)'
+          background: 'transparent'
         } : {}}
       />
       
