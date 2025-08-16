@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { styles } from '../styles';
+// Remove the styles import since it's not used and causing issues
+// import { styles } from '../styles';
 
 // Updated experiences data with all companies
 const experiences = [
@@ -301,10 +302,10 @@ const Experience = () => {
   const containerRef = useRef(null);
 
   return (
-    <section id="work" ref={containerRef} className="relative py-16 px-4 overflow-hidden">
+    <section id="work" ref={containerRef} className="relative py-16 px-4 min-h-screen z-10">
       {/* Enhanced background */}
       <motion.div 
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 overflow-hidden z-0"
         initial="hidden"
         animate="visible"
       >
@@ -330,7 +331,7 @@ const Experience = () => {
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-0">
+      <div className="relative max-w-7xl mx-auto px-6 pt-0 z-10">
         {/* Elegant Header */}
         <motion.div 
           className="text-center mb-12"
@@ -406,4 +407,5 @@ const Experience = () => {
   );
 };
 
+// Remove the SectionWrapper since it's causing import issues
 export default Experience;

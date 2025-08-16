@@ -1,99 +1,108 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
+// Import Hero and Navbar directly (not lazy loaded)
 import { Hero, Navbar } from './components';
-import { PerformanceProvider } from './context/PerformanceContext';
-import ScrollProgress from './components/ScrollProgress';
-import FloatingNav from './components/FloatingNav';
-import KeyboardGuide from './components/KeyboardGuide';
-import PageTransition from './components/PageTransition';
-import AnalyticsDashboard from './components/AnalyticsDashboard';
-import BackToTop from './components/BackToTop';
-import CurrentlyLearning from './components/CurrentlyLearning';
-import useKeyboardNav from './hooks/useKeyboardNav';
-import useAnalytics from './hooks/useAnalytics';
 
-// Lazy load heavy components
+// Lazy load other components
 const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
 const Footer = lazy(() => import('./components/Footer'));
 
-// Loading component
-const LoadingSection = () => (
-  <div className="flex items-center justify-center min-h-[200px]">
-    <div className="animate-pulse text-slate-400">Loading...</div>
-  </div>
-);
+// Only import CurrentlyLearning if you have this component
+// const CurrentlyLearning = lazy(() => import('./components/CurrentlyLearning'));
 
+// COMPLETE HOMEPAGE WITH ALL SECTIONS
 const HomePage = () => {
-  // Enable keyboard navigation
-  useKeyboardNav();
-  // Enable analytics
-  useAnalytics();
-
-  useEffect(() => {
-    // Add smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
   return (
-    <PageTransition>
-      <div className='relative z-10'> 
-        <BackToTop />
-        <ScrollProgress />
-        <FloatingNav />
-        <KeyboardGuide />
-        <AnalyticsDashboard />
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+    <div className='relative z-10'> 
+      {/* COSMIC BACKGROUND - Same as Tech component */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* DEEP SPACE GRADIENT */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%)',
+          }}
+        />
+
+        {/* Static Blue Cloud */}
+        <div
+          className="absolute rounded-full opacity-10 blur-3xl"
+          style={{
+            width: '60vw',
+            height: '60vh',
+            background: 'radial-gradient(circle, #0ea5e9, transparent 70%)',
+            left: '20%',
+            top: '20%',
+          }}
+        />
+
+        {/* Dense Starfield Background */}
+        <div className="absolute inset-0">
+          {[...Array(200)].map((_, i) => (
+            <div
+              key={`star-bg-${i}`}
+              className="absolute rounded-full bg-white/50"
+              style={{
+                width: '1px',
+                height: '1px',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* ALL PAGE CONTENT */}
+      <div className='relative z-10'>
         <Navbar />
         <Hero />
-      </div>
-      <Suspense fallback={null}>
-        <About />
-      </Suspense>
-      <div style={{ 
-        position: 'relative',
-        zIndex: 10
-      }}>
+        
+        {/* Other sections with Suspense for lazy loading */}
+        <Suspense fallback={null}>
+          <About />
+        </Suspense>
+        
         <Suspense fallback={null}>
           <Experience />
         </Suspense>
+        
+        <Suspense fallback={null}>
+          <Tech />
+        </Suspense>
+        
         <Suspense fallback={null}>
           <Projects />
         </Suspense>
+        
+        {/* Remove CurrentlyLearning for now since it's not in your index.js */}
+        
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
-      <Suspense fallback={null}>
-        <Tech />
-      </Suspense>
-      <CurrentlyLearning />
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-      </div>
-    </PageTransition>
+    </div>
   );
 };
 
+// APP WITH COSMIC BACKGROUND
 const App = () => {
   return (
-    <PerformanceProvider>
-      <div className="relative min-h-screen bg-primary">
-        <Router future={{
-          v7_relativeSplatPath: true,
-        }}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-          </Routes>
-        </Router>
-      </div>
-    </PerformanceProvider>
+    <div className="relative min-h-screen" style={{
+      background: 'radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%)'
+    }}>
+      <Router future={{
+        v7_relativeSplatPath: true,
+      }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
-
 
 export default App;

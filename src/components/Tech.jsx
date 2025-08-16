@@ -262,14 +262,22 @@ const Tech = () => {
           
           
           {/* Icon above Technical Skills */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
+          <motion.div 
+            className="flex justify-center mb-4"
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center text-3xl shadow-lg">
-              ⚡
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
+              <svg 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                className="w-8 h-8 text-slate-300"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
             </div>
           </motion.div>
           
