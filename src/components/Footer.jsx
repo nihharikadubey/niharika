@@ -2,14 +2,77 @@ import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../utils/motion';
+import { useState } from 'react';
 
 const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#work' },
     { name: 'Skills', href: '#tech' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setErrors({});
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setSubmitStatus('success');
+      setIsSubmitting(false);
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }, 2000);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
 
   return (
     <footer
@@ -72,45 +135,134 @@ const Footer = () => {
       <div className={`${styles.padding} relative bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-2xl border border-slate-700/30`}>
         <div className='max-w-7xl mx-auto relative z-10'>
 
-          {/* Main CTA Section */}
-          <div className='mb-8 mt-12'>
-            <div className='mb-6'>
+          {/* Main Contact Form Section */}
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 mt-12'>
+            {/* Left side - Info */}
+            <div>
               <p className='text-cyan-300/90 tracking-widest text-xs uppercase font-medium'>Let's collaborate</p>
-              <h3 className='mt-2 text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-teal-200 whitespace-nowrap'>
-                Niharika Dubey — Infrastructure & DevOps Engineer
+              <h3 className='mt-2 text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-teal-200'>
+                Niharika Dubey
               </h3>
-              <p className='mt-3 text-slate-300/90 text-base leading-relaxed max-w-2xl'>
+              <p className='text-cyan-400 text-lg mb-4'>Infrastructure & DevOps Engineer</p>
+              <p className='text-slate-300/90 text-base leading-relaxed mb-6'>
                 I'm passionate about building reliable, scalable infrastructure and developer platforms that drive innovation. Let's discuss how we can work together to create exceptional solutions.
               </p>
               
-              {/* Buttons moved down to paragraph level */}
-              <div className='flex flex-wrap gap-3 mt-6'>
-                <a 
-                  href='mailto:niharika859@gmail.com' 
-                  className='px-6 py-3 rounded-xl text-slate-900 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-0.5'
-                >
-                  Get In Touch
-                </a>
+              {/* Quick action buttons */}
+              <div className='flex flex-wrap gap-3 mb-6'>
                 <a 
                   href='https://drive.google.com/file/d/112yrR6dOKE0YuVO2Fs4PLxSshV76pC0n/view?usp=sharing'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='px-6 py-3 rounded-xl border border-slate-600/50 bg-slate-800/50 text-slate-200 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-white transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 hover:-translate-y-0.5'
+                  className='px-4 py-2 rounded-lg border border-slate-600/50 bg-slate-800/50 text-slate-200 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-white transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 text-sm'
                 >
-                  Download Resume
+                  📄 Resume
                 </a>
                 <a 
                   href='https://cal.com/nihharikadubey/30min'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='px-6 py-3 rounded-xl border border-slate-600/50 bg-slate-800/50 text-cyan-300 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-cyan-200 transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 hover:-translate-y-0.5 flex items-center gap-2 group'
+                  className='px-4 py-2 rounded-lg border border-slate-600/50 bg-slate-800/50 text-cyan-300 hover:border-cyan-400/40 hover:bg-slate-700/40 hover:text-cyan-200 transition-all duration-300 hover:shadow-md hover:shadow-cyan-500/10 text-sm'
                 >
-                  <span>Schedule a Call</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  📅 Schedule Call
                 </a>
               </div>
+            </div>
+
+            {/* Right side - Contact Form */}
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Name Field */}
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${
+                      errors.name ? 'border-red-500' : 'border-slate-700/50'
+                    } text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors`}
+                    placeholder="Your Name"
+                  />
+                  {errors.name && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-sm mt-1"
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${
+                      errors.email ? 'border-red-500' : 'border-slate-700/50'
+                    } text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors`}
+                    placeholder="Your Email"
+                  />
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-sm mt-1"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${
+                      errors.message ? 'border-red-500' : 'border-slate-700/50'
+                    } text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none`}
+                    placeholder="Your Message"
+                  />
+                  {errors.message && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-sm mt-1"
+                    >
+                      {errors.message}
+                    </motion.p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg text-white font-semibold hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </motion.button>
+
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-green-500/20 border border-green-500/50 rounded-lg p-3 text-green-400 text-center"
+                  >
+                    ✅ Message sent successfully! I'll get back to you soon.
+                  </motion.div>
+                )}
+              </form>
             </div>
           </div>
 
