@@ -2,34 +2,34 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { styles } from '../styles';
 
-// --- Animation helpers ---
+// --- Animation helpers - Optimized for faster loading ---
 const textVariant = (delay = 0) => ({
-  hidden: { y: -50, opacity: 0 },
+  hidden: { y: -20, opacity: 0 },
   show: {
     y: 0, opacity: 1,
-    transition: { type: "spring", duration: 1.25, delay }
+    transition: { type: "tween", duration: 0.5, delay }
   }
 });
 const fadeIn = (dir, type, delay, duration) => ({
   hidden: {
-    x: dir === "left" ? 100 : dir === "right" ? -100 : 0,
-    y: dir === "up" ? 100 : dir === "down" ? -100 : 0,
+    x: dir === "left" ? 50 : dir === "right" ? -50 : 0,
+    y: dir === "up" ? 50 : dir === "down" ? -50 : 0,
     opacity: 0,
   },
   show: {
     x: 0, y: 0, opacity: 1,
-    transition: { type, delay, duration, ease: "easeOut" }
+    transition: { type: "tween", delay: delay * 0.5, duration: duration * 0.7, ease: "easeOut" }
   },
 });
 
-// --- Animated counter for stats ---
+// --- Animated counter for stats - Faster animation ---
 const AnimatedNumber = ({ value }) => {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
     let start = 0;
     const end = parseInt(value);
     if (isNaN(end)) return;
-    const step = end / (1000 / 16);
+    const step = end / (500 / 16); // Reduced from 1000ms to 500ms
     const timer = setInterval(() => {
       start += step;
       if (start >= end) {

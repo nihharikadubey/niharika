@@ -287,19 +287,19 @@ const oceanicAnimationVariants = {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.05,
+        staggerChildren: 0.03,
+        delayChildren: 0,
       },
     },
   },
   item: {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: 'tween',
-        duration: 0.5,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },
@@ -372,9 +372,9 @@ const OceanicHeroText = () => (
         variants={oceanicAnimationVariants.item}
       >
         <motion.span
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
         >
           Niharika
         </motion.span>{' '}
@@ -396,9 +396,9 @@ const OceanicHeroText = () => (
       {/* Oceanic Enhanced Subtitle */}
       <motion.div
         className="inline-block"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.4 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25 }}
       >
         <div className="relative">
           <motion.p 
@@ -442,9 +442,9 @@ const OceanicHeroText = () => (
     >
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.3 }}
       >
         Passionate Software Engineer specializing in{' '}
         <motion.span 
@@ -481,9 +481,9 @@ const OceanicHeroText = () => (
       
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.15, duration: 0.3 }}
       >
         Building{' '}
         <span className="text-slate-100 font-semibold">scalable solutions</span>{' '}
@@ -496,9 +496,9 @@ const OceanicHeroText = () => (
     <motion.div 
       className="flex flex-wrap gap-3 justify-center"
       variants={oceanicAnimationVariants.item}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5, duration: 0.4 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2, duration: 0.3 }}
     >
       {['AWS', 'Kubernetes', 'DevOps', 'Jenkins', 'Docker', 'Terraform'].map((tech, index) => (
         <motion.span
@@ -509,9 +509,9 @@ const OceanicHeroText = () => (
             y: -2,
             boxShadow: "0 5px 15px rgba(56, 178, 172, 0.2)"
           }}
-          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.6 + index * 0.05, duration: 0.3 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.25 + index * 0.02, duration: 0.2 }}
         >
           {tech}
         </motion.span>
@@ -699,8 +699,7 @@ const Hero = () => {
   const scaleTransform = useSpring(useTransform(scrollY, [0, 300], [1, 0.95]), springConfig);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
+    setIsVisible(true);
   }, []);
 
   return (

@@ -54,35 +54,30 @@ const Tech = () => {
 
   const displayedTechnologies = techCategories[activeCategory]?.technologies || technologies;
 
-  // Enhanced animation variants for initial load
+  // Optimized animation variants for faster load
   const containerVariants = {
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08, // Stagger the children animations
-        delayChildren: 0.3, // Delay before children start animating
+        staggerChildren: 0.02, // Reduced stagger
+        delayChildren: 0, // No delay
       }
     }
   };
 
   const itemVariants = {
     hidden: { 
-      y: 60, 
       opacity: 0,
-      scale: 0.8,
-      rotateX: -15
+      scale: 0.95
     },
     visible: {
-      y: 0,
       opacity: 1,
       scale: 1,
-      rotateX: 0,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-        duration: 0.6
+        type: "tween",
+        duration: 0.2,
+        ease: "easeOut"
       }
     },
     // Static state for when already loaded
@@ -99,18 +94,15 @@ const Tech = () => {
   const categoryChangeVariants = {
     hidden: { 
       opacity: 0,
-      y: 20,
-      scale: 0.95
+      scale: 0.98
     },
     visible: {
       opacity: 1,
-      y: 0,
       scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 15,
-        duration: 0.4
+        type: "tween",
+        duration: 0.2,
+        ease: "easeOut"
       }
     }
   };
@@ -415,6 +407,7 @@ const Tech = () => {
                 src={technology.icon}
                 alt={technology.name}
                 className="w-16 h-16 object-contain mb-2 drop-shadow-md"
+                loading="eager"
                 animate={hoveredTech === technology.name ? { scale: [1, 1.08, 1] } : {}}
                 transition={{ duration: 0.6, repeat: hoveredTech === technology.name ? Infinity : 0 }}
               />

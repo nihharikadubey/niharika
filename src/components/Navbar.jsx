@@ -46,14 +46,14 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-20 transition-all duration-500 ${
+      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-20 transition-all duration-300 ${
         scrolled 
           ? 'bg-slate-900/90 backdrop-blur-xl border-b border-cyan-400/20 shadow-lg shadow-cyan-500/10' 
           : 'bg-slate-900/70 backdrop-blur-md border-b border-white/5'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+      transition={{ duration: 0.3, type: "tween", ease: "easeOut" }}
     >
       {/* Floating water droplets - disabled on mobile */}
       {!isMobile() && !shouldReduceMotion() && (
