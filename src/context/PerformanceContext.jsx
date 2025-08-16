@@ -67,15 +67,15 @@ export const PerformanceProvider = ({ children }) => {
         });
         setPerformanceMode('balanced');
       } else {
-        // Desktop full mode
+        // Desktop optimized mode
         setSettings({
           enableAnimations: true,
-          enableParticles: true,
-          enableComplexEffects: true,
-          particleCount: 'high',
-          animationSpeed: 1,
+          enableParticles: false, // Disabled for better performance
+          enableComplexEffects: false, // Disabled for faster load
+          particleCount: 'medium',
+          animationSpeed: 0.8,
         });
-        setPerformanceMode('full');
+        setPerformanceMode('balanced');
       }
     };
 
