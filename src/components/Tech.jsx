@@ -127,7 +127,7 @@ const Tech = () => {
   };
 
   return (
-    <section id="tech" className="relative w-full py-20 bg-transparent overflow-hidden">
+    <section id="tech" className="relative w-full py-2 sm:py-4 bg-transparent overflow-hidden">
       {/* DARK COSMIC UNIVERSE BACKGROUND - Enhanced Celestial Activity */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* DEEP SPACE GRADIENT */}
@@ -138,9 +138,9 @@ const Tech = () => {
           }}
         />
 
-        {/* Single Blue Cloud */}
-        <motion.div
-          className="absolute rounded-full opacity-20 blur-3xl"
+        {/* Static Blue Cloud */}
+        <div
+          className="absolute rounded-full opacity-10 blur-3xl"
           style={{
             width: '60vw',
             height: '60vh',
@@ -148,84 +148,53 @@ const Tech = () => {
             left: '20%',
             top: '20%',
           }}
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'easeInOut',
-          }}
         />
 
-        {/* Starfield - reduced on mobile */}
+        {/* Dense Starfield Background */}
         <div className="absolute inset-0">
-          {[...Array(isMobile() ? 50 : 200)].map((_, i) => (
+          {[...Array(isMobile() ? 100 : 200)].map((_, i) => (
             <div
-              key={`star-${i}`}
-              className="absolute rounded-full bg-white"
+              key={`star-bg-${i}`}
+              className="absolute rounded-full bg-white/50"
               style={{
-                width: `${0.2 + Math.random() * 1}px`,
-                height: `${0.2 + Math.random() * 1}px`,
+                width: '1px',
+                height: '1px',
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                opacity: 0.5 + Math.random() * 0.5,
               }}
             />
           ))}
           
-          {/* Beautiful Green Particles - reduced on mobile */}
-          {!isMobile() && [...Array(shouldReduceMotion() ? 0 : 100)].map((_, i) => {
-            const size = 1 + Math.random() * 3;
-            const startX = Math.random() * 100;
-            const startY = Math.random() * 100;
-            const duration = 10 + Math.random() * 20;
-            const delay = Math.random() * 5;
-            const distance = 100 + Math.random() * 200;
-            const angle = Math.random() * Math.PI * 2;
-            const colorHue = 120 + Math.random() * 60; // Green to teal
-            const colorSaturation = 60 + Math.random() * 40; // 60-100%
-            const colorLightness = 30 + Math.random() * 40; // 30-70%
-            const opacity = 0.2 + Math.random() * 0.8;
-            
-            return (
-              <motion.div
-                key={`particle-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  width: `${size}px`,
-                  height: `${size}px`,
-                  left: `${startX}%`,
-                  top: `${startY}%`,
-                  backgroundColor: `hsla(${colorHue}, ${colorSaturation}%, ${colorLightness}%, ${opacity})`,
-                  boxShadow: `0 0 ${size * 3}px ${size}px hsla(${colorHue}, ${colorSaturation}%, ${colorLightness}%, ${opacity * 0.5})`,
-                  opacity: 0,
-                }}
-                animate={{
-                  x: [0, Math.cos(angle) * distance, Math.cos(angle) * distance * 0.5],
-                  y: [0, Math.sin(angle) * distance, Math.sin(angle) * distance * 0.5],
-                  opacity: [0, opacity, 0],
-                  scale: [0.3, 1.2, 0.5],
-                }}
-                transition={{
-                  duration: duration,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  ease: 'easeInOut',
-                  times: [0, 0.5, 1],
-                }}
-              />
-            );
-          })}
+          {/* Green Particle Stars */}
+          {[...Array(isMobile() ? 30 : 80)].map((_, i) => (
+            <motion.div
+              key={`green-star-${i}`}
+              className="absolute rounded-full"
+              style={{
+                width: `${1 + Math.random() * 2}px`,
+                height: `${1 + Math.random() * 2}px`,
+                background: 'radial-gradient(circle, #10b981, #22c55e)',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                boxShadow: '0 0 4px #10b981',
+              }}
+              animate={!isMobile() ? {
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.5, 1],
+              } : {}}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                delay: Math.random() * 3,
+              }}
+            />
+          ))}
           
-          {/* Subtle Green Glow - disabled on mobile */}
+          {/* Static Green Glow */}
           {!isMobile() && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <motion.div 
+              <div 
                 className="absolute rounded-full opacity-10 blur-3xl"
                 style={{
                   width: '40vw',
@@ -234,30 +203,22 @@ const Tech = () => {
                   left: '30%',
                   top: '30%',
                 }}
-                animate={!shouldReduceMotion() ? {
-                  scale: [1, 1.2, 1],
-                  opacity: [0.05, 0.15, 0.05],
-                } : {}}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  ease: 'easeInOut',
-                }}
               />
             </div>
           )}
         </div>
         
-        {/* Starfield Layer 1 - Bright Small Stars - reduced on mobile */}
+        {/* Starfield Layer 1 - Dense Bright Stars */}
         <div className="absolute inset-0">
-          {[...Array(isMobile() ? 50 : shouldReduceMotion() ? 100 : 300)].map((_, i) => {
+          {[...Array(isMobile() ? 150 : shouldReduceMotion() ? 300 : 500)].map((_, i) => {
             const size = 0.5 + Math.random() * 1.5;
             const starColor = [
               'rgba(255, 255, 255, 1)',
               'rgba(219, 234, 254, 1)',
               'rgba(147, 197, 253, 0.9)',
-              'rgba(196, 181, 253, 0.8)'
+              'rgba(196, 181, 253, 0.8)',
+              'rgba(16, 185, 129, 0.9)', // Green stars
+              'rgba(34, 197, 94, 0.8)' // Lighter green stars
             ][Math.floor(Math.random() * 4)];
             
             return (
@@ -289,22 +250,22 @@ const Tech = () => {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 mt-4">
+      <div className="relative max-w-7xl mx-auto px-4 mt-0">
         {/* Enhanced Header */}
         <motion.div 
           variants={textVariant()} 
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-4"
+          className="text-center mb-2"
         >
           
           
           {/* Icon above Technical Skills */}
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
           >
             <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center text-3xl shadow-lg">
@@ -314,9 +275,9 @@ const Tech = () => {
           
           <motion.h2 
             className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
           >
             Technical Skills
           </motion.h2>
@@ -339,10 +300,10 @@ const Tech = () => {
 
           <motion.p 
             className="text-white/70 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.3 }}
           >
             A comprehensive toolkit of technologies I've mastered through hands-on experience 
             in enterprise environments, covering cloud infrastructure, DevOps automation, 
@@ -354,19 +315,15 @@ const Tech = () => {
 
  {/* Category Tabs */}
  <motion.div 
-          className="flex flex-wrap gap-2 justify-center mb-12"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
+          className="flex flex-wrap gap-2 justify-center mb-4 sm:mb-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           {Object.entries(techCategories).map(([key, category], index) => (
-            <motion.button
+            <button
               key={key} onClick={() => setActiveCategory(key)}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.05 }}
-              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === key 
                   ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg'
                   : 'text-white/70 hover:text-white bg-white/5 hover:bg-white/[0.08]'
@@ -377,7 +334,7 @@ const Tech = () => {
                 {category.name}
                 <span className="text-xs opacity-60">({category.technologies.length})</span>
               </span>
-            </motion.button>
+            </button>
           ))}
         </motion.div>
  

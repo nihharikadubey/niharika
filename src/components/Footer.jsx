@@ -12,14 +12,13 @@ const Footer = () => {
   ];
 
   return (
-    <motion.footer
+    <footer
       id="contact"
-      initial={{ opacity: 1, y: 0 }}
-      className='relative bg-transparent pt-20 -mt-20'  // Added padding and negative margin to compensate for fixed header
+      className='relative bg-transparent pt-2 sm:pt-4 -mt-2'  // Reduced padding and negative margin
     >
       
       {/* Contact Icon and Heading - Moved Outside Content Block */}
-      <div className='text-center max-w-7xl mx-auto relative z-10 mb-8 bg-transparent'>
+      <div className='text-center max-w-7xl mx-auto relative z-10 mb-2 sm:mb-4 bg-transparent'>
         {/* Contact Icon */}
         <motion.div
             initial={{ opacity: 0 }}
@@ -35,9 +34,9 @@ const Footer = () => {
         {/* Contact Heading */}
         <motion.h2 
           className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           Get In Touch
         </motion.h2>
@@ -45,9 +44,9 @@ const Footer = () => {
         {/* Oceanic Gradient Divider */}
         <motion.div 
           className="flex items-center justify-center mb-6 sm:mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
           <div className="flex items-center gap-1 sm:gap-2">
             <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
@@ -57,6 +56,16 @@ const Footer = () => {
             <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
           </div>
         </motion.div>
+        
+        <motion.p 
+          className="text-white/70 max-w-2xl mx-auto leading-relaxed text-center px-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
+        >
+          Ready to collaborate on your next cloud infrastructure or DevOps project? 
+          Let's connect and build something amazing together.
+        </motion.p>
       </div>
 
       {/* Main Content Section */}
@@ -206,7 +215,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 

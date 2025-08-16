@@ -4,21 +4,19 @@ import { styles } from '../styles';
 
 // --- Animation helpers - Optimized for faster loading ---
 const textVariant = (delay = 0) => ({
-  hidden: { y: -20, opacity: 0 },
+  hidden: { opacity: 0 },
   show: {
-    y: 0, opacity: 1,
-    transition: { type: "tween", duration: 0.5, delay }
+    opacity: 1,
+    transition: { type: "tween", duration: 0.3, delay: delay * 0.5 }
   }
 });
 const fadeIn = (dir, type, delay, duration) => ({
   hidden: {
-    x: dir === "left" ? 50 : dir === "right" ? -50 : 0,
-    y: dir === "up" ? 50 : dir === "down" ? -50 : 0,
     opacity: 0,
   },
   show: {
-    x: 0, y: 0, opacity: 1,
-    transition: { type: "tween", delay: delay * 0.5, duration: duration * 0.7, ease: "easeOut" }
+    opacity: 1,
+    transition: { type: "tween", delay: delay * 0.3, duration: duration * 0.5, ease: "easeOut" }
   },
 });
 
@@ -29,7 +27,7 @@ const AnimatedNumber = ({ value }) => {
     let start = 0;
     const end = parseInt(value);
     if (isNaN(end)) return;
-    const step = end / (500 / 16); // Reduced from 1000ms to 500ms
+    const step = end / (300 / 16); // Reduced from 500ms to 300ms
     const timer = setInterval(() => {
       start += step;
       if (start >= end) {
@@ -127,19 +125,35 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       </motion.div>
 
-      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20" style={{ y: contentY }}>
+      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-2 sm:pt-3 pb-0" style={{ y: contentY }}>
         {/* Header */}
-        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-14 text-center">
+        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center">
           <p className="text-cyan-400 tracking-[0.3em] uppercase mb-3">Introduction</p>
-          <h2 className="text-5xl md:text-7xl font-black text-white">About Me</h2>
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-6">About Me</h2>
+          
+          {/* Oceanic Gradient Divider */}
+          <motion.div 
+            className="flex items-center justify-center mb-6 sm:mb-8"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Profile & Intro */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
-          <motion.div variants={fadeIn("left", "spring", 0, 0.7)} className="lg:col-span-4 flex justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mb-2">
+          <motion.div variants={fadeIn("left", "spring", 0, 0.5)} className="lg:col-span-4 flex justify-center">
             <img src="/profileND.png" alt="Profile" className="rounded-3xl w-80 h-80 object-cover border border-slate-700 shadow-lg" />
           </motion.div>
-          <motion.div variants={fadeIn("right", "spring", 0.1, 0.7)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
+          <motion.div variants={fadeIn("right", "spring", 0.1, 0.5)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
             <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
             <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
@@ -157,31 +171,17 @@ const About = () => {
           initial={{ opacity: 1, y: 0 }}
           whileInView="show"
           viewport={{ once: true }}
-          className="mt-8"
+          className="mt-0"
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-2">
             <motion.h3 
               className="text-4xl font-black text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
             >
               Core Expertise
             </motion.h3>
-            {/* Oceanic Gradient Divider */}
-            <motion.div 
-              className="flex items-center justify-center mb-6 sm:mb-8"
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              <div className="flex items-center gap-1 sm:gap-2">
-                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
-                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
-                <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
-                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
-                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
-              </div>
-            </motion.div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -190,20 +190,19 @@ const About = () => {
                 key={service.title}
                 className="group bg-transparent backdrop-blur-sm rounded-xl p-6 border border-slate-700/40 hover:border-slate-500/60 transition-all duration-300 relative overflow-hidden"
                 whileHover={{
-                  y: -4,
+                  y: -2,
                   transition: { duration: 0.2 }
                 }}
                 onMouseEnter={() => setHoveredCard(`service-${index}`)}
                 onMouseLeave={() => setHoveredCard(null)}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0 }}
                 animate={isVisible ? { 
-                  opacity: 1, 
-                  y: 0
+                  opacity: 1
                 } : {}}
                 transition={{
                   type: 'tween',
                   duration: 0.2,
-                  delay: index * 0.05
+                  delay: index * 0.02
                 }}
               >
                 <div 
@@ -234,15 +233,12 @@ const About = () => {
 
                 <div className="flex flex-wrap gap-2 relative z-10">
                   {service.technologies.map((tech, techIndex) => (
-                    <motion.span
+                    <span
                       key={tech}
-                      className="px-2 py-1 text-xs rounded-lg bg-slate-800/40 text-slate-500 border border-slate-700/40 font-medium hover:bg-slate-700/40 hover:text-slate-400 hover:border-slate-600/40 transition-all duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      initial={{ opacity: 1 }}
-                      animate={{ opacity: 1 }}
+                      className="px-2 py-1 text-xs rounded-lg bg-slate-800/40 text-slate-500 border border-slate-700/40 font-medium hover:bg-slate-700/40 hover:text-slate-400 hover:border-slate-600/40 transition-all duration-300 hover:scale-105 transform transition-transform"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>

@@ -181,15 +181,15 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
       className="group relative h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
       transition={{
         type: "tween",
         duration: 0.3,
-        delay: index * 0.05
+        delay: index * 0.02
       }}
       whileHover={{
-        y: -4,
+        y: -2,
         transition: { duration: 0.2 }
       }}
     >
@@ -224,10 +224,8 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
           {/* Header */}
           <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
             {/* Company logo */}
-            <motion.div 
-              className="relative w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-1.5 sm:p-2 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
+            <div 
+              className="relative w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-1.5 sm:p-2 transition-all duration-300 hover:scale-105"
             >
               <div className="w-full h-full bg-white rounded-md sm:rounded-lg flex items-center justify-center overflow-hidden">
                 {!imageError ? (
@@ -246,7 +244,7 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
             
             {/* Company info */}
             <div className="flex-1 min-w-0">
@@ -280,10 +278,9 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
                 <motion.li
                   key={i}
                   className="flex items-start gap-2 sm:gap-3 text-slate-300 leading-relaxed text-xs sm:text-sm group/item cursor-default"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + (index * 0.1) + (i * 0.05) }}
-                  whileHover={{ x: 2, transition: { duration: 0.2 } }}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.1 + (index * 0.02) + (i * 0.02) }}
                 >
                   <motion.span 
                     className="text-slate-400 text-sm sm:text-base mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200"
@@ -323,7 +320,7 @@ const Experience = () => {
   const containerRef = useRef(null);
 
   return (
-    <section id="work" ref={containerRef} className="relative py-4 sm:py-6 px-4 overflow-hidden">
+    <section id="work" ref={containerRef} className="relative py-0 px-4 overflow-hidden">
       {/* Enhanced background */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
@@ -331,56 +328,12 @@ const Experience = () => {
         animate="visible"
       >
         {/* Ambient orbs */}
-        <motion.div 
+        <div 
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-slate-600/8 to-slate-500/4 rounded-full blur-3xl"
-          variants={{
-            hidden: { opacity: 0, scale: 0.8 },
-            visible: { 
-              opacity: 1, 
-              scale: 1,
-              transition: {
-                type: "spring",
-                stiffness: 30,
-                damping: 15,
-                delay: 0.2
-              }
-            }
-          }}
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         />
         
-        <motion.div 
+        <div 
           className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-slate-500/6 to-slate-400/3 rounded-full blur-3xl"
-          variants={{
-            hidden: { opacity: 0, scale: 0.8 },
-            visible: { 
-              opacity: 1, 
-              scale: 1,
-              transition: {
-                type: "spring",
-                stiffness: 30,
-                damping: 15,
-                delay: 0.4
-              }
-            }
-          }}
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         />
 
         {/* Grid pattern overlay */}
@@ -396,10 +349,10 @@ const Experience = () => {
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-6 pt-0">
         {/* Elegant Header */}
         <motion.div 
-          className="text-center mb-8 sm:mb-12"
+          className="text-center mb-1 sm:mb-2"
           variants={textVariant()} 
           initial="hidden"
           whileInView="show"
@@ -410,7 +363,7 @@ const Experience = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="inline-flex items-center justify-center mb-4 sm:mb-6"
+            className="inline-flex items-center justify-center mb-1 sm:mb-2"
           >
             <div className="relative">
               {/* Outer ring */}
@@ -427,9 +380,9 @@ const Experience = () => {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4 sm:mb-6">
               Professional Journey
