@@ -501,7 +501,7 @@ const OceanicHeroText = () => (
           {tech}
         </span>
       ))}
-    </motion.div>
+    </div>
   </div>
 );
 
