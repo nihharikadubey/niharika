@@ -1,7 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Hero, Navbar } from './components';
 import { PerformanceProvider } from './context/PerformanceContext';
+import ScrollProgress from './components/ScrollProgress';
+import FloatingNav from './components/FloatingNav';
+import KeyboardGuide from './components/KeyboardGuide';
+import PageTransition from './components/PageTransition';
+import AnalyticsDashboard from './components/AnalyticsDashboard';
+import useKeyboardNav from './hooks/useKeyboardNav';
+import useAnalytics from './hooks/useAnalytics';
 
 // Lazy load heavy components
 const About = lazy(() => import('./components/About'));
@@ -18,9 +25,28 @@ const LoadingSection = () => (
 );
 
 const HomePage = () => {
+  // Enable keyboard navigation
+  useKeyboardNav();
+  // Enable analytics
+  useAnalytics();
+
+  useEffect(() => {
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
   return (
-    <div className='relative z-10'> 
-      <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+    <PageTransition>
+      <div className='relative z-10'> 
+        <ScrollProgress />
+        <FloatingNav />
+        <KeyboardGuide />
+        <AnalyticsDashboard />
+        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
         <Navbar />
         <Hero />
       </div>
@@ -44,7 +70,8 @@ const HomePage = () => {
       <Suspense fallback={null}>
         <Footer/>
       </Suspense>
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 
