@@ -7,7 +7,6 @@ import { textVariant, fadeIn } from '../utils/motion';
 import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
 
 const Tech = () => {
-  const [hoveredTech, setHoveredTech] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -152,7 +151,7 @@ const Tech = () => {
 
         {/* Dense Starfield Background */}
         <div className="absolute inset-0">
-          {[...Array(isMobile() ? 100 : 200)].map((_, i) => (
+          {[...Array(isMobile() ? 50 : 100)].map((_, i) => (
             <div
               key={`star-bg-${i}`}
               className="absolute rounded-full bg-white/50"
@@ -166,7 +165,7 @@ const Tech = () => {
           ))}
           
           {/* Green Particle Stars */}
-          {[...Array(isMobile() ? 30 : 80)].map((_, i) => (
+          {[...Array(isMobile() ? 15 : 40)].map((_, i) => (
             <motion.div
               key={`green-star-${i}`}
               className="absolute rounded-full"
@@ -210,7 +209,7 @@ const Tech = () => {
         
         {/* Starfield Layer 1 - Dense Bright Stars */}
         <div className="absolute inset-0">
-          {[...Array(isMobile() ? 150 : shouldReduceMotion() ? 300 : 500)].map((_, i) => {
+          {[...Array(isMobile() ? 75 : shouldReduceMotion() ? 150 : 250)].map((_, i) => {
             const size = 0.5 + Math.random() * 1.5;
             const starColor = [
               'rgba(255, 255, 255, 1)',
@@ -262,12 +261,7 @@ const Tech = () => {
           
           
           {/* Icon above Technical Skills */}
-          <motion.div 
-            className="flex justify-center mb-4"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          <div className="flex justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
               <svg 
                 viewBox="0 0 24 24" 
@@ -279,7 +273,7 @@ const Tech = () => {
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
               </svg>
             </div>
-          </motion.div>
+          </div>
           
           <motion.h2 
             className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
@@ -359,22 +353,17 @@ const Tech = () => {
               key={`${activeCategory}-${technology.name}`}
               variants={hasLoaded ? itemVariants : categoryChangeVariants}
               whileHover={{ y: -2 }}
-              onHoverStart={() => setHoveredTech(technology.name)}
-              onHoverEnd={() => setHoveredTech(null)}
-              className="flex flex-col items-center cursor-pointer transition-transform duration-200"
+              className="flex flex-col items-center cursor-pointer transition-transform duration-200 group"
             >
-              <img
+              <motion.img
                 src={technology.icon}
                 alt={technology.name}
-                className="w-16 h-16 object-contain mb-2 drop-shadow-md transition-all duration-200"
+                className="w-16 h-16 object-contain mb-2 drop-shadow-md transition-all duration-200 group-hover:brightness-125"
                 loading="eager"
-                style={{
-                  filter: hoveredTech === technology.name ? 'brightness(1.2)' : 'brightness(1)'
-                }}
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.05, ease: "linear" }}
               />
-              <h3 className={`text-sm text-center transition-colors duration-300 ${
-                hoveredTech === technology.name ? 'text-white font-semibold' : 'text-white/80'
-              }`}>
+              <h3 className="text-sm text-center transition-colors duration-300 text-white/80 group-hover:text-white group-hover:font-semibold">
                 {technology.name}
               </h3>
             </motion.div>

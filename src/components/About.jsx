@@ -129,12 +129,7 @@ const About = () => {
         {/* Header */}
         <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center">
           {/* Icon above title */}
-          <motion.div 
-            className="flex justify-center mb-4"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          <div className="flex justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
               <svg 
                 viewBox="0 0 24 24" 
@@ -147,7 +142,7 @@ const About = () => {
                 <circle cx="12" cy="7" r="4"/>
               </svg>
             </div>
-          </motion.div>
+          </div>
           
           <p className="text-cyan-400 tracking-[0.3em] uppercase mb-3">Introduction</p>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6">About Me</h2>
