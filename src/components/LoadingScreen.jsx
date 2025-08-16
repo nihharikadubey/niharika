@@ -12,11 +12,11 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     '* Bonjour *',
     '* 你好 *',
     '* こんにちは *',
-    'Ciao',
-    'Привет',
-    'Olá',
-    'Hallo',
-    'Welcome'
+    '* Ciao *',
+    '* Привет *',
+    '* Olá *',
+    '* Hallo *',
+    '* Welcome *'
   ];
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ 
-              duration: 0.08,
+              duration: 0.15,
               ease: "easeInOut"
             }}
             className="text-5xl md:text-7xl lg:text-8xl font-light text-white text-center"
