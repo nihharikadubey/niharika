@@ -24,24 +24,24 @@ const HomePage = () => {
         <Navbar />
         <Hero />
       </div>
-      <Suspense fallback={<LoadingSection />}>
+      <Suspense fallback={null}>
         <About />
       </Suspense>
       <div style={{ 
         position: 'relative',
         zIndex: 10
       }}>
-        <Suspense fallback={<LoadingSection />}>
+        <Suspense fallback={null}>
           <Experience />
         </Suspense>
-        <Suspense fallback={<LoadingSection />}>
+        <Suspense fallback={null}>
           <Projects />
         </Suspense>
       </div>
-      <Suspense fallback={<LoadingSection />}>
+      <Suspense fallback={null}>
         <Tech />
       </Suspense>
-      <Suspense fallback={<LoadingSection />}>
+      <Suspense fallback={null}>
         <Footer/>
       </Suspense>
     </div>

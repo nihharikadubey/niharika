@@ -30,7 +30,7 @@ body {
 
 /* Optimize motion components */
 [style*="transform"] {
-  will-change: transform;
+  will-change: auto; /* Reduced to auto for better performance */
   transform: translateZ(0);
   backface-visibility: hidden;
 }

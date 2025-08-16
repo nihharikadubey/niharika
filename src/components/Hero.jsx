@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { styles } from '../styles';
 import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
@@ -287,20 +287,18 @@ const oceanicAnimationVariants = {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03,
+        staggerChildren: 0,
         delayChildren: 0,
       },
     },
   },
   item: {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 1, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: 'tween',
-        duration: 0.3,
-        ease: 'easeOut',
+        duration: 0,
       },
     },
   },
@@ -365,7 +363,7 @@ const OceanicFloatingTechIcons = () => {
 // ===== OCEANIC HERO TEXT =====
 const OceanicHeroText = () => (
   <div className="flex-1 max-w-5xl text-center px-4 sm:px-0">
-    <motion.div className="mb-12" variants={oceanicAnimationVariants.item}>
+    <div className="mb-12">
       {/* Oceanic Enhanced Name */}
       <motion.h1 
         className={`${styles.heroHeadText} text-slate-100 leading-tight mb-6`}
@@ -436,9 +434,8 @@ const OceanicHeroText = () => (
     </motion.div>
 
     {/* Oceanic Enhanced Description */}
-    <motion.div 
-      className="mb-12 max-w-4xl mx-auto space-y-6" 
-      variants={oceanicAnimationVariants.item}
+    <div 
+      className="mb-12 max-w-4xl mx-auto space-y-6"
     >
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
@@ -490,31 +487,19 @@ const OceanicHeroText = () => (
         that drive{' '}
         <span className="text-teal-300 font-semibold">business transformation</span>.
       </motion.p>
-    </motion.div>
+    </div>
 
     {/* Oceanic Enhanced Tech Stack Tags */}
-    <motion.div 
+    <div 
       className="flex flex-wrap gap-3 justify-center"
-      variants={oceanicAnimationVariants.item}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.2, duration: 0.3 }}
     >
       {['AWS', 'Kubernetes', 'DevOps', 'Jenkins', 'Docker', 'Terraform'].map((tech, index) => (
-        <motion.span
+        <span
           key={tech}
-          className="px-4 py-2 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/40 text-sm font-medium text-slate-200 hover:bg-slate-700/40 hover:border-sky-400/40 hover:text-sky-300 transition-all duration-300 cursor-default"
-          whileHover={{ 
-            scale: 1.05,
-            y: -2,
-            boxShadow: "0 5px 15px rgba(56, 178, 172, 0.2)"
-          }}
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.25 + index * 0.02, duration: 0.2 }}
+          className="px-4 py-2 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/40 text-sm font-medium text-slate-200 hover:bg-slate-700/40 hover:border-sky-400/40 hover:text-sky-300 hover:scale-105 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
         >
           {tech}
-        </motion.span>
+        </span>
       ))}
     </motion.div>
   </div>
@@ -689,14 +674,13 @@ const OceanicCTAButtons = () => {
 
 // ===== OCEANIC HERO COMPONENT =====
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start visible immediately
   const { scrollY } = useScroll();
   
-  // Optimized parallax with spring physics for smoother performance
-  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
-  const yTransform = useSpring(useTransform(scrollY, [0, 500], [0, -150]), springConfig);
-  const opacityTransform = useSpring(useTransform(scrollY, [0, 300], [1, 0]), springConfig);
-  const scaleTransform = useSpring(useTransform(scrollY, [0, 300], [1, 0.95]), springConfig);
+  // Simplified parallax - removed spring for better performance
+  const yTransform = useTransform(scrollY, [0, 500], [0, -50]); // Reduced parallax effect
+  const opacityTransform = useTransform(scrollY, [0, 400], [1, 0.3]); // Slower fade
+  const scaleTransform = 1; // Removed scale transform for performance
 
   useEffect(() => {
     setIsVisible(true);
@@ -716,15 +700,13 @@ const Hero = () => {
           style={{ 
             y: yTransform, 
             opacity: opacityTransform,
-            scale: scaleTransform,
             paddingBottom: '8rem',
             paddingTop: '10rem',
-            marginTop: '0',
-            transform: 'translateY(0)'
+            marginTop: '0'
           }}
           variants={oceanicAnimationVariants.container} 
-          initial="hidden" 
-          animate={isVisible ? "visible" : "hidden"}
+          initial="visible" 
+          animate="visible"
         >
           <OceanicHeroText />
         </motion.div>
