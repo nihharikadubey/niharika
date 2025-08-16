@@ -225,14 +225,14 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
           <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
             {/* Company logo */}
             <div 
-              className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-2 sm:p-3 transition-all duration-300 hover:scale-105"
+              className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-1 transition-all duration-300 hover:scale-105"
             >
               <div className="w-full h-full bg-white rounded-md sm:rounded-lg flex items-center justify-center overflow-hidden">
                 {!imageError ? (
                   <img 
                     src={exp.icon} 
                     alt={exp.company_name}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-contain scale-125 transition-transform duration-300 group-hover:scale-150"
                     onError={() => setImageError(true)}
                     loading="lazy"
                     width={80}
@@ -368,13 +368,13 @@ const Experience = () => {
             <div className="relative">
               {/* Outer ring */}
               <motion.div
-                className="absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 border-gradient-to-r from-slate-400/30 to-slate-300/30"
+                className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gradient-to-r from-slate-400/30 to-slate-300/30"
                 style={{ opacity: 0.3 }}
               />
               
               {/* Inner circle */}
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-gradient-to-br from-slate-600/80 to-slate-700/80 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-2xl">
-                <span className="text-3xl sm:text-4xl md:text-5xl">💼</span>
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-slate-600/80 to-slate-700/80 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-2xl">
+                <span className="text-3xl sm:text-4xl">💼</span>
               </div>
             </div>
           </motion.div>
