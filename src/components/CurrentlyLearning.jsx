@@ -4,32 +4,32 @@ import { SectionWrapper } from '../hoc';
 const CurrentlyLearning = () => {
   const learningItems = [
     {
-      title: 'Rust Programming',
-      description: 'Building high-performance system tools',
-      progress: 65,
-      icon: '🦀',
-      resources: ['The Rust Book', 'Rustlings'],
+      title: 'Architecting Solutions on AWS',
+      description: 'Advanced cloud architecture patterns and best practices',
+      progress: 75,
+      icon: '☁️',
+      resources: ['AWS Well-Architected', 'Solution Architecture'],
     },
     {
-      title: 'GitOps with ArgoCD',
-      description: 'Advanced deployment patterns',
-      progress: 80,
-      icon: '🔄',
-      resources: ['ArgoCD Documentation', 'GitOps Toolkit'],
+      title: 'Google Cloud SRE & DevOps',
+      description: 'Site Reliability Engineering and DevOps practices',
+      progress: 60,
+      icon: '🔧',
+      resources: ['SRE Principles', 'GCP DevOps Tools'],
     },
     {
-      title: 'eBPF & Observability',
-      description: 'Kernel-level monitoring and tracing',
+      title: 'DevOps with AI on AWS',
+      description: 'Integrating AI/ML into DevOps workflows',
       progress: 45,
-      icon: '🔍',
-      resources: ['eBPF.io', 'Cilium'],
+      icon: '🤖',
+      resources: ['AI-Powered DevOps', 'AWS AI Services'],
     },
     {
-      title: 'WASM & Edge Computing',
-      description: 'Next-gen cloud architectures',
-      progress: 30,
-      icon: '⚡',
-      resources: ['WebAssembly.org', 'Cloudflare Workers'],
+      title: 'MLOps Engineering',
+      description: 'Machine Learning Operations and pipeline automation',
+      progress: 40,
+      icon: '🧠',
+      resources: ['ML Pipeline Design', 'Model Deployment'],
     },
   ];
 
@@ -126,7 +126,7 @@ const CurrentlyLearning = () => {
           className="mt-12 text-center"
         >
           <p className="text-white/60 mb-4">
-            🎯 2024 Goal: Complete AWS Solutions Architect Professional Certification
+            🎯 2025 Goals: AWS Solutions Architect Professional & Google Cloud Professional DevOps Engineer Certifications
           </p>
           <motion.a
             href="https://github.com/nihharikadubey"
