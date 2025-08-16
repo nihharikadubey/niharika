@@ -266,16 +266,16 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Site Map Section */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-slate-700/30'>
-            {/* Navigation */}
+          {/* Quick Links Section */}
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-700/30'>
+            {/* Quick Navigation */}
             <div>
               <h4 className='text-slate-200 font-semibold mb-4 flex items-center gap-2'>
                 <span className='w-2 h-2 bg-cyan-400 rounded-full'></span>
-                Navigation
+                Quick Links
               </h4>
-              <div className='space-y-2'>
-                {quickLinks.map((link) => (
+              <div className='grid grid-cols-2 gap-3'>
+                {quickLinks.map((link, index) => (
                   <a
                     key={link.name}
                     href={link.href}
@@ -287,56 +287,6 @@ const Footer = () => {
                     </span>
                   </a>
                 ))}
-                <a
-                  href='#currently-learning'
-                  className='text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1'
-                >
-                  <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors duration-200'></span>
-                  <span className='text-sm group-hover:translate-x-1 transition-transform duration-300'>
-                    Learning
-                  </span>
-                </a>
-              </div>
-            </div>
-            
-            {/* Resources */}
-            <div>
-              <h4 className='text-slate-200 font-semibold mb-4 flex items-center gap-2'>
-                <span className='w-2 h-2 bg-blue-400 rounded-full'></span>
-                Resources
-              </h4>
-              <div className='space-y-2'>
-                <a
-                  href='https://drive.google.com/file/d/112yrR6dOKE0YuVO2Fs4PLxSshV76pC0n/view?usp=sharing'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1'
-                >
-                  <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors duration-200'></span>
-                  <span className='text-sm group-hover:translate-x-1 transition-transform duration-300'>
-                    Resume/CV
-                  </span>
-                </a>
-                <a
-                  href='https://cal.com/nihharikadubey/30min'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1'
-                >
-                  <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors duration-200'></span>
-                  <span className='text-sm group-hover:translate-x-1 transition-transform duration-300'>
-                    Book a Call
-                  </span>
-                </a>
-                <a
-                  href='#projects'
-                  className='text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1'
-                >
-                  <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors duration-200'></span>
-                  <span className='text-sm group-hover:translate-x-1 transition-transform duration-300'>
-                    Portfolio
-                  </span>
-                </a>
               </div>
             </div>
 
