@@ -68,15 +68,13 @@ const Tech = () => {
 
   const itemVariants = {
     hidden: { 
-      opacity: 0,
-      scale: 0.95
+      opacity: 0
     },
     visible: {
       opacity: 1,
-      scale: 1,
       transition: {
         type: "tween",
-        duration: 0.2,
+        duration: 0.3,
         ease: "easeOut"
       }
     },
@@ -93,15 +91,13 @@ const Tech = () => {
   // Category change animation variants
   const categoryChangeVariants = {
     hidden: { 
-      opacity: 0,
-      scale: 0.98
+      opacity: 0
     },
     visible: {
       opacity: 1,
-      scale: 1,
       transition: {
         type: "tween",
-        duration: 0.2,
+        duration: 0.3,
         ease: "easeOut"
       }
     }
@@ -397,19 +393,19 @@ const Tech = () => {
             <motion.div
               key={`${activeCategory}-${technology.name}`}
               variants={hasLoaded ? itemVariants : categoryChangeVariants}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ y: -2 }}
               onHoverStart={() => setHoveredTech(technology.name)}
               onHoverEnd={() => setHoveredTech(null)}
-              className="flex flex-col items-center cursor-pointer"
+              className="flex flex-col items-center cursor-pointer transition-transform duration-200"
             >
-              <motion.img
+              <img
                 src={technology.icon}
                 alt={technology.name}
-                className="w-16 h-16 object-contain mb-2 drop-shadow-md"
+                className="w-16 h-16 object-contain mb-2 drop-shadow-md transition-all duration-200"
                 loading="eager"
-                animate={hoveredTech === technology.name ? { scale: [1, 1.08, 1] } : {}}
-                transition={{ duration: 0.6, repeat: hoveredTech === technology.name ? Infinity : 0 }}
+                style={{
+                  filter: hoveredTech === technology.name ? 'brightness(1.2)' : 'brightness(1)'
+                }}
               />
               <h3 className={`text-sm text-center transition-colors duration-300 ${
                 hoveredTech === technology.name ? 'text-white font-semibold' : 'text-white/80'
