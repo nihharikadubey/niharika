@@ -43,13 +43,27 @@ const CurrentlyLearning = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-cyan-400 text-sm uppercase tracking-wider mb-2">
-            Always Growing
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Currently <span className="text-cyan-400">Learning</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4">
+            Currently Learning
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          
+          {/* Oceanic Gradient Divider */}
+          <motion.div 
+            className="flex items-center justify-center mb-6"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+            </div>
+          </motion.div>
+          
+          <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto">
             Staying ahead with the latest technologies and best practices in DevOps and Cloud Engineering
           </p>
         </motion.div>
