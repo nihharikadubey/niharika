@@ -22,9 +22,9 @@ const Footer = () => {
       <div className='text-center max-w-7xl mx-auto relative z-10 mb-8 bg-transparent'>
         {/* Contact Icon */}
         <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
           >
             <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center shadow-lg">
@@ -45,9 +45,9 @@ const Footer = () => {
         {/* Oceanic Gradient Divider */}
         <motion.div 
           className="flex items-center justify-center mb-6 sm:mb-8"
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="flex items-center gap-1 sm:gap-2">
             <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
@@ -120,7 +120,7 @@ const Footer = () => {
                     href={link.href}
                     className='text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1'
                   >
-                    <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors group-hover:scale-150'></span>
+                    <span className='w-1 h-1 bg-slate-500 rounded-full group-hover:bg-cyan-400 transition-colors duration-200'></span>
                     <span className='text-sm group-hover:translate-x-1 transition-transform duration-300'>
                       {link.name}
                     </span>
@@ -144,7 +144,7 @@ const Footer = () => {
                   aria-label='LinkedIn'
                 >
                   <div className='w-8 h-8 bg-slate-800/50 border border-slate-600/50 rounded-lg flex items-center justify-center group-hover:bg-blue-900/30 group-hover:border-blue-400/30 transition-all duration-300'>
-                    <svg className='w-4 h-4 group-hover:scale-110 transition-transform' fill='currentColor' viewBox='0 0 24 24'>
+                    <svg className='w-4 h-4 transition-transform duration-200 group-hover:translate-y-[-2px]' fill='currentColor' viewBox='0 0 24 24'>
                       <path d='M20.4 0H3.6C1.6 0 0 1.6 0 3.6v16.8C0 22.4 1.6 24 3.6 24h16.8c2 0 3.6-1.6 3.6-3.6V3.6C24 1.6 22.4 0 20.4 0zM7.2 20.4H3.6V9.6h3.6v10.8zM5.4 8c-1.2 0-2.1-.9-2.1-2.1 0-1.1.9-2.1 2.1-2.1 1.1 0 2.1.9 2.1 2.1 0 1.2-.9 2.1-2.1 2.1zm15 12.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.6V9.6h3.6v1.5c.5-.9 1.7-1.8 3.5-1.8 3.8 0 4.5 2.5 4.5 5.7v5.4z' />
                     </svg>
                   </div>
@@ -159,7 +159,7 @@ const Footer = () => {
                   aria-label='GitHub'
                 >
                   <div className='w-8 h-8 bg-slate-800/50 border border-slate-600/50 rounded-lg flex items-center justify-center group-hover:bg-slate-700/50 group-hover:border-slate-400/30 transition-all duration-300'>
-                    <svg className='w-4 h-4 group-hover:scale-110 transition-transform' fill='currentColor' viewBox='0 0 24 24'>
+                    <svg className='w-4 h-4 transition-transform duration-200 group-hover:translate-y-[-2px]' fill='currentColor' viewBox='0 0 24 24'>
                       <path d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1.9 1.5 2.3 1.1 2.9.9.1-.7.4-1.1.8-1.4-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.2 0 0 1.1-.3 3.5 1.2a12 12 0 0 1 6.2 0c2.4-1.5 3.5-1.2 3.5-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z' />
                     </svg>
                   </div>
@@ -201,7 +201,7 @@ const Footer = () => {
           
           {/* Status Indicator */}
           <div className='flex items-center gap-2 bg-slate-800/30 border border-slate-600/30 rounded-full px-4 py-2'>
-            <div className='w-2 h-2 bg-green-400 rounded-full animate-pulse'></div>
+            <div className='w-2 h-2 bg-green-400 rounded-full'></div>
             <span className='text-slate-300 text-sm font-medium'>Available for opportunities</span>
           </div>
         </div>
