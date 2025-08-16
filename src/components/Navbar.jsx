@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { styles } from '../styles';
 import { navLinks } from '../constants';
 import { menu, close } from '../assets';
+import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
@@ -54,24 +55,29 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
     >
-      {/* Floating water droplets */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <WaterDroplet key={i} delay={i * 0.5} />
-        ))}
-      </div>
+      {/* Floating water droplets - disabled on mobile */}
+      {!isMobile() && !shouldReduceMotion() && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(5)].map((_, i) => (
+            <WaterDroplet key={i} delay={i * 0.5} />
+          ))}
+        </div>
+      )}
 
-      {/* Ocean wave line */}
+      {/* Ocean wave line - simplified on mobile */}
       <motion.div
         className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
-        animate={{
+        animate={!isMobile() && !shouldReduceMotion() ? {
           opacity: scrolled ? [0.3, 0.8, 0.3] : [0.1, 0.4, 0.1],
-        }}
+        } : {}}
         transition={{
           duration: 3,
           repeat: Infinity,
           ease: "easeInOut"
         }}
+        style={isMobile() || shouldReduceMotion() ? {
+          opacity: scrolled ? 0.5 : 0.2
+        } : {}}
       />
 
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto relative z-10'>

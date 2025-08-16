@@ -4,6 +4,7 @@ import { SectionWrapper } from '../hoc';
 import { technologies } from '../constants';
 import { styles } from '../styles';
 import { textVariant, fadeIn } from '../utils/motion';
+import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
 
 const Tech = () => {
   const [hoveredTech, setHoveredTech] = useState(null);
@@ -172,9 +173,9 @@ const Tech = () => {
           }}
         />
 
-        {/* Starfield  more*/}
+        {/* Starfield - reduced on mobile */}
         <div className="absolute inset-0">
-          {[...Array(200)].map((_, i) => (
+          {[...Array(isMobile() ? 50 : 200)].map((_, i) => (
             <div
               key={`star-${i}`}
               className="absolute rounded-full bg-white"
@@ -188,8 +189,8 @@ const Tech = () => {
             />
           ))}
           
-          {/* Beautiful Green Particles */}
-          {[...Array(100)].map((_, i) => {
+          {/* Beautiful Green Particles - reduced on mobile */}
+          {!isMobile() && [...Array(shouldReduceMotion() ? 0 : 100)].map((_, i) => {
             const size = 1 + Math.random() * 3;
             const startX = Math.random() * 100;
             const startY = Math.random() * 100;
@@ -233,34 +234,36 @@ const Tech = () => {
             );
           })}
           
-          {/* Subtle Green Glow */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <motion.div 
-              className="absolute rounded-full opacity-10 blur-3xl"
-              style={{
-                width: '40vw',
-                height: '40vh',
-                background: 'radial-gradient(circle, #10b981, transparent 70%)',
-                left: '30%',
-                top: '30%',
-              }}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.05, 0.15, 0.05],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut',
-              }}
-            />
-          </div>
+          {/* Subtle Green Glow - disabled on mobile */}
+          {!isMobile() && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <motion.div 
+                className="absolute rounded-full opacity-10 blur-3xl"
+                style={{
+                  width: '40vw',
+                  height: '40vh',
+                  background: 'radial-gradient(circle, #10b981, transparent 70%)',
+                  left: '30%',
+                  top: '30%',
+                }}
+                animate={!shouldReduceMotion() ? {
+                  scale: [1, 1.2, 1],
+                  opacity: [0.05, 0.15, 0.05],
+                } : {}}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                  ease: 'easeInOut',
+                }}
+              />
+            </div>
+          )}
         </div>
         
-        {/* Starfield Layer 1 - Bright Small Stars */}
+        {/* Starfield Layer 1 - Bright Small Stars - reduced on mobile */}
         <div className="absolute inset-0">
-          {[...Array(300)].map((_, i) => {
+          {[...Array(isMobile() ? 50 : shouldReduceMotion() ? 100 : 300)].map((_, i) => {
             const size = 0.5 + Math.random() * 1.5;
             const starColor = [
               'rgba(255, 255, 255, 1)',
@@ -282,10 +285,10 @@ const Tech = () => {
                   boxShadow: `0 0 ${1 + Math.random() * 2}px currentColor`,
                   opacity: 0.8,
                 }}
-                animate={{
+                animate={!isMobile() && !shouldReduceMotion() ? {
                   opacity: [0.4, 1, 0.4],
                   scale: [1, 1.2, 1],
-                }}
+                } : {}}
                 transition={{
                   duration: 2 + Math.random() * 3,
                   repeat: Infinity,
@@ -313,7 +316,7 @@ const Tech = () => {
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
             className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
           >
             <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center text-3xl shadow-lg">

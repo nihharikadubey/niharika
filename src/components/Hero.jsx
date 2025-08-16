@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { styles } from '../styles';
+import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
 
 // ===== GLOBAL SCROLLBAR STYLES =====
 const GlobalScrollbarStyles = () => (
@@ -136,8 +137,12 @@ const SparklesIcon = () => (
 const OceanicBackground = () => {
   const containerRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const isMobileDevice = isMobile();
+  const reduceMotion = shouldReduceMotion();
 
   useEffect(() => {
+    if (isMobileDevice || reduceMotion) return;
+    
     const handleMouseMove = (e) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
@@ -153,111 +158,124 @@ const OceanicBackground = () => {
       container.addEventListener('mousemove', handleMouseMove);
       return () => container.removeEventListener('mousemove', handleMouseMove);
     }
-  }, []);
+  }, [isMobileDevice, reduceMotion]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-0 overflow-hidden">
       {/* Oceanic base gradient */}
       <motion.div 
         className="absolute inset-0"
-        animate={{
+        animate={!isMobileDevice && !reduceMotion ? {
           background: [
             'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)',
             'linear-gradient(135deg, #0c1429 0%, #1a2332 25%, #2d3748 50%, #4a5568 75%, #718096 100%)',
             'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)',
           ]
-        }}
+        } : {}}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        style={isMobileDevice || reduceMotion ? {
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)'
+        } : {}}
       />
       
-      {/* Interactive oceanic overlay */}
-      <motion.div
-        className="absolute inset-0 opacity-25"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
-            rgba(56, 178, 172, 0.12) 0%, 
-            rgba(79, 172, 204, 0.08) 30%, 
-            rgba(99, 179, 237, 0.06) 50%, 
-            transparent 70%)`
-        }}
-      />
+      {/* Interactive oceanic overlay - disabled on mobile */}
+      {!isMobileDevice && (
+        <motion.div
+          className="absolute inset-0 opacity-25"
+          style={{
+            background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+              rgba(56, 178, 172, 0.12) 0%, 
+              rgba(79, 172, 204, 0.08) 30%, 
+              rgba(99, 179, 237, 0.06) 50%, 
+              transparent 70%)`
+          }}
+        />
+      )}
       
-      {/* Subtle wave patterns */}
-      <motion.div
-        className="absolute inset-0 opacity-8"
-        style={{
-          background: `radial-gradient(ellipse at center, 
-            transparent 0%, 
-            rgba(56, 178, 172, 0.06) 30%, 
-            transparent 60%)`
-        }}
-        animate={{
-          transform: ['scale(1) rotate(0deg)', 'scale(1.1) rotate(180deg)', 'scale(1) rotate(360deg)'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+      {/* Subtle wave patterns - simplified on mobile */}
+      {!isMobileDevice && (
+        <motion.div
+          className="absolute inset-0 opacity-8"
+          style={{
+            background: `radial-gradient(ellipse at center, 
+              transparent 0%, 
+              rgba(56, 178, 172, 0.06) 30%, 
+              transparent 60%)`
+          }}
+          animate={!reduceMotion ? {
+            transform: ['scale(1) rotate(0deg)', 'scale(1.1) rotate(180deg)', 'scale(1) rotate(360deg)'],
+          } : {}}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      )}
       
-      {/* Enhanced oceanic grid pattern */}
-      <motion.div 
-        className="absolute inset-0 opacity-[0.015]"
-        animate={{
-          backgroundPosition: ['0px 0px', '50px 50px'],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(56, 178, 172, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(56, 178, 172, 0.3) 1px, transparent 1px),
-            linear-gradient(rgba(79, 172, 204, 0.2) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(79, 172, 204, 0.2) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px, 50px 50px, 100px 100px, 100px 100px',
-        }}
-      />
+      {/* Enhanced oceanic grid pattern - disabled on mobile */}
+      {!isMobileDevice && (
+        <motion.div 
+          className="absolute inset-0 opacity-[0.015]"
+          animate={!reduceMotion ? {
+            backgroundPosition: ['0px 0px', '50px 50px'],
+          } : {}}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(56, 178, 172, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(56, 178, 172, 0.3) 1px, transparent 1px),
+              linear-gradient(rgba(79, 172, 204, 0.2) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(79, 172, 204, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px, 50px 50px, 100px 100px, 100px 100px',
+          }}
+        />
+      )}
       
-      {/* Ambient oceanic orbs */}
-      <motion.div
-        className="absolute top-1/3 left-1/5 w-96 h-96 rounded-full opacity-8"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.08, 0.15, 0.08],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: 'radial-gradient(circle, rgba(56, 178, 172, 0.2) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-      
-      <motion.div
-        className="absolute bottom-1/3 right-1/5 w-80 h-80 rounded-full opacity-6"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.12, 0.06, 0.12],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 3,
-        }}
-        style={{
-          background: 'radial-gradient(circle, rgba(79, 172, 204, 0.25) 0%, transparent 70%)',
-          filter: 'blur(70px)',
-        }}
-      />
+      {/* Ambient oceanic orbs - simplified on mobile */}
+      {!isMobileDevice && (
+        <>
+          <motion.div
+            className="absolute top-1/3 left-1/5 w-96 h-96 rounded-full opacity-8"
+            animate={!reduceMotion ? {
+              scale: [1, 1.3, 1],
+              opacity: [0.08, 0.15, 0.08],
+            } : {}}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              background: 'radial-gradient(circle, rgba(56, 178, 172, 0.2) 0%, transparent 70%)',
+              filter: 'blur(60px)',
+            }}
+          />
+          
+          <motion.div
+            className="absolute bottom-1/3 right-1/5 w-80 h-80 rounded-full opacity-6"
+            animate={!reduceMotion ? {
+              scale: [1.2, 1, 1.2],
+              opacity: [0.12, 0.06, 0.12],
+            } : {}}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3,
+            }}
+            style={{
+              background: 'radial-gradient(circle, rgba(79, 172, 204, 0.25) 0%, transparent 70%)',
+              filter: 'blur(70px)',
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };
@@ -302,6 +320,11 @@ const oceanicAnimationVariants = {
 
 // ===== OCEANIC FLOATING TECH ICONS =====
 const OceanicFloatingTechIcons = () => {
+  const isMobileDevice = isMobile();
+  const reduceMotion = shouldReduceMotion();
+  
+  if (isMobileDevice) return null;
+  
   const techIcons = [
     { Icon: CloudIcon, delay: 0, position: { top: '20%', left: '8%' } },
     { Icon: ServerIcon, delay: 1.5, position: { top: '35%', right: '12%' } },
@@ -317,7 +340,7 @@ const OceanicFloatingTechIcons = () => {
           className="absolute hidden lg:block z-20 pointer-events-none"
           style={position}
           variants={oceanicAnimationVariants.floating}
-          animate="animate"
+          animate={!reduceMotion ? "animate" : {}}
           transition={{ delay }}
         >
           <motion.div 
