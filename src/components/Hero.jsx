@@ -431,7 +431,7 @@ const OceanicHeroText = () => (
           </motion.div>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
 
     {/* Oceanic Enhanced Description */}
     <div 
