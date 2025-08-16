@@ -1,90 +1,99 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const LoadingScreen = ({ onLoadingComplete }) => {
-  const [progress, setProgress] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  
+  const greetings = [
+    'Namaste',
+    'Hello',
+    'Hola',
+    'Bonjour',
+    '你好',
+    'こんにちは',
+    'Ciao',
+    'Привет',
+    'مرحبا',
+    'Olá',
+    'Hallo',
+    'Welcome'
+  ];
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        if (prev >= greetings.length - 1) {
+          clearInterval(interval);
+          setIsComplete(true);
           setTimeout(() => onLoadingComplete(), 500);
-          return 100;
+          return prev;
         }
-        return prev + Math.random() * 30;
+        return prev + 1;
       });
-    }, 200);
+    }, 150); // Fast cycling through greetings
 
-    return () => clearInterval(timer);
-  }, [onLoadingComplete]);
+    return () => clearInterval(interval);
+  }, [onLoadingComplete, greetings.length]);
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[100] bg-primary flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden"
     >
-      {/* Logo/Name Animation */}
-      <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
-      >
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-          ND
-        </h1>
-      </motion.div>
-
-      {/* Loading Text */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-white/80 text-lg mb-8"
-      >
-        Infrastructure & DevOps Engineer
-      </motion.p>
-
-      {/* Progress Bar */}
-      <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
+      {/* Background subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-950 to-black" />
+      
+      {/* Main greeting display */}
+      <div className="relative">
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key={currentIndex}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ 
+              duration: 0.15,
+              ease: "easeInOut"
+            }}
+            className="text-5xl md:text-7xl lg:text-8xl font-light text-white text-center"
+            style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+          >
+            {greetings[currentIndex]}
+          </motion.h1>
+        </AnimatePresence>
+        
+        {/* Underline animation */}
         <motion.div
-          className="h-full bg-gradient-to-r from-cyan-400 to-blue-500"
+          className="h-[1px] bg-white/30 mt-4 mx-auto"
           initial={{ width: 0 }}
-          animate={{ width: `${Math.min(progress, 100)}%` }}
-          transition={{ duration: 0.3 }}
+          animate={{ width: isComplete ? 0 : "100%" }}
+          transition={{ duration: greetings.length * 0.15, ease: "linear" }}
         />
       </div>
 
-      {/* Progress Percentage */}
-      <motion.p
+      {/* Corner text */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="text-white/60 text-sm mt-4"
+        className="absolute bottom-8 left-8 text-white/20 text-xs font-mono"
       >
-        {Math.round(Math.min(progress, 100))}%
-      </motion.p>
-
-      {/* Animated Dots */}
-      <div className="flex gap-2 mt-8">
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="w-2 h-2 bg-cyan-400 rounded-full"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              delay: i * 0.2,
-            }}
-          />
-        ))}
+        LOADING
+      </motion.div>
+      
+      {/* Progress indicator */}
+      <div className="absolute bottom-8 right-8">
+        <motion.div
+          className="text-white/20 text-xs font-mono"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          {String(currentIndex + 1).padStart(2, '0')} / {String(greetings.length).padStart(2, '0')}
+        </motion.div>
       </div>
     </motion.div>
   );
