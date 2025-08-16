@@ -16,9 +16,7 @@ const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
-const Testimonials = lazy(() => import('./components/Testimonials'));
-const ContactForm = lazy(() => import('./components/ContactForm'));
-const SkillsProgress = lazy(() => import('./components/SkillsProgress'));
+const Footer = lazy(() => import('./components/Footer'));
 
 // Loading component
 const LoadingSection = () => (
@@ -67,18 +65,12 @@ const HomePage = () => {
         <Suspense fallback={null}>
           <Projects />
         </Suspense>
-        <Suspense fallback={null}>
-          <Testimonials />
-        </Suspense>
       </div>
       <Suspense fallback={null}>
         <Tech />
       </Suspense>
       <Suspense fallback={null}>
-        <SkillsProgress />
-      </Suspense>
-      <Suspense fallback={null}>
-        <ContactForm />
+        <Footer />
       </Suspense>
       </div>
     </PageTransition>
