@@ -190,31 +190,24 @@ const About = () => {
                 key={service.title}
                 className="group bg-transparent backdrop-blur-sm rounded-xl p-6 border border-slate-700/40 hover:border-slate-500/60 transition-all duration-300 relative overflow-hidden"
                 whileHover={{
-                  y: -6,
-                  scale: 1.02,
-                  boxShadow: "0 15px 35px rgba(0, 0, 0, 0.2)"
+                  y: -4,
+                  transition: { duration: 0.2 }
                 }}
                 onMouseEnter={() => setHoveredCard(`service-${index}`)}
                 onMouseLeave={() => setHoveredCard(null)}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={isVisible ? { 
                   opacity: 1, 
-                  y: 0, 
-                  scale: 1
+                  y: 0
                 } : {}}
                 transition={{
-                  type: 'spring',
-                  stiffness: 100,
-                  damping: 15,
-                  delay: 0.6 + index * 0.1,
-                  duration: 0.6
+                  type: 'tween',
+                  duration: 0.2,
+                  delay: index * 0.05
                 }}
               >
-                <motion.div 
-                  className="absolute inset-0 bg-slate-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: isVisible ? 1 : 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                <div 
+                  className="absolute inset-0 bg-slate-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-xl"
                 />
                 
                 <div className="flex items-start gap-4 mb-4 relative z-10">
@@ -243,9 +236,8 @@ const About = () => {
                       key={tech}
                       className="px-2 py-1 text-xs rounded-lg bg-slate-800/40 text-slate-500 border border-slate-700/40 font-medium hover:bg-slate-700/40 hover:text-slate-400 hover:border-slate-600/40 transition-all duration-300"
                       whileHover={{ scale: 1.05 }}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.8 + index * 0.1 + techIndex * 0.03 }}
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 1 }}
                     >
                       {tech}
                     </motion.span>

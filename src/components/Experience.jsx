@@ -324,7 +324,7 @@ const Experience = () => {
   const containerRef = useRef(null);
 
   return (
-    <section id="work" ref={containerRef} className="relative py-8 sm:py-12 px-4 overflow-hidden">
+    <section id="work" ref={containerRef} className="relative py-4 sm:py-6 px-4 overflow-hidden">
       {/* Enhanced background */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
