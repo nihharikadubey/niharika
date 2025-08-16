@@ -287,32 +287,31 @@ const oceanicAnimationVariants = {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   },
   item: {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 15,
-        duration: 0.8,
+        type: 'tween',
+        duration: 0.5,
+        ease: 'easeOut',
       },
     },
   },
   floating: {
     animate: {
-      y: [-12, 12, -12],
-      rotate: [0, 6, -6, 0],
+      y: [-8, 8, -8],
+      rotate: [0, 3, -3, 0],
       transition: {
-        duration: 9,
+        duration: 12,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: 'linear',
       },
     },
   },
@@ -373,9 +372,9 @@ const OceanicHeroText = () => (
         variants={oceanicAnimationVariants.item}
       >
         <motion.span
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
         >
           Niharika
         </motion.span>{' '}
@@ -397,9 +396,9 @@ const OceanicHeroText = () => (
       {/* Oceanic Enhanced Subtitle */}
       <motion.div
         className="inline-block"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
       >
         <div className="relative">
           <motion.p 
@@ -443,9 +442,9 @@ const OceanicHeroText = () => (
     >
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
       >
         Passionate Software Engineer specializing in{' '}
         <motion.span 
@@ -482,9 +481,9 @@ const OceanicHeroText = () => (
       
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9, duration: 0.8 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
       >
         Building{' '}
         <span className="text-slate-100 font-semibold">scalable solutions</span>{' '}
@@ -497,9 +496,9 @@ const OceanicHeroText = () => (
     <motion.div 
       className="flex flex-wrap gap-3 justify-center"
       variants={oceanicAnimationVariants.item}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.1 }}
+      transition={{ delay: 0.5, duration: 0.4 }}
     >
       {['AWS', 'Kubernetes', 'DevOps', 'Jenkins', 'Docker', 'Terraform'].map((tech, index) => (
         <motion.span
@@ -510,9 +509,9 @@ const OceanicHeroText = () => (
             y: -2,
             boxShadow: "0 5px 15px rgba(56, 178, 172, 0.2)"
           }}
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 1.3 + index * 0.1, duration: 0.5 }}
+          transition={{ delay: 0.6 + index * 0.05, duration: 0.3 }}
         >
           {tech}
         </motion.span>
@@ -693,10 +692,11 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
   
-  // Enhanced parallax effects
-  const yTransform = useTransform(scrollY, [0, 500], [0, -150]);
-  const opacityTransform = useTransform(scrollY, [0, 300], [1, 0]);
-  const scaleTransform = useTransform(scrollY, [0, 300], [1, 0.95]);
+  // Optimized parallax with spring physics for smoother performance
+  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const yTransform = useSpring(useTransform(scrollY, [0, 500], [0, -150]), springConfig);
+  const opacityTransform = useSpring(useTransform(scrollY, [0, 300], [1, 0]), springConfig);
+  const scaleTransform = useSpring(useTransform(scrollY, [0, 300], [1, 0.95]), springConfig);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
