@@ -2,25 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { styles } from '../styles';
 
-// Add the missing textVariant function
-const textVariant = (delay = 0) => {
-  return {
-    hidden: {
-      y: -50,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 1.25,
-        delay: delay,
-      },
-    },
-  };
-};
-
 // Updated experiences data with all companies
 const experiences = [
   {
@@ -352,62 +333,34 @@ const Experience = () => {
       <div className="relative max-w-7xl mx-auto px-6 pt-0">
         {/* Elegant Header */}
         <motion.div 
-          className="text-center mb-1 sm:mb-2"
-          variants={textVariant()} 
-          initial="hidden"
-          whileInView="show"
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          {/* Decorative icon */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center justify-center mb-1 sm:mb-2"
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4">
+            Professional Journey
+          </h2>
+          
+          {/* Oceanic Gradient Divider */}
+          <motion.div 
+            className="flex items-center justify-center mb-6"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="relative">
-              {/* Outer ring */}
-              <motion.div
-                className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gradient-to-r from-slate-400/30 to-slate-300/30"
-                style={{ opacity: 0.3 }}
-              />
-              
-              {/* Inner circle */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-slate-600/80 to-slate-700/80 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-2xl">
-                <span className="text-3xl sm:text-4xl">💼</span>
-              </div>
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
             </div>
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 via-white to-slate-200 mb-4 sm:mb-6">
-              Professional Journey
-            </h2>
-
-            {/* Oceanic Gradient Divider */}
-            <motion.div 
-              className="flex items-center justify-center mb-6 sm:mb-8"
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              <div className="flex items-center gap-1 sm:gap-2">
-                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
-                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
-                <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
-                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
-                <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
-              </div>
-            </motion.div>
-            
-            <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              A timeline of growth, innovation, and impact across leading technology organizations
-            </p>
-          </motion.div>
+          
+          <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto">
+            A timeline of growth, innovation, and impact across leading technology organizations
+          </p>
         </motion.div>
 
         {/* Elegant Grid */}
