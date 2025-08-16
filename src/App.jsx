@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Hero, Navbar } from './components';
 import { PerformanceProvider } from './context/PerformanceContext';
 import ScrollProgress from './components/ScrollProgress';
@@ -7,6 +7,10 @@ import FloatingNav from './components/FloatingNav';
 import KeyboardGuide from './components/KeyboardGuide';
 import PageTransition from './components/PageTransition';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
+import BackToTop from './components/BackToTop';
+import LoadingScreen from './components/LoadingScreen';
+import StatsCounter from './components/StatsCounter';
+import CurrentlyLearning from './components/CurrentlyLearning';
 import useKeyboardNav from './hooks/useKeyboardNav';
 import useAnalytics from './hooks/useAnalytics';
 
@@ -25,6 +29,8 @@ const LoadingSection = () => (
 );
 
 const HomePage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
   // Enable keyboard navigation
   useKeyboardNav();
   // Enable analytics
@@ -39,9 +45,14 @@ const HomePage = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <PageTransition>
       <div className='relative z-10'> 
+        <BackToTop />
         <ScrollProgress />
         <FloatingNav />
         <KeyboardGuide />
@@ -53,6 +64,7 @@ const HomePage = () => {
       <Suspense fallback={null}>
         <About />
       </Suspense>
+      <StatsCounter />
       <div style={{ 
         position: 'relative',
         zIndex: 10
@@ -67,6 +79,7 @@ const HomePage = () => {
       <Suspense fallback={null}>
         <Tech />
       </Suspense>
+      <CurrentlyLearning />
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
