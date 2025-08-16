@@ -11,6 +11,8 @@ import BackToTop from './components/BackToTop';
 import LoadingScreen from './components/LoadingScreen';
 import StatsCounter from './components/StatsCounter';
 import CurrentlyLearning from './components/CurrentlyLearning';
+import GitHubActivity from './components/GitHubActivity';
+import InfrastructureVisualizer from './components/InfrastructureVisualizer';
 import useKeyboardNav from './hooks/useKeyboardNav';
 import useAnalytics from './hooks/useAnalytics';
 
@@ -79,6 +81,8 @@ const HomePage = () => {
       <Suspense fallback={null}>
         <Tech />
       </Suspense>
+      <InfrastructureVisualizer />
+      <GitHubActivity />
       <CurrentlyLearning />
       <Suspense fallback={null}>
         <Footer />
