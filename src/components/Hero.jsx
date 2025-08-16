@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { styles } from '../styles';
 import { isMobile, shouldReduceMotion } from '../utils/deviceDetect';
+import TypeWriter from './TypeWriter';
 
 // ===== GLOBAL SCROLLBAR STYLES =====
 const GlobalScrollbarStyles = () => (
@@ -413,7 +414,16 @@ const OceanicHeroText = () => (
               backgroundSize: '200% 200%',
             }}
           >
-            Infrastructure & DevOps Engineer
+            <TypeWriter 
+              words={[
+                'Infrastructure Engineer',
+                'DevOps Specialist',
+                'Cloud Architect',
+                'Automation Expert',
+                'System Administrator'
+              ]}
+              className="inline"
+            />
           </motion.p>
           <motion.div 
             className="flex items-center justify-center mt-4"

@@ -7,6 +7,7 @@ import FloatingNav from './components/FloatingNav';
 import KeyboardGuide from './components/KeyboardGuide';
 import PageTransition from './components/PageTransition';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
+import AnimatedCursor from './components/AnimatedCursor';
 import useKeyboardNav from './hooks/useKeyboardNav';
 import useAnalytics from './hooks/useAnalytics';
 
@@ -15,7 +16,9 @@ const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
-const Footer = lazy(() => import('./components/Footer'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const ContactForm = lazy(() => import('./components/ContactForm'));
+const SkillsProgress = lazy(() => import('./components/SkillsProgress'));
 
 // Loading component
 const LoadingSection = () => (
@@ -42,6 +45,7 @@ const HomePage = () => {
   return (
     <PageTransition>
       <div className='relative z-10'> 
+        <AnimatedCursor />
         <ScrollProgress />
         <FloatingNav />
         <KeyboardGuide />
@@ -63,12 +67,18 @@ const HomePage = () => {
         <Suspense fallback={null}>
           <Projects />
         </Suspense>
+        <Suspense fallback={null}>
+          <Testimonials />
+        </Suspense>
       </div>
       <Suspense fallback={null}>
         <Tech />
       </Suspense>
       <Suspense fallback={null}>
-        <Footer/>
+        <SkillsProgress />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ContactForm />
       </Suspense>
       </div>
     </PageTransition>
