@@ -181,26 +181,25 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
       className="group relative h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        delay: index * 0.1
+        type: "tween",
+        duration: 0.3,
+        delay: index * 0.05
       }}
       whileHover={{
-        y: -8,
-        transition: { duration: 0.3, ease: "easeOut" }
+        y: -4,
+        transition: { duration: 0.2 }
       }}
     >
       {/* Current role indicator */}
       {exp.current && (
         <motion.div
           className="absolute -top-2 -right-2 z-20"
-          initial={{ scale: 0, rotate: -45 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
             Current
@@ -227,8 +226,8 @@ const GridExperienceCard = React.memo(({ exp, index }) => {
             {/* Company logo */}
             <motion.div 
               className="relative w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg sm:rounded-xl flex-shrink-0 flex items-center justify-center border-2 border-white/20 shadow-lg p-1.5 sm:p-2 transition-all duration-300"
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             >
               <div className="w-full h-full bg-white rounded-md sm:rounded-lg flex items-center justify-center overflow-hidden">
                 {!imageError ? (
@@ -408,17 +407,16 @@ const Experience = () => {
         >
           {/* Decorative icon */}
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="inline-flex items-center justify-center mb-4 sm:mb-6"
           >
             <div className="relative">
               {/* Outer ring */}
               <motion.div
                 className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gradient-to-r from-slate-400/30 to-slate-300/30"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                style={{ opacity: 0.3 }}
               />
               
               {/* Inner circle */}

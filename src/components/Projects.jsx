@@ -49,9 +49,8 @@ const ProjectCard = ({
       initial={false}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ 
-        scale: 1.03, 
-        y: -8,
-        transition: { duration: 0.3 }
+        y: -4,
+        transition: { duration: 0.2 }
       }}
       className="group relative overflow-hidden rounded-2xl p-1 max-w-sm mx-auto w-full"
       style={{
@@ -117,7 +116,7 @@ const ProjectCard = ({
               alt={name}
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${
+              className={`w-full h-full object-cover transition-all duration-300 group-hover:brightness-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -127,8 +126,7 @@ const ProjectCard = ({
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
             {source_code_link && (
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
                 onClick={() => window.open(source_code_link, "_blank")}
                 className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 hover:bg-white/30 transition-colors"
                 title="View Source Code"
@@ -141,8 +139,7 @@ const ProjectCard = ({
             
             {live_demo_link && (
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
                 onClick={() => window.open(live_demo_link, "_blank")}
                 className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 hover:bg-green-500/50 transition-colors"
                 title="Live Demo"
@@ -187,9 +184,8 @@ const ProjectCard = ({
               {tags.slice(0, 3).map((tag, tagIdx) => (
                 <motion.span
                   key={tag.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 + tagIdx * 0.05 }}
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
                   className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors"
                 >
                   #{tag.name}
@@ -251,9 +247,9 @@ const ProjectsShowcase = () => {
         >
           {/* Icon above Featured Projects */}
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="inline-block p-3 bg-gradient-to-r from-white/10 to-white/5 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
           >
             <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center shadow-lg">
@@ -273,9 +269,9 @@ const ProjectsShowcase = () => {
           {/* Oceanic Gradient Divider */}
           <motion.div 
             className="flex items-center justify-center mb-6 sm:mb-8"
-            initial={{ scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <div className="flex items-center gap-1 sm:gap-2">
               <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
@@ -319,8 +315,7 @@ const ProjectsShowcase = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -2 }}
               onClick={showMore}
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 relative overflow-hidden group"
             >
