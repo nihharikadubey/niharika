@@ -27,32 +27,73 @@ const AnimatedCursor = () => {
     };
 
     const handleMouseOver = (e) => {
-      const target = e.target;
+      let target = e.target;
       
-      // Check if element is interactive
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.tagName === 'INPUT' ||
-        target.tagName === 'TEXTAREA' ||
-        target.getAttribute('role') === 'button' ||
-        target.classList.contains('cursor-pointer') ||
-        window.getComputedStyle(target).cursor === 'pointer'
-      ) {
-        setIsHovered(true);
+      // Traverse up to find the actual interactive element
+      while (target && target !== document.body) {
+        // Check if element is interactive
+        if (
+          target.tagName === 'A' ||
+          target.tagName === 'BUTTON' ||
+          target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.getAttribute('role') === 'button' ||
+          target.classList.contains('cursor-pointer') ||
+          // Check for parent elements that might be clickable
+          target.onclick ||
+          window.getComputedStyle(target).cursor === 'pointer'
+        ) {
+          setIsHovered(true);
+          
+          // Get element position and size for morphing effect
+          const rect = target.getBoundingClientRect();
+          setHoveredElement({
+            x: rect.left,
+            y: rect.top,
+            width: rect.width,
+            height: rect.height
+          });
+          return;
+        }
         
-        // Get element position and size for morphing effect
-        const rect = target.getBoundingClientRect();
-        setHoveredElement({
-          x: rect.left,
-          y: rect.top,
-          width: rect.width,
-          height: rect.height
-        });
+        // Check for special cases like tech badges
+        if (
+          target.classList.contains('px-4') && 
+          target.classList.contains('py-2') && 
+          target.classList.contains('rounded-full')
+        ) {
+          setIsHovered(true);
+          const rect = target.getBoundingClientRect();
+          setHoveredElement({
+            x: rect.left,
+            y: rect.top,
+            width: rect.width,
+            height: rect.height
+          });
+          return;
+        }
+        
+        // Check for image containers
+        if (target.tagName === 'IMG' || target.querySelector('img')) {
+          const parentLink = target.closest('a');
+          if (parentLink) {
+            setIsHovered(true);
+            const rect = parentLink.getBoundingClientRect();
+            setHoveredElement({
+              x: rect.left,
+              y: rect.top,
+              width: rect.width,
+              height: rect.height
+            });
+            return;
+          }
+        }
+        
+        target = target.parentElement;
       }
     };
 
-    const handleMouseOut = (e) => {
+    const handleMouseOut = () => {
       setIsHovered(false);
       setHoveredElement(null);
     };
@@ -88,7 +129,7 @@ const AnimatedCursor = () => {
         }
       `}</style>
 
-      {/* Main blob cursor */}
+      {/* Main blob cursor - increased size */}
       <motion.div
         ref={cursorRef}
         className="fixed pointer-events-none z-[10000] mix-blend-difference"
@@ -99,8 +140,9 @@ const AnimatedCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          width: isHovered ? 40 : 20,
-          height: isHovered ? 40 : 20,
+          width: isHovered ? 0 : 32,  // Hide when hovering
+          height: isHovered ? 0 : 32,  // Hide when hovering
+          opacity: isHovered ? 0 : 1,
         }}
         transition={{
           type: "spring",
@@ -110,29 +152,22 @@ const AnimatedCursor = () => {
         }}
       >
         <div 
-          className="w-full h-full rounded-full"
-          style={{
-            background: isHovered 
-              ? 'rgba(255, 255, 255, 0.8)' 
-              : 'rgba(255, 255, 255, 1)',
-            filter: isHovered ? 'blur(4px)' : 'blur(0px)',
-            transition: 'all 0.2s ease'
-          }}
+          className="w-full h-full rounded-full bg-white"
         />
       </motion.div>
 
-      {/* Morphing outline when hovering */}
+      {/* Morphing outline when hovering - no blur, full wrap */}
       {isHovered && hoveredElement && (
         <motion.div
-          className="fixed pointer-events-none z-[9999]"
+          className="fixed pointer-events-none z-[9999] mix-blend-difference"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: 1, 
             scale: 1,
-            x: hoveredElement.x,
-            y: hoveredElement.y,
-            width: hoveredElement.width,
-            height: hoveredElement.height,
+            x: hoveredElement.x - 8,  // Add padding
+            y: hoveredElement.y - 8,  // Add padding
+            width: hoveredElement.width + 16,  // Add padding
+            height: hoveredElement.height + 16,  // Add padding
           }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{
@@ -141,18 +176,21 @@ const AnimatedCursor = () => {
             damping: 30,
             mass: 0.5,
           }}
-          style={{
-            border: '2px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '8px',
-            background: 'rgba(255, 255, 255, 0.02)',
-            backdropFilter: 'blur(2px)',
-          }}
-        />
+        >
+          <div
+            className="w-full h-full"
+            style={{
+              border: '2px solid white',
+              borderRadius: '12px',
+              background: 'transparent',
+            }}
+          />
+        </motion.div>
       )}
 
-      {/* Trailing dot for better visibility */}
+      {/* Center dot cursor - always visible */}
       <motion.div
-        className="fixed pointer-events-none z-[9998]"
+        className="fixed pointer-events-none z-[10001] mix-blend-difference"
         style={{
           left: smoothMouse.x,
           top: smoothMouse.y,
@@ -161,17 +199,13 @@ const AnimatedCursor = () => {
         }}
         transition={{
           type: "spring",
-          stiffness: 200,
+          stiffness: 700,
           damping: 20,
-          mass: 1,
+          mass: 0.3,
         }}
       >
         <div 
-          className="w-1 h-1 rounded-full bg-white"
-          style={{
-            opacity: isHovered ? 0 : 0.8,
-            transition: 'opacity 0.2s ease'
-          }}
+          className="w-2 h-2 rounded-full bg-white"
         />
       </motion.div>
     </>
