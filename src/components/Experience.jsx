@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import FastDivider from './FastDivider';
 // Remove the styles import since it's not used and causing issues
 // import { styles } from '../styles';
 
@@ -360,21 +361,7 @@ const Experience = () => {
             Professional Journey
           </h2>
           
-          {/* Oceanic Gradient Divider */}
-          <motion.div 
-            className="flex items-center justify-center mb-6"
-            initial={{ scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <div className="flex items-center gap-1 sm:gap-2">
-              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
-              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
-              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
-            </div>
-          </motion.div>
+          <FastDivider />
           
           <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto">
             A timeline of growth, innovation, and impact across leading technology organizations
