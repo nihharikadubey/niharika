@@ -133,9 +133,9 @@ const OceanicHeroText = () => (
         variants={oceanicAnimationVariants.item}
       >
         <motion.span
-          initial={{ opacity: 0 }}
+          initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: window.innerWidth < 768 ? 0 : 0.2 }}
         >
           Niharika
         </motion.span>{' '}
@@ -157,9 +157,9 @@ const OceanicHeroText = () => (
       {/* Oceanic Enhanced Subtitle */}
       <motion.div
         className="inline-block"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: window.innerWidth < 768 ? 0 : 0.25 }}
       >
         <div className="relative">
           <motion.p 

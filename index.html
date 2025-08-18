@@ -25,7 +25,47 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
     
+    <!-- Critical inline CSS for faster initial render -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+        color-scheme: dark;
+      }
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        -webkit-overflow-scrolling: touch;
+        background: #000000;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      #root {
+        min-height: 100vh;
+        background: radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%);
+      }
+      /* Prevent layout shift */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      /* Hide content until loaded */
+      .lazy-section {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .lazy-section.loaded {
+        opacity: 1;
+      }
+    </style>
+
     <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="/profileND-mobile.jpg" media="(max-width: 640px)">
     <link rel="preload" as="style" href="/src/index.css">
 
     <!-- Primary Meta Tags -->
