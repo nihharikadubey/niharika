@@ -3,13 +3,22 @@ import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
 
-// Lazy load the Globe component with delay for better performance
+// Lazy load the Globe component with longer delay to prevent TBT
 const Globe = lazy(() => {
-  // Only load Globe after initial page load
+  // Only load Globe after page is fully interactive
   return new Promise(resolve => {
-    setTimeout(() => {
-      import('./Globe').then(module => resolve(module));
-    }, 2000); // Load Globe after 2 seconds
+    // Use requestIdleCallback for better performance
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        setTimeout(() => {
+          import('./Globe').then(module => resolve(module));
+        }, 3000); // Load after 3 seconds when browser is idle
+      });
+    } else {
+      setTimeout(() => {
+        import('./Globe').then(module => resolve(module));
+      }, 4000); // Load after 4 seconds as fallback
+    }
   });
 });
 

@@ -111,16 +111,26 @@ const ProjectCard = ({
               <span className="text-xs">Project Preview</span>
             </div>
           ) : (
-            <img
-              src={image}
-              alt={name}
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-              className={`w-full h-full object-cover transition-all duration-300 group-hover:brightness-110 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
+            <picture>
+              <source 
+                srcSet={image.replace('.png', '.webp').replace('.jpg', '.webp')} 
+                type="image/webp"
+              />
+              <source 
+                srcSet={image.replace('.png', '.jpg')} 
+                type="image/jpeg"
+              />
+              <img
+                src={image}
+                alt={name}
+                loading="lazy"
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImageError(true)}
+                className={`w-full h-full object-cover transition-all duration-300 group-hover:brightness-110 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </picture>
           )}
           
           {/* Hover Overlay */}
