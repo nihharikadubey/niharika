@@ -387,29 +387,34 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links + Socials */}
-          <div className="pt-6 border-t border-slate-700/30">
-            {/* Social Links - moved to left and all in one line */}
-            <div className="mb-6">
-              <h4 className="text-slate-200 font-semibold mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+          {/* Quick Links + Socials - Enhanced Design */}
+          <div className="pt-8 border-t border-slate-700/30 grid lg:grid-cols-2 gap-6">
+            {/* Connect With Me - Enhanced */}
+            <div className="bg-gradient-to-r from-slate-800/30 to-slate-900/30 rounded-2xl p-6 backdrop-blur-sm border border-slate-700/30">
+              <h4 className="text-xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent mb-5 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h2a2 2 0 012 2v6l4-4h3"/>
+                  </svg>
+                </div>
                 Connect With Me
               </h4>
-              <div className="flex flex-row gap-3 flex-wrap justify-start">
+              <div className="flex flex-row gap-2 sm:gap-3 flex-wrap justify-center sm:justify-start">
                 {/* LinkedIn */}
                 <a
                   href='https://linkedin.com/in/nihharikadubey'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-blue-500/10 to-sky-500/10 backdrop-blur-sm rounded-lg border border-blue-500/30 hover:from-blue-500/20 hover:to-sky-500/20 hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300'
+                  className='group flex items-center gap-2 px-3 py-2 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300'
                   aria-label='LinkedIn'
                 >
-                  <div className='w-9 h-9 bg-[#0077B5] rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-[#0066A0] transition-all duration-300'>
-                    <svg className='w-5 h-5 text-white' fill='currentColor' viewBox='0 0 24 24'>
+                  <div className='w-7 h-7 bg-[#0077B5] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300'>
+                    <svg className='w-4 h-4 text-white' fill='currentColor' viewBox='0 0 24 24'>
                       <path d='M20.4 0H3.6C1.6 0 0 1.6 0 3.6v16.8C0 22.4 1.6 24 3.6 24h16.8c2 0 3.6-1.6 3.6-3.6V3.6C24 1.6 22.4 0 20.4 0zM7.2 20.4H3.6V9.6h3.6v10.8zM5.4 8c-1.2 0-2.1-.9-2.1-2.1 0-1.1.9-2.1 2.1-2.1 1.1 0 2.1.9 2.1 2.1 0 1.2-.9 2.1-2.1 2.1zm15 12.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.6V9.6h3.6v1.5c.5-.9 1.7-1.8 3.5-1.8 3.8 0 4.5 2.5 4.5 5.7v5.4z' />
                     </svg>
                   </div>
-                  <span className='font-semibold text-sm bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent'>
+                  <span className='font-medium text-sm text-slate-300 group-hover:text-cyan-300 transition-colors'>
                     LinkedIn
                   </span>
                 </a>
@@ -419,15 +424,15 @@ const Footer = () => {
                   href='https://github.com/nihharikadubey'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-slate-500/10 to-slate-600/10 backdrop-blur-sm rounded-lg border border-slate-500/30 hover:from-slate-500/20 hover:to-slate-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/10 transition-all duration-300'
+                  className='group flex items-center gap-2 px-3 py-2 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300'
                   aria-label='GitHub'
                 >
-                  <div className='w-9 h-9 bg-[#181717] rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-[#0d1117] transition-all duration-300'>
-                    <svg className='w-5 h-5 text-white' fill='currentColor' viewBox='0 0 24 24'>
+                  <div className='w-7 h-7 bg-[#181717] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300'>
+                    <svg className='w-4 h-4 text-white' fill='currentColor' viewBox='0 0 24 24'>
                       <path d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1.9 1.5 2.3 1.1 2.9.9.1-.7.4-1.1.8-1.4-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.2 0 0 1.1-.3 3.5 1.2a12 12 0 0 1 6.2 0c2.4-1.5 3.5-1.2 3.5-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z' />
                     </svg>
                   </div>
-                  <span className='font-semibold text-sm bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent'>
+                  <span className='font-medium text-sm text-slate-300 group-hover:text-cyan-300 transition-colors'>
                     GitHub
                   </span>
                 </a>
@@ -437,15 +442,15 @@ const Footer = () => {
                   href='https://instagram.com/nihharikadubey'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-pink-500/10 to-purple-500/10 backdrop-blur-sm rounded-lg border border-pink-500/30 hover:from-pink-500/20 hover:to-purple-500/20 hover:border-pink-400/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300'
+                  className='group flex items-center gap-2 px-3 py-2 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300'
                   aria-label='Instagram'
                 >
-                  <div className='w-9 h-9 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300'>
-                    <svg className='w-5 h-5 text-white' fill='currentColor' viewBox='0 0 24 24'>
+                  <div className='w-7 h-7 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300'>
+                    <svg className='w-4 h-4 text-white' fill='currentColor' viewBox='0 0 24 24'>
                       <path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z'/>
                     </svg>
                   </div>
-                  <span className='font-semibold text-sm bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent'>
+                  <span className='font-medium text-sm text-slate-300 group-hover:text-cyan-300 transition-colors'>
                     Insta
                   </span>
                 </a>
@@ -453,38 +458,43 @@ const Footer = () => {
                 {/* Email */}
                 <a
                   href='mailto:niharika859@gmail.com'
-                  className='group flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm rounded-lg border border-emerald-500/30 hover:from-emerald-500/20 hover:to-teal-500/20 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300'
+                  className='group flex items-center gap-2 px-3 py-2 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300'
                   aria-label='Email'
                 >
-                  <div className='w-9 h-9 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300'>
-                    <svg className='w-5 h-5 text-white' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+                  <div className='w-7 h-7 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300'>
+                    <svg className='w-4 h-4 text-white' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
                       <path strokeLinecap='round' strokeLinejoin='round' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' />
                     </svg>
                   </div>
-                  <span className='font-semibold text-sm bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent'>
+                  <span className='font-medium text-sm text-slate-300 group-hover:text-cyan-300 transition-colors'>
                     Email
                   </span>
                 </a>
               </div>
             </div>
             
-            {/* Quick Navigation */}
-            <div>
-              <h4 className="text-slate-200 font-semibold mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+            {/* Quick Navigation - Enhanced */}
+            <div className="bg-gradient-to-r from-slate-800/30 to-slate-900/30 rounded-2xl p-6 backdrop-blur-sm border border-slate-700/30">
+              <h4 className="text-xl font-bold bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent mb-5 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-teal-600/20 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
                 Quick Links
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {quickLinks.map((link) => (
+                {quickLinks.map((link, index) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-slate-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2 group py-1"
+                    className="group relative flex items-center gap-2 px-4 py-2.5 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
                   >
-                    <span className="w-1 h-1 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors duration-200"></span>
-                    <span className="text-sm group-hover:translate-x-1 transition-transform duration-300">
+                    <div className="w-1.5 h-1.5 bg-gradient-to-br from-blue-400 to-teal-500 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                    <span className="font-medium text-sm text-slate-300 group-hover:text-blue-300 transition-colors">
                       {link.name}
                     </span>
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 to-teal-500/0 group-hover:from-blue-500/5 group-hover:to-teal-500/5 transition-all duration-300"></div>
                   </a>
                 ))}
               </div>
