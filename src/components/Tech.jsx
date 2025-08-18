@@ -126,7 +126,7 @@ const Tech = () => {
   };
 
   return (
-    <section id="tech" className="relative w-full py-1 sm:py-4 bg-transparent overflow-hidden">
+    <section id="tech" className="relative w-full py-4 sm:py-4 bg-transparent overflow-hidden">
       {/* DARK COSMIC UNIVERSE BACKGROUND - Enhanced Celestial Activity */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* DEEP SPACE GRADIENT */}
