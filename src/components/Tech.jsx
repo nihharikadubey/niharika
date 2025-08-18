@@ -126,7 +126,7 @@ const Tech = () => {
   };
 
   return (
-    <section id="tech" className="relative w-full py-2 sm:py-4 bg-transparent overflow-hidden">
+    <section id="tech" className="relative w-full py-1 sm:py-4 bg-transparent overflow-hidden">
       {/* DARK COSMIC UNIVERSE BACKGROUND - Enhanced Celestial Activity */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* DEEP SPACE GRADIENT */}
@@ -177,10 +177,10 @@ const Tech = () => {
                 top: `${Math.random() * 100}%`,
                 boxShadow: '0 0 4px #10b981',
               }}
-              animate={!isMobile() ? {
+              animate={{
                 opacity: [0.3, 1, 0.3],
                 scale: [1, 1.5, 1],
-              } : {}}
+              }}
               transition={{
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
@@ -233,7 +233,7 @@ const Tech = () => {
                   boxShadow: `0 0 ${1 + Math.random() * 2}px currentColor`,
                   opacity: 0.8,
                 }}
-                animate={!isMobile() && !shouldReduceMotion() ? {
+                animate={!shouldReduceMotion() ? {
                   opacity: [0.4, 1, 0.4],
                   scale: [1, 1.2, 1],
                 } : {}}

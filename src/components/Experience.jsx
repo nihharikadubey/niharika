@@ -302,7 +302,7 @@ const Experience = () => {
   const containerRef = useRef(null);
 
   return (
-    <section id="work" ref={containerRef} className="relative py-4 sm:py-16 px-4 min-h-screen z-10">
+    <section id="work" ref={containerRef} className="relative py-6 sm:py-16 px-4 min-h-screen z-10">
       {/* Enhanced background */}
       <motion.div 
         className="absolute inset-0 overflow-hidden z-0"
