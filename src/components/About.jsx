@@ -189,7 +189,8 @@ const About = () => {
               <img 
                 src="/profileND.png" 
                 alt="Profile" 
-                className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg" 
+                className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg"
+                style={{ imageRendering: 'auto' }}
                 loading="lazy"
               />
             </picture>
