@@ -79,7 +79,7 @@ const Footer = () => {
   return (
     <footer
       id="contact"
-      className="relative bg-transparent pt-1 sm:pt-4 -mt-4 sm:-mt-2 overflow-hidden"
+      className="relative bg-transparent pt-8 sm:pt-4 -mt-4 sm:-mt-2 overflow-hidden"
     >
       {/* Decorative Blobs */}
       
