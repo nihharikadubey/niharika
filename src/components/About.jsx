@@ -120,7 +120,7 @@ const About = () => {
   const contentY = useTransform(smoothY, [0, 1], ["0%", "-7%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-2 sm:pt-16">
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-8 sm:pt-16">
       <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       </motion.div>

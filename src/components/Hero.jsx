@@ -323,7 +323,7 @@ const OceanicStatsOverlay = () => {
       
       {/* Mobile version - below hero content */}
       <motion.div 
-        className="xl:hidden flex justify-center items-center gap-3 px-4 pb-8 pt-4"
+        className="xl:hidden flex justify-center items-center gap-2 px-4 pb-12 pt-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ 
           opacity: 1, 
@@ -337,7 +337,7 @@ const OceanicStatsOverlay = () => {
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
-            className="flex-1 max-w-[120px]"
+            className="flex-1 max-w-[110px]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: 1, 
@@ -348,11 +348,11 @@ const OceanicStatsOverlay = () => {
               }
             }}
           >
-            <div className="relative py-4 px-3 rounded-xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-slate-600/30 text-slate-200">
+            <div className="relative py-3 px-2 rounded-xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-slate-600/30 text-slate-200">
               <div className="flex flex-col items-center gap-1">
-                <span className="text-2xl mb-1">{stat.icon}</span>
-                <div className="text-lg font-bold text-cyan-300">{stat.value}</div>
-                <div className="text-xs opacity-80 text-slate-300">{stat.label}</div>
+                <span className="text-lg mb-1">{stat.icon}</span>
+                <div className="text-base font-bold text-cyan-300">{stat.value}</div>
+                <div className="text-[11px] opacity-80 text-slate-300">{stat.label}</div>
               </div>
               
               {/* Mobile glow effect */}
@@ -482,7 +482,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="relative w-full min-h-screen overflow-hidden pb-8 xl:pb-0">
       <GlobalScrollbarStyles />
       
       {/* Oceanic Enhanced Background */}
@@ -490,13 +490,13 @@ const Hero = () => {
       
       {/* Main Content */}
       <div className="relative w-full h-full z-10">
-        <div className="h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <motion.div 
             className={`${styles.paddingX} flex-1 max-w-7xl mx-auto flex flex-col items-center justify-center text-center w-full`}
             style={{ 
               y: yTransform, 
               opacity: opacityTransform,
-              paddingBottom: window.innerWidth < 640 ? '2rem' : '8rem',
+              paddingBottom: window.innerWidth < 640 ? '1rem' : '8rem',
               paddingTop: window.innerWidth < 640 ? '6rem' : '10rem',
               marginTop: '0'
             }}
