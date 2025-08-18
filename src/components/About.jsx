@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { styles } from '../styles';
-import FastDivider from './FastDivider';
 
 // --- Animation helpers - Optimized for faster loading ---
 const textVariant = (delay = 0) => ({
@@ -148,7 +147,21 @@ const About = () => {
           <p className="text-cyan-400 tracking-[0.3em] uppercase mb-3">Introduction</p>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6">About Me</h2>
           
-          <FastDivider />
+          {/* Oceanic Gradient Divider */}
+          <motion.div 
+            className="flex items-center justify-center mb-6 sm:mb-8"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full"></div>
+              <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Profile & Intro */}

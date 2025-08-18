@@ -2,7 +2,6 @@ import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
-import FastDivider from './FastDivider';
 
 // Lazy load the Globe component - only for desktop
 const Globe = lazy(() => 
@@ -130,9 +129,29 @@ const Footer = () => {
           </h2>
         </motion.div>
 
-        <div className="my-8">
-          <FastDivider />
-        </div>
+        {/* Enhanced Divider with floating dots */}
+        <motion.div
+          className="flex items-center justify-center my-8 relative"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-cyan-400"></div>
+            <motion.div 
+              className="w-3 h-3 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-400/50"
+              animate={{ y: window.innerWidth > 640 ? [0, -5, 0] : 0 }}
+              transition={{ duration: 2, repeat: Infinity }}
+            ></motion.div>
+            <div className="w-16 sm:w-32 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+            <motion.div 
+              className="w-3 h-3 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-400/50"
+              animate={{ y: window.innerWidth > 640 ? [0, -5, 0] : 0 }}
+              transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
+            ></motion.div>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-teal-400 via-teal-400/50 to-transparent"></div>
+          </div>
+        </motion.div>
 
         {/* Enhanced description with better styling */}
         <motion.div
