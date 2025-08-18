@@ -1,11 +1,10 @@
 import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
-import { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense, useEffect, useRef } from 'react';
 
-// Globe temporarily disabled to improve TBT
-// Will re-enable with better optimization later
-const Globe = () => null;
+// Lazy load Globe only when footer is visible
+const Globe = lazy(() => import('./Globe'));
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +15,8 @@ const Footer = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false);
+  const footerRef = useRef(null);
 
   const quickLinks = [
     { name: 'About', href: '#about' },
@@ -23,6 +24,36 @@ const Footer = () => {
     { name: 'Skills', href: '#tech' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  // Load Globe only when footer comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadGlobe) {
+            // Delay loading Globe until user is actually viewing footer
+            setTimeout(() => {
+              setShouldLoadGlobe(true);
+            }, 500); // Small delay to ensure smooth scroll
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Load when 10% of footer is visible
+        rootMargin: '100px' // Start loading 100px before footer is visible
+      }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
+  }, [shouldLoadGlobe]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -77,6 +108,7 @@ const Footer = () => {
 
   return (
     <footer
+      ref={footerRef}
       id="contact"
       className="relative bg-transparent pt-8 sm:pt-4 -mt-4 sm:-mt-2 overflow-hidden"
     >
@@ -179,13 +211,31 @@ const Footer = () => {
             {/* Globe (left, desktop only) */}
             <div className="hidden lg:flex flex-col items-center justify-center">
               <div className="relative h-56 w-full mb-2">
-                <Suspense fallback={
+                {shouldLoadGlobe ? (
+                  <Suspense fallback={
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-12 h-12 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
+                    </div>
+                  }>
+                    <Globe />
+                  </Suspense>
+                ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-12 h-12 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/10 to-blue-600/10 backdrop-blur-xl border-2 border-cyan-400/20 flex items-center justify-center">
+                      <svg 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="1.5" 
+                        className="w-10 h-10 text-cyan-400/40"
+                      >
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                      </svg>
+                    </div>
                   </div>
-                }>
-                  <Globe />
-                </Suspense>
+                )}
                 <span className="absolute inset-0 rounded-full border-2 border-cyan-400/30 animate-pulse blur-lg opacity-50 z-[-1]" />
               </div>
               <p className="text-center text-cyan-400/70 text-xs italic mt-2 tracking-wide">
