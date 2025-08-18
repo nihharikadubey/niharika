@@ -121,10 +121,7 @@ const About = () => {
   const contentY = useTransform(smoothY, [0, 1], window.innerWidth < 768 ? ["0%", "0%"] : ["0%", "-7%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-2 sm:pt-16 z-20">
-      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-      </motion.div>
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-2 sm:pt-16 z-20 bg-transparent">
 
       <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
