@@ -165,12 +165,18 @@ const About = () => {
         {/* Profile & Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mb-2">
           <motion.div variants={fadeIn("left", "spring", 0, 0.5)} className="lg:col-span-4 flex justify-center">
-            <img 
-              src="/profileND.png" 
-              alt="Profile" 
-              className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg" 
-              loading="lazy"
-            />
+            <picture>
+              <source 
+                media="(max-width: 640px)" 
+                srcSet="/profileND-mobile.png"
+              />
+              <img 
+                src="/profileND.png" 
+                alt="Profile" 
+                className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg" 
+                loading="lazy"
+              />
+            </picture>
           </motion.div>
           <motion.div variants={fadeIn("right", "spring", 0.1, 0.5)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
             <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
