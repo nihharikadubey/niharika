@@ -437,8 +437,8 @@ const Hero = () => {
           style={{ 
             y: yTransform, 
             opacity: opacityTransform,
-            paddingBottom: '8rem',
-            paddingTop: '10rem',
+            paddingBottom: window.innerWidth < 640 ? '4rem' : '8rem',
+            paddingTop: window.innerWidth < 640 ? '6rem' : '10rem',
             marginTop: '0'
           }}
           variants={oceanicAnimationVariants.container} 

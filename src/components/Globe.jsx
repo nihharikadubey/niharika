@@ -7,13 +7,14 @@ const GlobeGeometry = () => {
   const meshRef = useRef();
   const pointsRef = useRef();
 
-  // Rotate the globe
+  // Rotate the globe (slower on mobile to reduce CPU usage)
   useFrame((state) => {
+    const rotationSpeed = window.innerWidth < 640 ? 0.001 : 0.003;
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.003;
+      meshRef.current.rotation.y += rotationSpeed;
     }
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.003;
+      pointsRef.current.rotation.y += rotationSpeed;
     }
   });
 
@@ -22,9 +23,10 @@ const GlobeGeometry = () => {
     const points = [];
     const radius = 1.4; // Larger radius for prominent globe
     
-    // Create points on sphere surface
-    for (let lat = -90; lat <= 90; lat += 8) {
-      for (let lon = -180; lon <= 180; lon += 8) {
+    // Create points on sphere surface (less points on mobile)
+    const step = window.innerWidth < 640 ? 12 : 8;
+    for (let lat = -90; lat <= 90; lat += step) {
+      for (let lon = -180; lon <= 180; lon += step) {
         // Simple continent pattern (crude approximation)
         const isLand = 
           (lat > 10 && lat < 70 && lon > -10 && lon < 50) || // Europe/Africa

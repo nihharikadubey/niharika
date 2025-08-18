@@ -77,18 +77,18 @@ const Footer = () => {
   return (
     <footer
       id="contact"
-      className="relative bg-transparent pt-2 sm:pt-4 -mt-2 overflow-hidden"
+      className="relative bg-transparent pt-1 sm:pt-4 -mt-4 sm:-mt-2 overflow-hidden"
     >
       {/* Decorative Blobs */}
       
 
       {/* Heading + Globe (mobile) */}
-      <div className="text-center max-w-7xl mx-auto relative z-10 mb-8 sm:mb-12">
+      <div className="text-center max-w-7xl mx-auto relative z-10 mb-4 sm:mb-12">
         {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-blue-500/5 to-transparent rounded-3xl blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-blue-500/5 to-transparent rounded-3xl blur-3xl opacity-50 sm:animate-pulse"></div>
         
-        <div className="lg:hidden mb-6">
-          <div className="h-48 w-48 mx-auto relative">
+        <div className="lg:hidden mb-4">
+          <div className="h-32 w-32 mx-auto relative">
             <Suspense fallback={
               <div className="w-full h-full flex items-center justify-center">
                 <div className="w-8 h-8 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
