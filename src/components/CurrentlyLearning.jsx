@@ -30,7 +30,7 @@ const CurrentlyLearning = () => {
   ];
 
   return (
-    <section className="relative w-full py-6 sm:py-20 overflow-hidden">
+    <section className="relative w-full py-4 sm:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div

@@ -222,7 +222,7 @@ const ProjectsShowcase = () => {
   };
 
   return (
-    <section id="projects" className="relative w-full py-6 sm:py-8 bg-transparent overflow-hidden">
+    <section id="projects" className="relative w-full py-4 sm:py-8 bg-transparent overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
