@@ -55,7 +55,7 @@ const HomePage = () => {
       </div>
 
       {/* ALL PAGE CONTENT */}
-      <div className='relative'>
+      <div className='relative z-10'>
         <Navbar />
         <Hero />
         

@@ -121,7 +121,7 @@ const About = () => {
   const contentY = useTransform(smoothY, [0, 1], window.innerWidth < 768 ? ["0%", "0%"] : ["0%", "-7%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-20 pb-8 sm:pt-16 sm:pb-0 bg-transparent">
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-20 pb-8 sm:pt-16 sm:pb-0 z-10 bg-transparent">
 
       <motion.div className="relative w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
