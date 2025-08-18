@@ -37,7 +37,7 @@ const CurrentlyLearning = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-2 sm:mb-12"
         >
           {/* Icon above title */}
           <div className="flex justify-center mb-4">
@@ -60,7 +60,7 @@ const CurrentlyLearning = () => {
           
           {/* Oceanic Gradient Divider */}
           <motion.div 
-            className="flex items-center justify-center mb-6"
+            className="flex items-center justify-center mb-2 sm:mb-6"
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -135,7 +135,7 @@ const CurrentlyLearning = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          className="mt-4 sm:mt-12 text-center"
         >
           <motion.a
             href="https://github.com/nihharikadubey"

@@ -233,14 +233,14 @@ const ProjectsShowcase = () => {
         }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 mt-12">
+      <div className="relative max-w-7xl mx-auto px-6 mt-0 sm:mt-12">
         {/* Enhanced Header with Icon */}
         <motion.div 
           variants={textVariant()} 
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-4 sm:mb-16"
         >
           {/* Icon above Featured Projects */}
           <div className="flex justify-center mb-4">
@@ -269,7 +269,7 @@ const ProjectsShowcase = () => {
 
           {/* Oceanic Gradient Divider */}
           <motion.div 
-            className="flex items-center justify-center mb-6 sm:mb-8"
+            className="flex items-center justify-center mb-2 sm:mb-8"
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -310,7 +310,7 @@ const ProjectsShowcase = () => {
         {/* Load More Button */}
         {visibleProjects < projects.length && (
           <motion.div
-            className="flex justify-center mt-12"
+            className="flex justify-center mt-4 sm:mt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
