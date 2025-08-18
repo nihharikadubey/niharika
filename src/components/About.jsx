@@ -4,19 +4,19 @@ import { styles } from '../styles';
 
 // --- Animation helpers - Optimized for faster loading ---
 const textVariant = (delay = 0) => ({
-  hidden: { opacity: 0 },
+  hidden: { opacity: window.innerWidth < 768 ? 1 : 0 },
   show: {
     opacity: 1,
-    transition: { type: "tween", duration: 0.3, delay: delay * 0.5 }
+    transition: { type: "tween", duration: window.innerWidth < 768 ? 0 : 0.3, delay: window.innerWidth < 768 ? 0 : delay * 0.5 }
   }
 });
 const fadeIn = (dir, type, delay, duration) => ({
   hidden: {
-    opacity: 0,
+    opacity: window.innerWidth < 768 ? 1 : 0,
   },
   show: {
     opacity: 1,
-    transition: { type: "tween", delay: delay * 0.3, duration: duration * 0.5, ease: "easeOut" }
+    transition: { type: "tween", delay: window.innerWidth < 768 ? 0 : delay * 0.3, duration: window.innerWidth < 768 ? 0 : duration * 0.5, ease: "easeOut" }
   },
 });
 
@@ -125,7 +125,7 @@ const About = () => {
 
       <motion.div className="relative w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
-        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center relative">
+        <motion.div variants={window.innerWidth < 768 ? {} : textVariant()} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="mb-2 text-center relative">
           {/* Simple static icon */}
           <div className="flex justify-center mb-4">
             <div className="relative">
@@ -150,9 +150,9 @@ const About = () => {
           {/* Oceanic Gradient Divider */}
           <motion.div 
             className="flex items-center justify-center mb-6 sm:mb-8"
-            initial={{ scaleX: 0, opacity: 0 }}
+            initial={{ scaleX: window.innerWidth < 768 ? 1 : 0, opacity: window.innerWidth < 768 ? 1 : 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            transition={{ duration: window.innerWidth < 768 ? 0 : 1, delay: window.innerWidth < 768 ? 0 : 0.3 }}
           >
             <div className="flex items-center gap-1 sm:gap-2">
               <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
@@ -166,7 +166,7 @@ const About = () => {
 
         {/* Profile & Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mb-2">
-          <motion.div variants={fadeIn("left", "spring", 0, 0.5)} className="lg:col-span-4 flex justify-center">
+          <motion.div variants={window.innerWidth < 768 ? {} : fadeIn("left", "spring", 0, 0.5)} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="lg:col-span-4 flex justify-center">
             <picture>
               <source 
                 media="(max-width: 640px)" 
@@ -200,7 +200,7 @@ const About = () => {
               />
             </picture>
           </motion.div>
-          <motion.div variants={fadeIn("right", "spring", 0.1, 0.5)} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
+          <motion.div variants={window.innerWidth < 768 ? {} : fadeIn("right", "spring", 0.1, 0.5)} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
             <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
             <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
@@ -223,9 +223,9 @@ const About = () => {
           <div className="text-center mb-2">
             <motion.h3 
               className="text-4xl font-black text-white mb-6"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: window.innerWidth < 768 ? 0 : 0.3 }}
             >
               Core Expertise
             </motion.h3>
@@ -242,7 +242,7 @@ const About = () => {
                 }}
                 onMouseEnter={() => setHoveredCard(`service-${index}`)}
                 onMouseLeave={() => setHoveredCard(null)}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
                 animate={isVisible ? { 
                   opacity: 1
                 } : {}}
