@@ -193,11 +193,10 @@ const About = () => {
               />
               <img 
                 src="/profileND-mobile.jpg" 
-                alt="Niharika Dubey - Infrastructure & DevOps Engineer" 
+                alt="Profile" 
                 className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg"
                 loading="eager"
                 fetchpriority="high"
-                decoding="async"
               />
             </picture>
           </div>
