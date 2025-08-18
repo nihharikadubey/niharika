@@ -19,10 +19,10 @@ const Footer = () => {
   const footerRef = useRef(null);
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#work' },
-    { name: 'Skills', href: '#tech' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'About', href: '#about', emoji: '💡' },
+    { name: 'Experience', href: '#work', emoji: '🧑‍💻' },
+    { name: 'Skills', href: '#tech', emoji: '⚡' },
+    { name: 'Contact', href: '#contact', emoji: '✉️' }
   ];
 
   // Load Globe only when footer comes into view
@@ -490,7 +490,7 @@ const Footer = () => {
                     href={link.href}
                     className="group relative flex items-center gap-2 px-4 py-2.5 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/40 hover:bg-slate-800/60 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
                   >
-                    <div className="w-1.5 h-1.5 bg-gradient-to-br from-blue-400 to-teal-500 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                    <span className="text-lg group-hover:scale-110 transition-transform duration-300">{link.emoji}</span>
                     <span className="font-medium text-sm text-slate-300 group-hover:text-blue-300 transition-colors">
                       {link.name}
                     </span>
