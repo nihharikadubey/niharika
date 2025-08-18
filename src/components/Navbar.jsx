@@ -46,7 +46,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-50 transition-all duration-300 ${
+      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-[100] transition-all duration-300 ${
         scrolled 
           ? 'bg-slate-900/90 backdrop-blur-xl border-b border-cyan-400/20 shadow-lg shadow-cyan-500/10' 
           : 'bg-slate-900/70 backdrop-blur-md border-b border-white/5'
@@ -180,37 +180,23 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <motion.div
-            className="relative"
-            whileTap={{ scale: 0.9 }}
+          <button
+            className="relative z-50 p-2"
+            onClick={() => setToggle(!toggle)}
+            aria-label="Toggle menu"
           >
             <img
               src={toggle ? close : menu}
               alt='menu'
-              className='w-[28px] h-[28px] object-contain cursor-pointer filter brightness-0 invert z-50 relative'
-              onClick={() => setToggle(!toggle)}
-              whileHover={{ scale: 1.1 }}
-              animate={{ rotate: toggle ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
+              className='w-[28px] h-[28px] object-contain filter brightness-0 invert'
             />
-            
-            {/* Ripple effect on tap */}
-            <motion.div
-              className="absolute -inset-2 rounded-full border border-cyan-400/30"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ 
-                scale: toggle ? [0, 1.2] : 0,
-                opacity: toggle ? [0, 1, 0] : 0
-              }}
-              transition={{ duration: 0.6 }}
-            />
-          </motion.div>
+          </button>
 
           {/* Mobile menu */}
           <AnimatePresence>
             {toggle && (
               <motion.div
-                className="absolute top-16 right-0 mx-4 my-2 min-w-[200px] z-50"
+                className="fixed top-20 right-4 min-w-[200px] z-[90]"
                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8, y: -20 }}
