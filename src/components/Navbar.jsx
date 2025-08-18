@@ -46,7 +46,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-20 transition-all duration-300 ${
+      className={`sm:px-16 px-6 w-full flex items-center py-4 fixed top-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-slate-900/90 backdrop-blur-xl border-b border-cyan-400/20 shadow-lg shadow-cyan-500/10' 
           : 'bg-slate-900/70 backdrop-blur-md border-b border-white/5'
@@ -184,10 +184,10 @@ const Navbar = () => {
             className="relative"
             whileTap={{ scale: 0.9 }}
           >
-            <motion.img
+            <img
               src={toggle ? close : menu}
               alt='menu'
-              className='w-[28px] h-[28px] object-contain cursor-pointer filter brightness-0 invert'
+              className='w-[28px] h-[28px] object-contain cursor-pointer filter brightness-0 invert z-50 relative'
               onClick={() => setToggle(!toggle)}
               whileHover={{ scale: 1.1 }}
               animate={{ rotate: toggle ? 180 : 0 }}
@@ -210,7 +210,7 @@ const Navbar = () => {
           <AnimatePresence>
             {toggle && (
               <motion.div
-                className="absolute top-16 right-0 mx-4 my-2 min-w-[200px] z-10"
+                className="absolute top-16 right-0 mx-4 my-2 min-w-[200px] z-50"
                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8, y: -20 }}
