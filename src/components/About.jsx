@@ -126,6 +126,24 @@ const About = () => {
       <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
         <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center relative">
+          {/* Simple static icon */}
+          <div className="flex justify-center mb-4">
+            <div className="relative">
+              <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 backdrop-blur-xl border-2 border-cyan-400/30 flex items-center justify-center shadow-2xl shadow-cyan-500/20">
+                <svg 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  className="w-10 h-10 text-cyan-300 relative z-10"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
           <p className="text-cyan-400 tracking-[0.3em] uppercase mb-3">Introduction</p>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6">About Me</h2>
           
