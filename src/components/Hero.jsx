@@ -323,7 +323,7 @@ const OceanicStatsOverlay = () => {
       
       {/* Mobile version - below hero content */}
       <motion.div 
-        className="xl:hidden flex justify-center items-center gap-2 px-4 pb-12 pt-2"
+        className="xl:hidden flex justify-center items-center gap-2 px-4 pb-6 pt-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ 
           opacity: 1, 
@@ -482,7 +482,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden pb-8 xl:pb-0">
+    <div className="relative w-full min-h-screen overflow-hidden pb-4 xl:pb-0">
       <GlobalScrollbarStyles />
       
       {/* Oceanic Enhanced Background */}
