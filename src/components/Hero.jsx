@@ -277,47 +277,99 @@ const OceanicStatsOverlay = () => {
   ];
 
   return (
-    <motion.div 
-      className="absolute bottom-8 left-8 z-30 hidden xl:flex items-center gap-4"
-      initial={{ opacity: 0, y: 50, x: -50 }}
-      animate={{ 
-        opacity: 1, 
-        y: 0, 
-        x: 0,
-        transition: { 
-          duration: 0.8, 
-          delay: 1.5,
-          type: "spring",
-          stiffness: 100
-        } 
-      }}
-    >
-      {stats.map((stat, index) => (
-        <div
-          key={stat.label}
-          className="group relative py-3 px-4 rounded-xl bg-slate-800/20 backdrop-blur-md border border-slate-600/30 text-slate-200 hover:bg-slate-700/30 hover:border-slate-500/40"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-lg">{stat.icon}</span>
-            <div>
-              <div className="text-sm font-bold">{stat.value}</div>
-              <div className="text-xs opacity-70">{stat.label}</div>
-            </div>
-          </div>
-          
-          {/* Oceanic hover glow effect */}
+    <>
+      {/* Desktop version - left side */}
+      <motion.div 
+        className="absolute bottom-8 left-8 z-30 hidden xl:flex items-center gap-4"
+        initial={{ opacity: 0, y: 50, x: -50 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0, 
+          x: 0,
+          transition: { 
+            duration: 0.8, 
+            delay: 1.5,
+            type: "spring",
+            stiffness: 100
+          } 
+        }}
+      >
+        {stats.map((stat, index) => (
           <div
-            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
-            style={{
-              background: `linear-gradient(135deg, rgba(${
-                stat.color === 'sky' ? '56, 189, 248' : 
-                stat.color === 'teal' ? '56, 178, 172' : '99, 179, 237'
-              }, 0.1) 0%, transparent 100%)`,
+            key={stat.label}
+            className="group relative py-3 px-4 rounded-xl bg-slate-800/20 backdrop-blur-md border border-slate-600/30 text-slate-200 hover:bg-slate-700/30 hover:border-slate-500/40"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-lg">{stat.icon}</span>
+              <div>
+                <div className="text-sm font-bold">{stat.value}</div>
+                <div className="text-xs opacity-70">{stat.label}</div>
+              </div>
+            </div>
+            
+            {/* Oceanic hover glow effect */}
+            <div
+              className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
+              style={{
+                background: `linear-gradient(135deg, rgba(${
+                  stat.color === 'sky' ? '56, 189, 248' : 
+                  stat.color === 'teal' ? '56, 178, 172' : '99, 179, 237'
+                }, 0.1) 0%, transparent 100%)`,
+              }}
+            />
+          </div>
+        ))}
+      </motion.div>
+      
+      {/* Mobile version - below hero content */}
+      <motion.div 
+        className="xl:hidden flex justify-center items-center gap-3 px-4 pb-8 pt-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          transition: { 
+            duration: 0.6, 
+            delay: 0.3
+          } 
+        }}
+      >
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.label}
+            className="flex-1 max-w-[120px]"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              transition: { 
+                delay: 0.4 + index * 0.1,
+                duration: 0.3
+              }
             }}
-          />
-        </div>
-      ))}
-    </motion.div>
+          >
+            <div className="relative py-4 px-3 rounded-xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-slate-600/30 text-slate-200">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-2xl mb-1">{stat.icon}</span>
+                <div className="text-lg font-bold text-cyan-300">{stat.value}</div>
+                <div className="text-xs opacity-80 text-slate-300">{stat.label}</div>
+              </div>
+              
+              {/* Mobile glow effect */}
+              <div
+                className="absolute inset-0 rounded-xl opacity-20"
+                style={{
+                  background: `linear-gradient(135deg, rgba(${
+                    stat.color === 'sky' ? '56, 189, 248' : 
+                    stat.color === 'teal' ? '56, 178, 172' : '99, 179, 237'
+                  }, 0.15) 0%, transparent 100%)`,
+                }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </>
   );
 };
 
@@ -374,38 +426,44 @@ const OceanicCTAButtons = () => {
   ];
 
   return (
-    <motion.div 
-      className="absolute bottom-8 right-8 z-30 hidden xl:flex items-center gap-4"
-      initial={{ opacity: 0, y: 50, x: 50 }}
-      animate={{ 
-        opacity: 1, 
-        y: 0, 
-        x: 0,
-        transition: { 
-          duration: 0.8, 
-          delay: 1.5,
-          type: "spring",
-          stiffness: 100
-        }
-      }}
-    >
-      {buttons.map((button, index) => (
-        <a
-          key={button.text}
-          href={button.href}
-          {...(button.external && { target: "_blank", rel: "noopener noreferrer" })}
-          className={`group relative py-3 px-6 rounded-full outline-none font-medium text-sm shadow-lg overflow-hidden bg-gradient-to-r ${button.gradient} backdrop-blur-md border ${button.borderColor} ${button.textColor} hover:text-slate-100 ${button.hoverGradient} flex items-center gap-2`}
-        >
-          {button.icon}
-          <span>{button.text}</span>
-          
-          {/* Oceanic shimmer effect - static */}
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-200/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-          />
-        </a>
-      ))}
-    </motion.div>
+    <>
+      {/* Desktop version */}
+      <motion.div 
+        className="absolute bottom-8 right-8 z-30 hidden xl:flex items-center gap-4"
+        initial={{ opacity: 0, y: 50, x: 50 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0, 
+          x: 0,
+          transition: { 
+            duration: 0.8, 
+            delay: 1.5,
+            type: "spring",
+            stiffness: 100
+          }
+        }}
+      >
+        {buttons.map((button) => (
+          <a
+            key={button.text}
+            href={button.href}
+            {...(button.external && { target: "_blank", rel: "noopener noreferrer" })}
+            className={`group relative py-3 px-6 rounded-full outline-none font-medium text-sm shadow-lg overflow-hidden bg-gradient-to-r ${button.gradient} backdrop-blur-md border ${button.borderColor} ${button.textColor} hover:text-slate-100 ${button.hoverGradient} flex items-center gap-2`}
+          >
+            {button.icon}
+            <span>{button.text}</span>
+            
+            {/* Oceanic shimmer effect - static */}
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-200/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+            />
+          </a>
+        ))}
+      </motion.div>
+      
+      {/* Mobile version - Hidden as they're in the nav menu on mobile */}
+      {/* We don't show CTA buttons on mobile to keep the interface clean */}
+    </>
   );
 };
 
@@ -424,7 +482,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full min-h-screen overflow-hidden">
       <GlobalScrollbarStyles />
       
       {/* Oceanic Enhanced Background */}
@@ -432,25 +490,37 @@ const Hero = () => {
       
       {/* Main Content */}
       <div className="relative w-full h-full z-10">
-        <motion.div 
-          className={`${styles.paddingX} absolute inset-0 max-w-7xl mx-auto flex flex-col items-center justify-center text-center min-h-screen`}
-          style={{ 
-            y: yTransform, 
-            opacity: opacityTransform,
-            paddingBottom: window.innerWidth < 640 ? '4rem' : '8rem',
-            paddingTop: window.innerWidth < 640 ? '6rem' : '10rem',
-            marginTop: '0'
-          }}
-          variants={oceanicAnimationVariants.container} 
-          initial="visible" 
-          animate="visible"
-        >
-          <OceanicHeroText />
-        </motion.div>
+        <div className="h-screen flex flex-col">
+          <motion.div 
+            className={`${styles.paddingX} flex-1 max-w-7xl mx-auto flex flex-col items-center justify-center text-center w-full`}
+            style={{ 
+              y: yTransform, 
+              opacity: opacityTransform,
+              paddingBottom: window.innerWidth < 640 ? '2rem' : '8rem',
+              paddingTop: window.innerWidth < 640 ? '6rem' : '10rem',
+              marginTop: '0'
+            }}
+            variants={oceanicAnimationVariants.container} 
+            initial="visible" 
+            animate="visible"
+          >
+            <OceanicHeroText />
+          </motion.div>
+          
+          {/* Mobile Stats - Below Hero Content */}
+          <div className="xl:hidden">
+            <OceanicStatsOverlay />
+          </div>
+        </div>
         
-        {/* Oceanic Enhanced Bottom Overlays */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 z-30">
+        {/* Desktop Stats & CTA Buttons - Bottom Overlays */}
+        <div className="hidden xl:block absolute bottom-0 left-0 right-0 h-32 z-30">
           <OceanicStatsOverlay />
+          <OceanicCTAButtons />
+        </div>
+        
+        {/* Mobile CTA Buttons - Keep at bottom on mobile */}
+        <div className="xl:hidden absolute bottom-0 left-0 right-0 z-30">
           <OceanicCTAButtons />
         </div>
       </div>
