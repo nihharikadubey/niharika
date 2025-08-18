@@ -125,7 +125,7 @@ const About = () => {
 
       <motion.div className="relative w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
-        <motion.div variants={window.innerWidth < 768 ? {} : textVariant()} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="mb-2 text-center relative">
+        <div className="mb-2 text-center relative">
           {/* Simple static icon */}
           <div className="flex justify-center mb-4">
             <div className="relative">
@@ -162,11 +162,11 @@ const About = () => {
               <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent"></div>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Profile & Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mb-2">
-          <motion.div variants={window.innerWidth < 768 ? {} : fadeIn("left", "spring", 0, 0.5)} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="lg:col-span-4 flex justify-center">
+          <div className="lg:col-span-4 flex justify-center">
             <picture>
               <source 
                 media="(max-width: 640px)" 
@@ -199,8 +199,8 @@ const About = () => {
                 fetchpriority="high"
               />
             </picture>
-          </motion.div>
-          <motion.div variants={window.innerWidth < 768 ? {} : fadeIn("right", "spring", 0.1, 0.5)} initial={window.innerWidth < 768 ? {} : "hidden"} whileInView={window.innerWidth < 768 ? {} : "show"} className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
+          </div>
+          <div className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
             <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
             <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
@@ -209,7 +209,7 @@ const About = () => {
                 <span key={i} className="px-6 py-2 rounded-2xl bg-slate-800 text-slate-300 border border-slate-700">{skill}</span>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
 
