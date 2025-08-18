@@ -170,7 +170,21 @@ const About = () => {
             <picture>
               <source 
                 media="(max-width: 640px)" 
+                srcSet="/profileND-mobile.webp"
+                type="image/webp"
+              />
+              <source 
+                media="(max-width: 640px)" 
                 srcSet="/profileND-mobile.png"
+                type="image/png"
+              />
+              <source 
+                srcSet="/profileND.webp"
+                type="image/webp"
+              />
+              <source 
+                srcSet="/profileND.png"
+                type="image/png"
               />
               <img 
                 src="/profileND.png" 
