@@ -209,7 +209,7 @@ const Tech = () => {
         
         {/* Starfield Layer 1 - Dense Bright Stars */}
         <div className="absolute inset-0">
-          {[...Array(isMobile() ? 75 : shouldReduceMotion() ? 150 : 250)].map((_, i) => {
+          {[...Array(isMobile() ? 30 : shouldReduceMotion() ? 150 : 250)].map((_, i) => {
             const size = 0.5 + Math.random() * 1.5;
             const starColor = [
               'rgba(255, 255, 255, 1)',
@@ -343,7 +343,7 @@ const Tech = () => {
         {/* Skills Grid without block/tab backgrounds */}
         <motion.div
           key={activeCategory}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center max-w-4xl mx-auto"
+          className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-8 justify-items-center max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={hasLoaded ? "visible" : "hidden"}
@@ -358,12 +358,12 @@ const Tech = () => {
               <motion.img
                 src={technology.icon}
                 alt={technology.name}
-                className="w-16 h-16 object-contain mb-2 drop-shadow-md transition-all duration-200 group-hover:brightness-125"
+                className="w-14 h-14 sm:w-16 sm:h-16 object-contain mb-2 drop-shadow-md transition-all duration-200 group-hover:brightness-125"
                 loading="eager"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.05, ease: "linear" }}
               />
-              <h3 className="text-sm text-center transition-colors duration-300 text-white/80 group-hover:text-white group-hover:font-semibold">
+              <h3 className="text-xs sm:text-sm text-center transition-colors duration-300 text-white/80 group-hover:text-white group-hover:font-semibold">
                 {technology.name}
               </h3>
             </motion.div>

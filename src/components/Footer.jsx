@@ -83,7 +83,10 @@ const Footer = () => {
       
 
       {/* Heading + Globe (mobile) */}
-      <div className="text-center max-w-7xl mx-auto relative z-10 mb-2 sm:mb-4 bg-transparent">
+      <div className="text-center max-w-7xl mx-auto relative z-10 mb-8 sm:mb-12">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-blue-500/5 to-transparent rounded-3xl blur-3xl opacity-50 animate-pulse"></div>
+        
         <div className="lg:hidden mb-6">
           <div className="h-48 w-48 mx-auto relative">
             <Suspense fallback={
@@ -96,57 +99,88 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Icon */}
-        <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="w-8 h-8 text-slate-300"
-            >
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Heading */}
-        <motion.h2
-          className={`${styles.sectionHeadText} bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6`}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+        {/* Enhanced Contact Icon with animation */}
+        <motion.div 
+          className="flex justify-center mb-6"
+          initial={{ scale: 0, rotate: -180 }}
+          whileInView={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", duration: 0.8 }}
         >
-          Get In Touch
-        </motion.h2>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-xl opacity-40 sm:animate-pulse"></div>
+            <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 backdrop-blur-xl border-2 border-cyan-400/30 flex items-center justify-center shadow-2xl shadow-cyan-500/20">
+              <div className="hidden sm:block absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-500/20 animate-ping"></div>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-10 h-10 text-cyan-300 relative z-10"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+          </div>
+        </motion.div>
 
-        {/* Divider */}
+        {/* Enhanced Heading with glow effect */}
         <motion.div
-          className="flex items-center justify-center mb-6 sm:mb-8"
+          className="relative"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className={`${styles.sectionHeadText} relative`}>
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400 blur-2xl opacity-30"></span>
+            <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400 font-black">
+              Get In Touch
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Enhanced Divider with floating dots */}
+        <motion.div
+          className="flex items-center justify-center my-8 relative"
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <div className="flex items-center gap-1 sm:gap-2">
-            <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400" />
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full" />
-            <div className="w-12 sm:w-24 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400" />
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full" />
-            <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-teal-400 to-transparent" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-cyan-400"></div>
+            <motion.div 
+              className="w-3 h-3 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-400/50"
+              animate={{ y: window.innerWidth > 640 ? [0, -5, 0] : 0 }}
+              transition={{ duration: 2, repeat: Infinity }}
+            ></motion.div>
+            <div className="w-16 sm:w-32 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400"></div>
+            <motion.div 
+              className="w-3 h-3 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-400/50"
+              animate={{ y: window.innerWidth > 640 ? [0, -5, 0] : 0 }}
+              transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
+            ></motion.div>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-teal-400 via-teal-400/50 to-transparent"></div>
           </div>
         </motion.div>
 
-        <motion.p
-          className="text-white/70 max-w-2xl mx-auto leading-relaxed text-center px-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
+        {/* Enhanced description with better styling */}
+        <motion.div
+          className="relative max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          Ready to collaborate on your next cloud infrastructure or DevOps project?
-          Let&apos;s connect and build something amazing together.
-        </motion.p>
+          <p className="text-lg sm:text-xl text-slate-200/90 leading-relaxed text-center px-4 font-light">
+            Ready to <span className="text-cyan-300 font-semibold">collaborate</span> on your next 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400 font-semibold mx-2">
+              cloud infrastructure
+            </span> 
+            or <span className="text-blue-300 font-semibold">DevOps</span> project?
+          </p>
+          <p className="text-base sm:text-lg text-slate-300/70 mt-3 text-center px-4">
+            Let's connect and build something <span className="text-teal-300 italic">amazing</span> together.
+          </p>
+        </motion.div>
       </div>
 
       {/* Main Content Section */}
