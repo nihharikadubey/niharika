@@ -3,10 +3,15 @@ import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
 
-// Lazy load the Globe component - only for desktop
-const Globe = lazy(() => 
-  window.innerWidth >= 1024 ? import('./Globe') : Promise.resolve({ default: () => null })
-);
+// Lazy load the Globe component with delay for better performance
+const Globe = lazy(() => {
+  // Only load Globe after initial page load
+  return new Promise(resolve => {
+    setTimeout(() => {
+      import('./Globe').then(module => resolve(module));
+    }, 2000); // Load Globe after 2 seconds
+  });
+});
 
 const Footer = () => {
   const [formData, setFormData] = useState({
