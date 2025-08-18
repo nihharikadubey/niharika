@@ -4,19 +4,8 @@ import { motion } from 'framer-motion';
 const ScrollBar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const scrollBarRef = useRef(null);
   const thumbRef = useRef(null);
-
-  const sections = [
-    { id: 'hero', name: 'Home', icon: '🏠' },
-    { id: 'about', name: 'About', icon: '👤' },
-    { id: 'work', name: 'Experience', icon: '💼' },
-    { id: 'tech', name: 'Skills', icon: '⚡' },
-    { id: 'projects', name: 'Projects', icon: '🚀' },
-    { id: 'currently-learning', name: 'Learning', icon: '📚' },
-    { id: 'contact', name: 'Contact', icon: '📧' },
-  ];
 
   // Update scroll progress
   useEffect(() => {
@@ -24,17 +13,6 @@ const ScrollBar = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
-
-      // Find active section
-      sections.forEach(section => {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section.id);
-          }
-        }
-      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -133,13 +111,6 @@ const ScrollBar = () => {
     });
   };
 
-  // Navigate to section
-  const navigateToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <>
