@@ -3,24 +3,9 @@ import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
 
-// Lazy load the Globe component with longer delay to prevent TBT
-const Globe = lazy(() => {
-  // Only load Globe after page is fully interactive
-  return new Promise(resolve => {
-    // Use requestIdleCallback for better performance
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        setTimeout(() => {
-          import('./Globe').then(module => resolve(module));
-        }, 3000); // Load after 3 seconds when browser is idle
-      });
-    } else {
-      setTimeout(() => {
-        import('./Globe').then(module => resolve(module));
-      }, 4000); // Load after 4 seconds as fallback
-    }
-  });
-});
+// Globe temporarily disabled to improve TBT
+// Will re-enable with better optimization later
+const Globe = () => null;
 
 const Footer = () => {
   const [formData, setFormData] = useState({

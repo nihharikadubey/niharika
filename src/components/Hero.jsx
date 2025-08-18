@@ -482,7 +482,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden pb-4 xl:pb-0 z-10">
+    <div id="hero" className="relative w-full min-h-screen overflow-hidden pb-4 xl:pb-0 z-10">
       <GlobalScrollbarStyles />
       
       {/* Oceanic Enhanced Background */}

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 // Import Hero and Navbar directly (not lazy loaded)
 import { Hero, Navbar } from './components';
+import ScrollBar from './components/ScrollBar';
 
 // Lazy load other components
 const About = lazy(() => import('./components/About'));
@@ -57,6 +58,7 @@ const HomePage = () => {
       {/* ALL PAGE CONTENT */}
       <div className='relative z-10'>
         <Navbar />
+        <ScrollBar />
         <Hero />
         
         {/* Other sections with Suspense for lazy loading */}
