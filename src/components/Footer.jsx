@@ -3,8 +3,10 @@ import { SectionWrapper } from '../hoc';
 import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
 
-// Lazy load the Globe component
-const Globe = lazy(() => import('./Globe'));
+// Lazy load the Globe component - only for desktop
+const Globe = lazy(() => 
+  window.innerWidth >= 1024 ? import('./Globe') : Promise.resolve({ default: () => null })
+);
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -82,22 +84,10 @@ const Footer = () => {
       {/* Decorative Blobs */}
       
 
-      {/* Heading + Globe (mobile) */}
+      {/* Heading (removed mobile globe) */}
       <div className="text-center max-w-7xl mx-auto relative z-10 mb-4 sm:mb-12">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-blue-500/5 to-transparent rounded-3xl blur-3xl opacity-50 sm:animate-pulse"></div>
-        
-        <div className="lg:hidden mb-4">
-          <div className="h-32 w-32 mx-auto relative">
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-8 h-8 border-2 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
-              </div>
-            }>
-              <Globe />
-            </Suspense>
-          </div>
-        </div>
 
         {/* Enhanced Contact Icon with animation */}
         <motion.div 
