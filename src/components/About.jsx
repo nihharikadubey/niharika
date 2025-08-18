@@ -117,17 +117,18 @@ const About = () => {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   const backgroundY = useTransform(smoothY, [0, 1], ["0%", "32%"]);
-  const contentY = useTransform(smoothY, [0, 1], ["0%", "-7%"]);
+  // Disable parallax on mobile to prevent overlap
+  const contentY = useTransform(smoothY, [0, 1], window.innerWidth < 768 ? ["0%", "0%"] : ["0%", "-7%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-2 sm:pt-16">
+    <section ref={containerRef} id="about" className="relative w-full min-h-screen overflow-hidden pt-2 sm:pt-16 z-20">
       <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       </motion.div>
 
-      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: contentY }}>
+      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-0 sm:pt-2 lg:pt-3 pb-0" style={{ y: window.innerWidth < 768 ? 0 : contentY }}>
         {/* Header */}
-        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center">
+        <motion.div variants={textVariant()} initial="hidden" whileInView="show" className="mb-2 text-center relative">
           {/* Icon above title */}
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-600/30 backdrop-blur-sm border border-slate-500/30 flex items-center justify-center">
