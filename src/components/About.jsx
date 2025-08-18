@@ -170,12 +170,17 @@ const About = () => {
             <picture>
               <source 
                 media="(max-width: 640px)" 
-                srcSet="/profileND-mobile.webp"
+                srcSet="/profileND-mobile.webp 1x, /profileND-mobile.webp 2x"
                 type="image/webp"
               />
               <source 
                 media="(max-width: 640px)" 
-                srcSet="/profileND-mobile.png"
+                srcSet="/profileND-mobile.jpg 1x, /profileND-mobile.jpg 2x"
+                type="image/jpeg"
+              />
+              <source 
+                media="(max-width: 640px)" 
+                srcSet="/profileND-mobile.png 1x, /profileND-mobile.png 2x"
                 type="image/png"
               />
               <source 
@@ -187,11 +192,11 @@ const About = () => {
                 type="image/png"
               />
               <img 
-                src="/profileND.png" 
+                src="/profileND-mobile.jpg" 
                 alt="Profile" 
                 className="rounded-3xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover border border-slate-700 shadow-lg"
-                style={{ imageRendering: 'auto' }}
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
               />
             </picture>
           </motion.div>
