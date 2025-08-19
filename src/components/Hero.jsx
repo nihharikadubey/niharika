@@ -478,7 +478,12 @@ const Hero = () => {
   const scaleTransform = 1; // Removed scale transform for performance
 
   useEffect(() => {
-    setIsVisible(true);
+    // Defer visibility to next idle callback for better performance
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => setIsVisible(true));
+    } else {
+      setTimeout(() => setIsVisible(true), 0);
+    }
   }, []);
 
   return (

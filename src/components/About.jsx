@@ -111,7 +111,12 @@ const About = () => {
   const containerRef = useRef(null);
   
   useEffect(() => {
-    setIsVisible(true);
+    // Defer visibility to next idle callback for better performance
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => setIsVisible(true));
+    } else {
+      setTimeout(() => setIsVisible(true), 0);
+    }
   }, []);
   
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
