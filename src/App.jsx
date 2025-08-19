@@ -3,13 +3,21 @@ import { lazy, Suspense } from 'react';
 // Import Hero and Navbar directly (not lazy loaded)
 import { Hero, Navbar } from './components';
 
-// Lazy load other components
+// Lazy load other components with prefetch on idle
 const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
 const CurrentlyLearning = lazy(() => import('./components/CurrentlyLearning'));
 const Footer = lazy(() => import('./components/Footer'));
+
+// Prefetch components when idle (for better performance)
+if (typeof requestIdleCallback !== 'undefined') {
+  requestIdleCallback(() => {
+    import('./components/About');
+    import('./components/Experience');
+  });
+}
 
 // COMPLETE HOMEPAGE WITH ALL SECTIONS
 const HomePage = () => {

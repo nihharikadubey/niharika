@@ -133,9 +133,9 @@ const OceanicHeroText = () => (
         variants={oceanicAnimationVariants.item}
       >
         <motion.span
-          initial={{ opacity: 0 }}
+          initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: window.innerWidth < 768 ? 0 : 0.2 }}
         >
           Niharika
         </motion.span>{' '}
@@ -157,9 +157,9 @@ const OceanicHeroText = () => (
       {/* Oceanic Enhanced Subtitle */}
       <motion.div
         className="inline-block"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: window.innerWidth < 768 ? 0 : 0.25 }}
       >
         <div className="relative">
           <motion.p 
@@ -202,9 +202,9 @@ const OceanicHeroText = () => (
     >
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.3 }}
+        transition={{ delay: window.innerWidth < 768 ? 0 : 0.1, duration: window.innerWidth < 768 ? 0 : 0.3 }}
       >
         Passionate Software Engineer specializing in{' '}
         <motion.span 
@@ -241,9 +241,9 @@ const OceanicHeroText = () => (
       
       <motion.p 
         className="text-slate-300 text-lg md:text-xl leading-relaxed"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: window.innerWidth < 768 ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.15, duration: 0.3 }}
+        transition={{ delay: window.innerWidth < 768 ? 0 : 0.15, duration: window.innerWidth < 768 ? 0 : 0.3 }}
       >
         Building{' '}
         <span className="text-slate-100 font-semibold">scalable solutions</span>{' '}
