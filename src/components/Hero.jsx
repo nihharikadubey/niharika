@@ -124,7 +124,7 @@ const OceanicFloatingTechIcons = () => {
 };
 
 // ===== OCEANIC HERO TEXT =====
-const OceanicHeroText = () => (
+const OceanicHeroText = ({ dividerY }) => (
   <div className="flex-1 max-w-5xl text-center px-4 sm:px-0">
     <div className="mb-12">
       {/* Oceanic Enhanced Name */}
@@ -183,6 +183,7 @@ const OceanicHeroText = () => (
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
+            style={{ y: dividerY }}
           >
             <div className="flex items-center gap-1 sm:gap-2">
               <div className="w-6 sm:w-10 h-0.5 bg-gradient-to-r from-transparent to-cyan-400"></div>
@@ -476,6 +477,9 @@ const Hero = () => {
   const yTransform = useTransform(scrollY, [0, 500], [0, -50]); // Reduced parallax effect
   const opacityTransform = useTransform(scrollY, [0, 400], [1, 0.3]); // Slower fade
   const scaleTransform = 1; // Removed scale transform for performance
+  
+  // Scroll-based animation for divider
+  const dividerY = useTransform(scrollY, [0, 300], [0, -30]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -504,7 +508,7 @@ const Hero = () => {
             initial="visible" 
             animate="visible"
           >
-            <OceanicHeroText />
+            <OceanicHeroText dividerY={dividerY} />
           </motion.div>
           
           {/* Mobile Stats - Below Hero Content */}
