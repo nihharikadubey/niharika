@@ -54,7 +54,7 @@ export const technologies = [
   },
   {
     name: "MongoDB",
-    icon: "https://letsprogram.in/assets/images/icons/mongodb.svg",
+    icon: "https://skillicons.dev/icons?i=mongodb",
   },
   { 
     name:"Java",
