@@ -12,10 +12,11 @@ const experiences = [
     icon: "/hsbc.png",
     current: true,
     points: [
-      "Implemented CI/CD pipelines for BigID using Jenkins and GitHub on GCP",
-      "Implemented helm charts, used Docker and Kubernetes for containerization",
-      "Worked on MongoDB database, implemented backup and recovery strategy",
-      "Implemented logging using ELK stack, worked on cost optimization",
+      "Built CI/CD pipelines with Jenkins to onboard applications and deploy & auto-scale them on Kubernetes (Google Cloud Platform).",
+      "Worked on Docker & Kubernetes manifests, using Helm charts to deploy applications like BigID & Datavisa.",
+      "Managed infrastructure as code with Terraform; updated Windows & SQL Server images to resolve violations.",
+      "Set up monitoring & alerting, fixed cloud security violations, and renewed SSL certificates via Venafi.",
+      "Integrated HashiCorp Vault with SAML SSO, optimized cloud costs, and managed version control via Git & GCR.",
     ]
   },
   {
@@ -24,10 +25,11 @@ const experiences = [
     date: "Jan 2023 — Mar 2025",
     icon: "/ocbc.png",
     points: [
-      "Worked on MFT and API data transfer flows using IBM Sterling and Tibco",
-      "Designed and implemented automated CI/CD pipelines for 50+ applications",
-      "Architected scalable microservices infrastructure serving 1M+ users",
-      "Led cloud migration initiatives reducing infrastructure costs by 40%",
+      "Implemented Managed File Transfer (MFT) middleware with IBM Sterling Suite & Tectia for secure B2B file transfers across 3000+ on-prem servers.",
+      "Configured integration tools and managed PGP, SSH & SSL keys/certificates across SFTP, FTPS, AS2 and Connect:Direct protocols.",
+      "Designed & deployed middleware applications handling 10,000+ daily file transfers on Linux & Windows.",
+      "Managed SOAP & RESTful APIs on Tibco and minimized financial penalties by troubleshooting production issues via Kibana.",
+      "Built CI/CD pipelines to deploy apps on Kubernetes with Jenkins & Docker; cut onboarding time by 20% and incident resolution by 25%.",
     ]
   },
   {
@@ -43,13 +45,12 @@ const experiences = [
   {
     title: "Senior System Engineer",
     company_name: "Infosys Limited",
-    date: "2019 — 2022",
+    date: "Sep 2019 — Oct 2022",
     icon: "/infy.png",
     points: [
-      "Worked on MFT and API data transfer flows using IBM Sterling and Tibco",
-      "Automated deployment processes reducing release time by 60%",
-      "Managed Kubernetes clusters across multiple environments",
-      "Implemented monitoring solutions improving system reliability"
+      "Designed & built integration flows on IBM Sterling Suite (Sterling Integrator, File Gateway, Connect:Direct) — routing channels, adapters, schedulers & robust business processes for data exchange.",
+      "Onboarded 100+ partners with SFTP, FTPS, AS2 and Connect:Direct, gathering requirements and liaising with clients & stakeholders.",
+      "Created technical documentation in Confluence, conducted KT sessions, led production transitions and participated in 50+ code reviews.",
     ]
   }
 ];

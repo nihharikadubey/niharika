@@ -261,7 +261,7 @@ const Footer = () => {
               {/* Quick action buttons */}
               <div className="flex flex-col gap-3 mb-6 mt-6">
                 <a
-                  href='https://drive.google.com/file/d/112yrR6dOKE0YuVO2Fs4PLxSshV76pC0n/view?usp=sharing'
+                  href='/Niharika_7YOE.pdf'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='group flex items-center justify-center gap-3 px-6 py-3.5 bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-sm rounded-xl border border-blue-500/20 hover:from-blue-600/20 hover:to-purple-600/20 hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300'

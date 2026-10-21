@@ -24,22 +24,22 @@ const Tech = () => {
     cloud: { 
       name: 'Cloud & Infrastructure', 
       icon: '☁️', 
-      technologies: technologies.filter(tech => 
-        ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Terraform'].includes(tech.name)
+      technologies: technologies.filter(tech =>
+        ['Google Cloud', 'Kubernetes', 'Docker', 'Terraform'].includes(tech.name)
       )
     },
     devops: { 
       name: 'DevOps & Automation', 
       icon: '⚙️', 
       technologies: technologies.filter(tech => 
-        ['Jenkins', 'Ansible', 'git', 'Prometheus', 'Grafana'].includes(tech.name)
+        ['Jenkins', 'git'].includes(tech.name)
       )
     },
     programming: { 
       name: 'Programming & Scripting', 
       icon: '💻', 
-      technologies: technologies.filter(tech => 
-        ['Java', 'Shell', 'Bash', 'SQL'].includes(tech.name)
+      technologies: technologies.filter(tech =>
+        ['Python', 'Java', 'Shell', 'Bash', 'SQL'].includes(tech.name)
       )
     },
     tools: { 
@@ -116,8 +116,7 @@ const Tech = () => {
     ];
     
     // Special colors for specific technologies
-    if (techName.toLowerCase().includes('aws')) return 'from-orange-400 to-orange-600';
-    if (techName.toLowerCase().includes('azure')) return 'from-blue-400 to-blue-600';
+    if (techName.toLowerCase().includes('google cloud')) return 'from-sky-400 to-blue-600';
     if (techName.toLowerCase().includes('docker')) return 'from-blue-400 to-cyan-500';
     if (techName.toLowerCase().includes('kubernetes')) return 'from-blue-500 to-indigo-600';
     if (techName.toLowerCase().includes('jenkins')) return 'from-blue-600 to-blue-800';

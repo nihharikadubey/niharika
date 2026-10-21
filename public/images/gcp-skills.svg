@@ -1,0 +1,88 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google Cloud Skills Boost">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf2ff"/>
+      <stop offset="0.55" stop-color="#eef6ff"/>
+      <stop offset="1" stop-color="#e6fbf2"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef3fb"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34a853"/>
+      <stop offset="1" stop-color="#0f9d9d"/>
+    </linearGradient>
+    <linearGradient id="boost" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4285f4"/>
+      <stop offset="1" stop-color="#1b9af7"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1b3a6b" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <circle cx="120" cy="90" r="150" fill="#4285f4" opacity="0.08"/>
+  <circle cx="700" cy="380" r="180" fill="#34a853" opacity="0.08"/>
+  <circle cx="650" cy="80" r="90" fill="#fbbc05" opacity="0.10"/>
+
+  <!-- subtle dashboard grid card -->
+  <g filter="url(#soft)">
+    <rect x="470" y="250" width="250" height="140" rx="18" fill="#ffffff"/>
+  </g>
+  <g stroke-linecap="round" fill="none">
+    <polyline points="498,352 540,330 582,344 624,300 666,318 694,286" stroke="url(#boost)" stroke-width="5"/>
+  </g>
+  <circle cx="694" cy="286" r="7" fill="#4285f4"/>
+  <rect x="498" y="368" width="196" height="8" rx="4" fill="#e5ecf6"/>
+  <rect x="498" y="276" width="70" height="9" rx="4.5" fill="#e5ecf6"/>
+
+  <!-- cloud -->
+  <g filter="url(#soft)">
+    <path d="M250 300
+             a70 70 0 0 1 8 -139
+             a86 86 0 0 1 165 -18
+             a62 62 0 0 1 17 157 Z"
+          fill="url(#cloud)" stroke="#dce6f5" stroke-width="2"/>
+  </g>
+
+  <!-- kubernetes-style helm hexagon inside cloud -->
+  <g transform="translate(300 232)">
+    <polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="#1a73e8"/>
+    <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="#4285f4"/>
+    <g stroke="#ffffff" stroke-width="3.2" stroke-linecap="round">
+      <circle cx="0" cy="0" r="12" fill="none"/>
+      <line x1="0" y1="-12" x2="0" y2="-30"/>
+      <line x1="10" y1="6" x2="26" y2="15"/>
+      <line x1="-10" y1="6" x2="-26" y2="15"/>
+      <line x1="11" y1="-5" x2="27" y2="-13"/>
+      <line x1="-11" y1="-5" x2="-27" y2="-13"/>
+      <line x1="0" y1="12" x2="0" y2="31"/>
+    </g>
+    <circle cx="0" cy="0" r="4.5" fill="#ffffff"/>
+  </g>
+
+  <!-- boost arrow -->
+  <g transform="translate(405 150)">
+    <circle cx="0" cy="0" r="30" fill="url(#boost)"/>
+    <path d="M-12 6 L0 -12 L12 6 M0 -12 L0 14" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- skill badge / medallion -->
+  <g transform="translate(176 330)" filter="url(#soft)">
+    <path d="M-16 24 L-26 72 L-9 60 L-2 78 L8 40 Z" fill="#1b9af7"/>
+    <path d="M16 24 L26 72 L9 60 L2 78 L-8 40 Z" fill="#34a853"/>
+    <circle cx="0" cy="18" r="40" fill="url(#badge)"/>
+    <circle cx="0" cy="18" r="40" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.85"/>
+    <path d="M0 -6 L7 8 L22 10 L11 20 L14 35 L0 28 L-14 35 L-11 20 L-22 10 L-7 8 Z" fill="#fde68a"/>
+  </g>
+
+  <!-- google-color accent dots -->
+  <g>
+    <circle cx="470" cy="150" r="7" fill="#ea4335"/>
+    <circle cx="500" cy="175" r="6" fill="#fbbc05"/>
+    <circle cx="455" cy="190" r="5" fill="#34a853"/>
+  </g>
+</svg>

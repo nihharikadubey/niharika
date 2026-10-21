@@ -5,7 +5,7 @@ import { SectionWrapper } from '../hoc';
 import { styles } from '../styles';
 
 const skills = [
-  { name: 'AWS Cloud', level: 95, color: 'from-orange-400 to-orange-600' },
+  { name: 'GCP', level: 95, color: 'from-sky-400 to-sky-600' },
   { name: 'Kubernetes', level: 90, color: 'from-blue-400 to-blue-600' },
   { name: 'Docker', level: 92, color: 'from-cyan-400 to-cyan-600' },
   { name: 'CI/CD Pipeline', level: 88, color: 'from-green-400 to-green-600' },

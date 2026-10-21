@@ -96,12 +96,12 @@ const MonitorIcon = () => (
 
 // --- Services data ---
 const services = [
-  { title: "Cloud Architecture", description: "Designing scalable cloud-native solutions with AWS, optimizing for security and performance", icon: CloudIcon, technologies: ["AWS","Cloud Native","Scalability","Security"] },
+  { title: "Cloud Architecture", description: "Designing scalable cloud-native solutions with GCP, optimizing for security and performance", icon: CloudIcon, technologies: ["GCP","Cloud Native","Scalability","Security"] },
   { title: "DevOps Automation", description: "CI/CD pipelines, Kubernetes, Docker, Terraform deployment automation", icon: CodeIcon, technologies: ["CI/CD","Kubernetes","Docker","Terraform"] },
   { title: "Infrastructure Management", description: "Optimizing UNIX/Linux systems for reliability and speed", icon: ServerIcon, technologies: ["Linux","Performance","Automation","Monitoring"] },
   { title: "Managed File Transfer", description: "Secure file transfer solutions and middleware integration", icon: NetworkIcon, technologies: ["MFT","Middleware","SOA","Integration"] },
   { title: "Security & Compliance", description: "Enterprise-grade security and compliance standards", icon: SecurityIcon, technologies: ["Security","Compliance","Enterprise","Risk"] },
-  { title: "Monitoring & Observability", description: "Grafana, Prometheus for proactive system monitoring", icon: MonitorIcon, technologies: ["Grafana","Prometheus","Observability","Analytics"] },
+  { title: "Monitoring & Observability", description: "Proactive system monitoring, logging & alerting for reliability", icon: MonitorIcon, technologies: ["Monitoring","Logging","Observability","Analytics"] },
 ];
 
 
@@ -206,11 +206,12 @@ const About = () => {
             </picture>
           </div>
           <div className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
-            <p><span className="font-bold text-cyan-400">6+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across major sectors.</p>
-            <p>Expert in AWS, Kubernetes, Docker, Terraform — focusing on automation, security, and operational excellence.</p>
+            <p><span className="font-bold text-cyan-400">7+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across banking, healthcare & retail.</p>
+            <p>Hands-on across the stack — <span className="text-slate-100 font-medium">cloud</span> (GCP), <span className="text-slate-100 font-medium">containers &amp; orchestration</span> (Kubernetes, Docker, Helm), <span className="text-slate-100 font-medium">CI/CD</span> (Jenkins), <span className="text-slate-100 font-medium">Infrastructure as Code</span> (Terraform), <span className="text-slate-100 font-medium">Managed File Transfer &amp; integration</span> (IBM Sterling, Connect:Direct, Tibco, MQ/Kafka), and <span className="text-slate-100 font-medium">observability</span> (ELK).</p>
+            <p>I automate with Python, Bash &amp; shell, manage secrets &amp; certificates with HashiCorp Vault and Venafi, and bring a strong focus on CI/CD automation, cloud security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
             <div className="flex flex-wrap gap-4 mt-2">
-              {['AWS Cloud', 'Kubernetes', 'DevOps', 'Infrastructure'].map((skill, i) => (
+              {['GCP', 'Kubernetes', 'DevOps', 'Infrastructure', 'MFT'].map((skill, i) => (
                 <span key={i} className="px-6 py-2 rounded-2xl bg-slate-800 text-slate-300 border border-slate-700">{skill}</span>
               ))}
             </div>

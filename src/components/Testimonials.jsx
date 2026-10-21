@@ -19,7 +19,7 @@ const testimonials = [
     role: "CTO",
     company: "StartupX",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
-    text: "Working with Niharika was a game-changer for our infrastructure. Her knowledge of AWS and Kubernetes helped us scale seamlessly from 1K to 100K users.",
+    text: "Working with Niharika was a game-changer for our infrastructure. Her knowledge of GCP and Kubernetes helped us scale seamlessly from 1K to 100K users.",
     rating: 5,
   },
   {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { projects } from "../constants";
 import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -225,10 +225,15 @@ const ProjectCard = ({
 };
 
 const ProjectsShowcase = () => {
-  const [visibleProjects, setVisibleProjects] = useState(6);
+  const scrollRef = useRef(null);
 
-  const showMore = () => {
-    setVisibleProjects(prev => Math.min(prev + 3, projects.length));
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    // Advance by roughly one card (card width + gap) so each tap moves one project.
+    const first = el.firstElementChild;
+    const step = first ? first.offsetWidth + 24 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
   };
 
   return (
@@ -313,36 +318,59 @@ const ProjectsShowcase = () => {
           </motion.p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects — horizontal scroller with side arrows */}
         <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+          className="relative"
         >
-          {projects.slice(0, visibleProjects).map((project, idx) => (
-            <ProjectCard key={project.name} {...project} index={idx} />
-          ))}
-        </motion.div>
-
-        {/* Load More Button */}
-        {visibleProjects < projects.length && (
-          <motion.div
-            className="flex justify-center mt-4 sm:mt-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+          {/* Left arrow */}
+          <button
+            type="button"
+            onClick={() => scroll("left")}
+            aria-label="Previous projects"
+            className="flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-2 z-20 w-10 h-10 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-slate-900/70 backdrop-blur-md border border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400/60 hover:scale-105 transition-all duration-200 shadow-lg shadow-cyan-500/10"
           >
-            <button
-              onClick={showMore}
-              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group"
-            >
-              <span className="relative z-10">View More Projects</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-          </motion.div>
-        )}
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Scroller */}
+          <div
+            ref={scrollRef}
+            className="projects-scroller flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 px-11 sm:px-14"
+          >
+            {projects.map((project, idx) => (
+              <div
+                key={project.name}
+                className="snap-center shrink-0 w-[78vw] sm:w-[340px]"
+              >
+                <ProjectCard {...project} index={idx} />
+              </div>
+            ))}
+          </div>
+
+          {/* Right arrow */}
+          <button
+            type="button"
+            onClick={() => scroll("right")}
+            aria-label="Next projects"
+            className="flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-2 z-20 w-10 h-10 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-slate-900/70 backdrop-blur-md border border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400/60 hover:scale-105 transition-all duration-200 shadow-lg shadow-cyan-500/10"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* hide scrollbar */}
+          <style>{`
+            .projects-scroller::-webkit-scrollbar { height: 0; display: none; }
+            .projects-scroller { -ms-overflow-style: none; scrollbar-width: none; }
+          `}</style>
+        </motion.div>
       </div>
     </section>
   );

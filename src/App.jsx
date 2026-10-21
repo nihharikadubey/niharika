@@ -8,7 +8,6 @@ const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
 const Tech = lazy(() => import('./components/Tech'));
 const Projects = lazy(() => import('./components/Projects'));
-const CurrentlyLearning = lazy(() => import('./components/CurrentlyLearning'));
 const Footer = lazy(() => import('./components/Footer'));
 
 // Prefetch components when idle (for better performance)
@@ -83,11 +82,7 @@ const HomePage = () => {
         <Suspense fallback={null}>
           <Projects />
         </Suspense>
-        
-        <Suspense fallback={null}>
-          <CurrentlyLearning />
-        </Suspense>
-        
+
         <Suspense fallback={null}>
           <Footer />
         </Suspense>

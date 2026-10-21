@@ -4,10 +4,10 @@ import { SectionWrapper } from '../hoc';
 const CurrentlyLearning = () => {
   const learningItems = [
     {
-      title: 'Architecting Solutions on AWS',
+      title: 'Architecting Solutions on Google Cloud',
       description: 'Advanced cloud architecture patterns and best practices',
       progress: 75,
-      resources: ['AWS Well-Architected', 'Solution Architecture'],
+      resources: ['Cloud Architecture', 'Solution Design'],
     },
     {
       title: 'Google Cloud SRE & DevOps',
@@ -16,10 +16,10 @@ const CurrentlyLearning = () => {
       resources: ['SRE Principles', 'GCP DevOps Tools'],
     },
     {
-      title: 'DevOps with AI on AWS',
+      title: 'DevOps with AI on Google Cloud',
       description: 'Integrating AI/ML into DevOps workflows',
       progress: 45,
-      resources: ['AI-Powered DevOps', 'AWS AI Services'],
+      resources: ['AI-Powered DevOps', 'Vertex AI'],
     },
     {
       title: 'MLOps Engineering',
