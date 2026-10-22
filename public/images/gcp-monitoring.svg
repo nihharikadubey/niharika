@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monitoring in Google Cloud">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9f7ef"/>
+      <stop offset="0.5" stop-color="#eef6ff"/>
+      <stop offset="1" stop-color="#e6fbf5"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#34a853"/>
+      <stop offset="1" stop-color="#1b9af7"/>
+    </linearGradient>
+    <linearGradient id="bell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4285f4"/>
+      <stop offset="1" stop-color="#1a73e8"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f5132" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <circle cx="120" cy="90" r="150" fill="#34a853" opacity="0.08"/>
+  <circle cx="700" cy="380" r="180" fill="#4285f4" opacity="0.08"/>
+  <circle cx="660" cy="90" r="90" fill="#fbbc05" opacity="0.10"/>
+
+  <!-- main dashboard card -->
+  <g filter="url(#soft)">
+    <rect x="120" y="110" width="430" height="250" rx="22" fill="#ffffff"/>
+  </g>
+  <rect x="120" y="110" width="430" height="46" rx="22" fill="#f1f6fd"/>
+  <circle cx="150" cy="133" r="6" fill="#ea4335"/>
+  <circle cx="172" cy="133" r="6" fill="#fbbc05"/>
+  <circle cx="194" cy="133" r="6" fill="#34a853"/>
+  <rect x="220" y="127" width="150" height="12" rx="6" fill="#dbe6f3"/>
+
+  <!-- line chart with area -->
+  <polyline points="150,300 200,268 250,284 300,236 350,256 400,206 450,224 500,186"
+            fill="none" stroke="url(#line)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 300 L200 268 L250 284 L300 236 L350 256 L400 206 L450 224 L500 186 L500 332 L150 332 Z"
+        fill="#34a853" opacity="0.08"/>
+  <circle cx="500" cy="186" r="7" fill="#1b9af7"/>
+
+  <!-- metric tiles -->
+  <g>
+    <rect x="150" y="312" width="80" height="30" rx="8" fill="#eaf4ec"/>
+    <rect x="248" y="312" width="80" height="30" rx="8" fill="#eaf1fd"/>
+    <rect x="346" y="312" width="80" height="30" rx="8" fill="#fdf3e3"/>
+  </g>
+
+  <!-- uptime gauge -->
+  <g transform="translate(640 250)" filter="url(#soft)">
+    <circle cx="0" cy="0" r="78" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="58" fill="none" stroke="#e6edf5" stroke-width="12"/>
+    <path d="M0 -58 A58 58 0 1 1 -50 29" fill="none" stroke="url(#line)" stroke-width="12" stroke-linecap="round"/>
+    <text x="0" y="2" font-family="Arial, sans-serif" font-size="26" font-weight="800" fill="#1a73e8" text-anchor="middle">99.9%</text>
+    <text x="0" y="26" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#5f6b7a" text-anchor="middle">uptime</text>
+  </g>
+
+  <!-- alert bell -->
+  <g transform="translate(560 140)" filter="url(#soft)">
+    <circle cx="0" cy="0" r="30" fill="url(#bell)"/>
+    <path d="M-10 4 a10 14 0 0 1 20 0 v2 l4 6 h-28 l4 -6 Z" fill="#ffffff"/>
+    <circle cx="0" cy="16" r="4" fill="#ffffff"/>
+    <circle cx="16" cy="-16" r="8" fill="#ea4335" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+</svg>

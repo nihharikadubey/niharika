@@ -132,9 +132,9 @@ export const experiences = [
 
 export const projects = [
   {
-    name: "Google Cloud Skills Boost",
+    name: "Deploy Kubernetes Apps on Google Cloud",
     description:
-      "Hands-on Google Cloud labs and skill badges earned on Google Cloud Skills Boost — spanning Kubernetes application deployment on GKE, cloud monitoring & operations, and the Google Cloud Arcade program.",
+      "Google Cloud Skills Boost skill badge (Oct 2026) — deploying and managing containerized applications on Google Kubernetes Engine (GKE): building images, rolling out Deployments, scaling workloads, and exposing Services.",
     tags: [
       {
         name: "Google Cloud",
@@ -149,7 +149,49 @@ export const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: "images/gcp-skills.svg",
+    image: "images/gcp-gke-deploy.svg",
+    source_code_link: "https://www.skills.google/public_profiles/0e183ac0-2668-4d0a-bb62-6ece9104b00c",
+  },
+  {
+    name: "Google Cloud Arcade — Base Camp",
+    description:
+      "Google Cloud Arcade program (Base Camp, Aug 2026) — hands-on labs and gaming challenges earning Arcade points and skill badges across Google Cloud services.",
+    tags: [
+      {
+        name: "Google Cloud",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Arcade",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Hands-on Labs",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: "images/gcp-arcade.svg",
+    source_code_link: "https://www.skills.google/public_profiles/0e183ac0-2668-4d0a-bb62-6ece9104b00c",
+  },
+  {
+    name: "Monitoring in Google Cloud",
+    description:
+      "Google Cloud Skills Boost skill badge (Aug 2026) — Cloud Operations: building dashboards, metrics and uptime checks, configuring alerting policies, and using Cloud Logging & Cloud Monitoring for observability.",
+    tags: [
+      {
+        name: "Google Cloud",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Cloud Monitoring",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Observability",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: "images/gcp-monitoring.svg",
     source_code_link: "https://www.skills.google/public_profiles/0e183ac0-2668-4d0a-bb62-6ece9104b00c",
   },
   {
