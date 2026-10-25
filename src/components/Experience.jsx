@@ -25,11 +25,11 @@ const experiences = [
     date: "Jan 2023 — Mar 2025",
     icon: "/ocbc.png",
     points: [
+      "Designed & implemented CI/CD pipelines to onboard & deploy apps on Kubernetes using Jenkins & Docker; cut onboarding time by 20% and incident resolution by 25%.",
       "Implemented Managed File Transfer (MFT) middleware with IBM Sterling Suite & Tectia for secure B2B file transfers across 3000+ on-prem servers.",
       "Configured integration tools and managed PGP, SSH & SSL keys/certificates across SFTP, FTPS, AS2 and Connect:Direct protocols.",
       "Designed & deployed middleware applications handling 10,000+ daily file transfers on Linux & Windows.",
       "Managed SOAP & RESTful APIs on Tibco and minimized financial penalties by troubleshooting production issues via Kibana.",
-      "Built CI/CD pipelines to deploy apps on Kubernetes with Jenkins & Docker; cut onboarding time by 20% and incident resolution by 25%.",
     ]
   },
   {
