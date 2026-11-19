@@ -77,12 +77,44 @@ export const technologies = [
     icon:"https://skillicons.dev/icons/?i=jenkins",
   },
   {
+    name:"IBM Sterling",
+    icon:"https://img.shields.io/badge/IBM_Sterling-052FAD?style=flat-square&logo=ibm&logoColor=white",
+  },
+  {
+    name:"Connect:Direct",
+    icon:"https://img.shields.io/badge/Connect:Direct-0055A4?style=flat-square&logo=ibm&logoColor=white",
+  },
+  {
+    name:"Tectia",
+    icon:"https://img.shields.io/badge/Tectia-1B4F72?style=flat-square&logo=ssh&logoColor=white",
+  },
+  {
+    name:"Tibco",
+    icon:"https://img.shields.io/badge/Tibco-00A0DF?style=flat-square&logo=tibco&logoColor=white",
+  },
+  {
+    name:"IBM MQ",
+    icon:"https://img.shields.io/badge/IBM_MQ-052FAD?style=flat-square&logo=ibm&logoColor=white",
+  },
+  {
     name:"SFTP",
     icon:"https://img.shields.io/badge/SFTP-0B3D91?style=flat-square&logo=internet-explorer&logoColor=white",
   },
   {
-    name:"Connect",
-    icon:"https://img.shields.io/badge/Connect_Direct-0055A4?style=flat-square&logo=ibm&logoColor=white",
+    name:"FTPS",
+    icon:"https://img.shields.io/badge/FTPS-0B3D91?style=flat-square&logo=files&logoColor=white",
+  },
+  {
+    name:"AS2",
+    icon:"https://img.shields.io/badge/AS2-5A189A?style=flat-square&logo=protocolsdotio&logoColor=white",
+  },
+  {
+    name:"PGP",
+    icon:"https://img.shields.io/badge/PGP-000000?style=flat-square&logo=gnuprivacyguard&logoColor=white",
+  },
+  {
+    name:"TLS/SSL",
+    icon:"https://img.shields.io/badge/TLS%2FSSL-2E7D32?style=flat-square&logo=letsencrypt&logoColor=white",
   },
 ];
 

@@ -21,32 +21,46 @@ const Tech = () => {
   // Organize technologies by categories for better presentation
   const techCategories = {
     all: { name: 'All', icon: '🚀', technologies: technologies },
-    cloud: { 
-      name: 'Cloud & Infrastructure', 
-      icon: '☁️', 
+    mft: {
+      name: 'MFT & Integration',
+      icon: '🔗',
+      technologies: technologies.filter(tech =>
+        ['IBM Sterling', 'Connect:Direct', 'Tectia', 'Tibco', 'IBM MQ'].includes(tech.name)
+      )
+    },
+    protocols: {
+      name: 'Protocols & Secure Transfer',
+      icon: '🔒',
+      technologies: technologies.filter(tech =>
+        ['SFTP', 'FTPS', 'AS2', 'Connect:Direct', 'PGP', 'TLS/SSL'].includes(tech.name)
+      )
+    },
+    cloud: {
+      name: 'Cloud & Infrastructure',
+      icon: '☁️',
       technologies: technologies.filter(tech =>
         ['Google Cloud', 'Kubernetes', 'Docker', 'Terraform'].includes(tech.name)
       )
     },
-    devops: { 
-      name: 'DevOps & Automation', 
-      icon: '⚙️', 
-      technologies: technologies.filter(tech => 
+    devops: {
+      name: 'DevOps & Automation',
+      icon: '⚙️',
+      technologies: technologies.filter(tech =>
         ['Jenkins', 'git'].includes(tech.name)
       )
     },
-    programming: { 
-      name: 'Programming & Scripting', 
-      icon: '💻', 
+    programming: {
+      name: 'Programming & Scripting',
+      icon: '💻',
       technologies: technologies.filter(tech =>
         ['Python', 'Java', 'Shell', 'Bash', 'SQL'].includes(tech.name)
       )
     },
-    tools: { 
-      name: 'Tools & Platforms', 
-      icon: '🛠️', 
-      technologies: technologies.filter(tech => 
-        ['MongoDB', 'Linux', 'SFTP', 'Connect', 'MQ', 'Kafka'].includes(tech.name)
+    tools: {
+      name: 'Tools & Platforms',
+      icon: '🛠️',
+      technologies: technologies.filter(tech =>
+        ['MongoDB', 'Linux'].includes(tech.name)
       )
     }
   };
