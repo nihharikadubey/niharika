@@ -256,7 +256,7 @@ const OceanicHeroText = () => (
     <div 
       className="flex flex-wrap gap-3 justify-center"
     >
-      {['GCP', 'Kubernetes', 'DevOps', 'Jenkins', 'Docker', 'Terraform'].map((tech, index) => (
+      {['MFT', 'GCP', 'Kubernetes', 'DevOps', 'Jenkins', 'Docker', 'Terraform'].map((tech, index) => (
         <span
           key={tech}
           className="px-4 py-2 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/40 text-sm font-medium text-slate-200 hover:bg-slate-700/40 hover:border-sky-400/40 hover:text-sky-300 hover:scale-105 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
