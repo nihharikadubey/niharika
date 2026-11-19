@@ -25,14 +25,14 @@ const Tech = () => {
       name: 'MFT & Integration',
       icon: '🔗',
       technologies: technologies.filter(tech =>
-        ['IBM Sterling', 'Connect:Direct', 'Tectia', 'Tibco', 'IBM MQ'].includes(tech.name)
+        ['IBM Sterling', 'Sterling File Gateway', 'Connect:Direct', 'Tectia', 'Tibco', 'IBM MQ', 'Control-M'].includes(tech.name)
       )
     },
     protocols: {
       name: 'Protocols & Secure Transfer',
       icon: '🔒',
       technologies: technologies.filter(tech =>
-        ['SFTP', 'FTPS', 'AS2', 'Connect:Direct', 'PGP', 'TLS/SSL'].includes(tech.name)
+        ['SFTP', 'FTPS', 'AS2', 'Connect:Direct', 'PGP', 'TLS/SSL', 'HTTPS'].includes(tech.name)
       )
     },
     cloud: {
@@ -46,7 +46,7 @@ const Tech = () => {
       name: 'DevOps & Automation',
       icon: '⚙️',
       technologies: technologies.filter(tech =>
-        ['Jenkins', 'git'].includes(tech.name)
+        ['Jenkins', 'git', 'Helm', 'GCR', 'Kibana', 'Confluence'].includes(tech.name)
       )
     },
     programming: {

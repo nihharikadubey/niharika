@@ -116,6 +116,34 @@ export const technologies = [
     name:"TLS/SSL",
     icon:"https://img.shields.io/badge/TLS%2FSSL-2E7D32?style=flat-square&logo=letsencrypt&logoColor=white",
   },
+  {
+    name:"Sterling File Gateway",
+    icon:"https://img.shields.io/badge/Sterling_File_Gateway-052FAD?style=flat-square&logo=ibm&logoColor=white",
+  },
+  {
+    name:"Control-M",
+    icon:"https://img.shields.io/badge/Control--M-0A66C2?style=flat-square&logo=bmc&logoColor=white",
+  },
+  {
+    name:"Kibana",
+    icon:"https://skillicons.dev/icons/?i=elasticsearch",
+  },
+  {
+    name:"Helm",
+    icon:"https://img.shields.io/badge/Helm-0F1689?style=flat-square&logo=helm&logoColor=white",
+  },
+  {
+    name:"GCR",
+    icon:"https://img.shields.io/badge/GCR-4285F4?style=flat-square&logo=googlecloud&logoColor=white",
+  },
+  {
+    name:"Confluence",
+    icon:"https://skillicons.dev/icons/?i=confluence",
+  },
+  {
+    name:"HTTPS",
+    icon:"https://img.shields.io/badge/HTTPS-2E7D32?style=flat-square&logo=letsencrypt&logoColor=white",
+  },
 ];
 
 export const experiences = [
