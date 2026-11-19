@@ -138,7 +138,27 @@ export const technologies = [
   },
   {
     name:"Confluence",
-    icon:"https://skillicons.dev/icons/?i=confluence",
+    icon:"https://img.shields.io/badge/Confluence-172B4D?style=flat-square&logo=confluence&logoColor=white",
+  },
+  {
+    name:"Jira",
+    icon:"https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=jira&logoColor=white",
+  },
+  {
+    name:"ServiceNow",
+    icon:"https://img.shields.io/badge/ServiceNow-62D84E?style=flat-square&logo=servicenow&logoColor=white",
+  },
+  {
+    name:"BMC Remedy",
+    icon:"https://img.shields.io/badge/BMC_Remedy-FF6B00?style=flat-square&logo=bmc&logoColor=white",
+  },
+  {
+    name:"GCP Cloud Logging",
+    icon:"https://img.shields.io/badge/Cloud_Logging-4285F4?style=flat-square&logo=googlecloud&logoColor=white",
+  },
+  {
+    name:"ELK Stack",
+    icon:"https://img.shields.io/badge/ELK_Stack-005571?style=flat-square&logo=elasticstack&logoColor=white",
   },
   {
     name:"HTTPS",

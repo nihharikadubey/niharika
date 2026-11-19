@@ -46,7 +46,21 @@ const Tech = () => {
       name: 'DevOps & Automation',
       icon: '⚙️',
       technologies: technologies.filter(tech =>
-        ['Jenkins', 'git', 'Helm', 'GCR', 'Kibana', 'Confluence'].includes(tech.name)
+        ['Jenkins', 'git', 'Helm', 'GCR', 'Confluence'].includes(tech.name)
+      )
+    },
+    monitoring: {
+      name: 'Monitoring & Logging',
+      icon: '📊',
+      technologies: technologies.filter(tech =>
+        ['Kibana', 'ELK Stack', 'GCP Cloud Logging'].includes(tech.name)
+      )
+    },
+    ticketing: {
+      name: 'Ticketing & Incident Mgmt',
+      icon: '🎫',
+      technologies: technologies.filter(tech =>
+        ['Jira', 'ServiceNow', 'BMC Remedy'].includes(tech.name)
       )
     },
     programming: {
