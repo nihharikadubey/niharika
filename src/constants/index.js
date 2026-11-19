@@ -78,51 +78,51 @@ export const technologies = [
   },
   {
     name:"IBM Sterling",
-    icon:"https://img.shields.io/badge/IBM_Sterling-052FAD?style=flat-square&logo=ibm&logoColor=white",
+    icon:"/skills/ibm-sterling.svg",
   },
   {
     name:"Connect:Direct",
-    icon:"https://img.shields.io/badge/Connect:Direct-0055A4?style=flat-square&logo=ibm&logoColor=white",
+    icon:"/skills/connect-direct.svg",
   },
   {
     name:"Tectia",
-    icon:"https://img.shields.io/badge/Tectia-1B4F72?style=flat-square&logo=ssh&logoColor=white",
+    icon:"/skills/tectia.svg",
   },
   {
     name:"Tibco",
-    icon:"https://img.shields.io/badge/Tibco-00A0DF?style=flat-square&logo=tibco&logoColor=white",
+    icon:"/skills/tibco.svg",
   },
   {
     name:"IBM MQ",
-    icon:"https://img.shields.io/badge/IBM_MQ-052FAD?style=flat-square&logo=ibm&logoColor=white",
+    icon:"/skills/ibm-mq.svg",
   },
   {
     name:"SFTP",
-    icon:"https://img.shields.io/badge/SFTP-0B3D91?style=flat-square&logo=internet-explorer&logoColor=white",
+    icon:"/skills/sftp.svg",
   },
   {
     name:"FTPS",
-    icon:"https://img.shields.io/badge/FTPS-0B3D91?style=flat-square&logo=files&logoColor=white",
+    icon:"/skills/ftps.svg",
   },
   {
     name:"AS2",
-    icon:"https://img.shields.io/badge/AS2-5A189A?style=flat-square&logo=protocolsdotio&logoColor=white",
+    icon:"/skills/as2.svg",
   },
   {
     name:"PGP",
-    icon:"https://img.shields.io/badge/PGP-000000?style=flat-square&logo=gnuprivacyguard&logoColor=white",
+    icon:"/skills/pgp.svg",
   },
   {
     name:"TLS/SSL",
-    icon:"https://img.shields.io/badge/TLS%2FSSL-2E7D32?style=flat-square&logo=letsencrypt&logoColor=white",
+    icon:"/skills/tls-ssl.svg",
   },
   {
     name:"Sterling File Gateway",
-    icon:"https://img.shields.io/badge/Sterling_File_Gateway-052FAD?style=flat-square&logo=ibm&logoColor=white",
+    icon:"/skills/sterling-file-gateway.svg",
   },
   {
     name:"Control-M",
-    icon:"https://img.shields.io/badge/Control--M-0A66C2?style=flat-square&logo=bmc&logoColor=white",
+    icon:"/skills/control-m.svg",
   },
   {
     name:"Kibana",
@@ -146,15 +146,15 @@ export const technologies = [
   },
   {
     name:"ServiceNow",
-    icon:"https://img.shields.io/badge/ServiceNow-62D84E?style=flat-square&logo=servicenow&logoColor=white",
+    icon:"/skills/servicenow.svg",
   },
   {
     name:"BMC Remedy",
-    icon:"https://img.shields.io/badge/BMC_Remedy-FF6B00?style=flat-square&logo=bmc&logoColor=white",
+    icon:"/skills/bmc-remedy.svg",
   },
   {
     name:"GCP Cloud Logging",
-    icon:"https://img.shields.io/badge/Cloud_Logging-4285F4?style=flat-square&logo=googlecloud&logoColor=white",
+    icon:"/skills/gcp-cloud-logging.svg",
   },
   {
     name:"ELK Stack",
@@ -162,7 +162,7 @@ export const technologies = [
   },
   {
     name:"HTTPS",
-    icon:"https://img.shields.io/badge/HTTPS-2E7D32?style=flat-square&logo=letsencrypt&logoColor=white",
+    icon:"/skills/https.svg",
   },
 ];
 
