@@ -20,26 +20,16 @@ const experiences = [
     ]
   },
   {
-    title: "Infrastructure Engineer",
+    title: "Integration Engineer",
     company_name: "OCBC Bank",
-    date: "Jan 2023 — Mar 2025",
+    date: "Dec 2022 — Mar 2025",
     icon: "/ocbc.png",
     points: [
-      "Designed & implemented CI/CD pipelines to onboard & deploy apps on Kubernetes using Jenkins & Docker; cut onboarding time by 20% and incident resolution by 25%.",
-      "Implemented Managed File Transfer (MFT) middleware with IBM Sterling Suite & Tectia for secure B2B file transfers across 3000+ on-prem servers.",
-      "Configured integration tools and managed PGP, SSH & SSL keys/certificates across SFTP, FTPS, AS2 and Connect:Direct protocols.",
-      "Designed & deployed middleware applications handling 10,000+ daily file transfers on Linux & Windows.",
-      "Managed SOAP & RESTful APIs on Tibco and minimized financial penalties by troubleshooting production issues via Kibana.",
-    ]
-  },
-  {
-    title: "Cloud Infrastructure Specialist",
-    company_name: "Siemens Healthineers",
-    date: "Oct 2022 — Dec 2022",
-    icon: "/seh.png",
-    points: [
-      "Developed and deployed data flows on integration platform GoAnywhereMFT",
-      "Implemented TCP/IP, AS2 protocols for secure file transfer"
+      "Implemented Managed File Transfer (MFT) integration solutions for distributed systems using IBM Sterling Suite, IBM Connect:Direct & Tectia for secure, automated B2B file transfers across 3000+ servers globally.",
+      "Configured integration tools and managed PGP, SSH & SSL keys/certificates across SFTP, FTPS, AS2 and Connect:Direct; designed solutions handling 10,000+ daily transactions.",
+      "Managed SOAP & RESTful API connections on Tibco for seamless integration, and minimized financial penalties by troubleshooting production issues via Kibana.",
+      "Reduced onboarding time by 20% via documentation, SOPs & issue tracking on Confluence; built performance-testing environments automating deployment of 500+ services.",
+      "Worked with CI/CD pipelines using Jenkins & Docker and provisioned infrastructure with Terraform.",
     ]
   },
   {

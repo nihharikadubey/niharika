@@ -176,7 +176,7 @@ const OceanicHeroText = () => (
               backgroundSize: '200% 200%',
             }}
           >
-            Infrastructure & DevOps Engineer
+            Integration & DevOps Engineer · MFT Specialist
           </motion.p>
           <motion.div 
             className="flex items-center justify-center mt-4"
@@ -408,7 +408,7 @@ const OceanicCTAButtons = () => {
       external: true
     },
     {
-      href: "/Niharika_7YOE.pdf",
+      href: "/Niharika_Dubey_Resume.pdf",
       text: "Download CV",
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

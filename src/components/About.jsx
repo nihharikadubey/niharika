@@ -206,7 +206,7 @@ const About = () => {
             </picture>
           </div>
           <div className="lg:col-span-8 space-y-4 text-slate-300 leading-relaxed mt-10">
-            <p><span className="font-bold text-cyan-400">7+ years</span> of experience in cloud infrastructure, DevOps automation, and enterprise integration across banking, healthcare & retail.</p>
+            <p><span className="font-bold text-cyan-400">7 years</span> of experience in the Middleware Infra domain, specializing in <span className="text-slate-100 font-medium">Managed File Transfer (MFT)</span>, DevOps and cloud-integration solutions across banking, data governance & retail.</p>
             <p>Hands-on across the stack — <span className="text-slate-100 font-medium">cloud</span> (GCP), <span className="text-slate-100 font-medium">containers &amp; orchestration</span> (Kubernetes, Docker, Helm), <span className="text-slate-100 font-medium">CI/CD</span> (Jenkins), <span className="text-slate-100 font-medium">Infrastructure as Code</span> (Terraform), <span className="text-slate-100 font-medium">Managed File Transfer &amp; integration</span> (IBM Sterling, Connect:Direct, Tibco, MQ/Kafka), and <span className="text-slate-100 font-medium">observability</span> (ELK).</p>
             <p>I automate with Python, Bash &amp; shell, manage secrets &amp; certificates with HashiCorp Vault and Venafi, and bring a strong focus on CI/CD automation, cloud security, and operational excellence.</p>
             <p>Passionate about building resilient systems that drive digital transformation.</p>
